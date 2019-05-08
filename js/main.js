@@ -1,10 +1,8 @@
 
 
-const quizContainer = document.getElementById('quiz');
 
-const resultsContainer = document.getElementById('results');
 
-const submitButton = document.getElementById('submit');
+// ARRAY OF OBJECTS: QUESTION, POSSIBLE ANSWERS AND CORRECT ANSWER
 
 const myQuestions = [
 
@@ -135,20 +133,9 @@ const myQuestions = [
 
 ];
 
-//pagination
-
-// const previousButton = document.getElementById('previous');
-//
-// const nextButton = document.getElementById('next');
-//
-// const slides = document.querySelectorAll('.slide');
-//
-// let currentSlide = 0;
-
-///
 
 
-
+//FUNCTION TO BUILD THE QUIZ
 function buildQuiz(){
 
   //const output stores the HTML output.
@@ -186,11 +173,11 @@ function buildQuiz(){
       //add this question and its answer to the output
       output.push(
 
-          `<div class="slide>
+          `<div class="slide">
 
-            <div class"question">${currentQuestion.question} </div>
+            <div class="question"> ${currentQuestion.question} </div>
 
-            <div class="answers">${answers.join('')} </div>
+            <div class="answers"> ${answers.join("")} </div>
 
           </div>`
 
@@ -208,71 +195,7 @@ function buildQuiz(){
 
 }
 
-
-////display quiz right away
-buildQuiz();
-
-//
-// function showSlide(n){
-//
-//   slides[currentSlide].classList.remove('active-slide');
-//
-//   slides[n].classList.add('active-slide');
-//
-//   currentSlide = n;
-//
-//   if (currentSlide===0){
-//
-//       previousButton.style.display = 'none';
-//   }
-//
-//   else {
-//
-//       previousButton.style.display = 'inline-block';
-//
-//
-//   }
-//
-//   if (currentSlide===slides.length-1) {
-//
-//     nextButton.style.display = 'none';
-//
-//     submitButton.style.display = 'inline-block';
-//
-//   }
-//
-//   else {
-//
-//     nextButton.style.display = 'inline-block';
-//
-//     submitButton.style.display = 'none';
-//
-//   }
-//
-//
-// }
-
-// showSlide(0);
-//
-//
-// function showNextSlide(){
-//
-//   showSlide(currentSlide + 1);
-//
-// }
-//
-// function showPreviousSlide(){
-//
-//   showSlide(currentSlide - 1);
-//
-// }
-//
-// previousButton.addEventListener('click', showPreviousSlide);
-//
-// nextButton.addEventListener('click', showNextSlide);
-
-
-
+// THIS FUNCTION DISPLAYS THE RESULT.
 
 function showResults(){
 
@@ -320,7 +243,103 @@ function showResults(){
 }
 
 
+//FUNCTION TO SHOW OR HIDE THE SLIDES
+
+function showSlide(n){
+
+  slides[currentSlide].classList.remove('active-slide');
+
+  slides[n].classList.add('active-slide');
+
+  currentSlide = n;
+
+  if (currentSlide === 0){
+
+      previousButton.style.display = 'none';
+  }
+
+  else {
+
+      previousButton.style.display = 'inline-block';
+
+
+  }
+
+  if (currentSlide===slides.length-1) {
+
+    nextButton.style.display = 'none';
+
+    submitButton.style.display = 'inline-block';
+
+  }
+
+  else {
+
+    nextButton.style.display = 'inline-block';
+
+    submitButton.style.display = 'none';
+
+  }
+
+
+}
+
+//FUNCTION TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
+
+function showNextSlide(){
+
+  showSlide(currentSlide + 1);
+
+}
+
+function showPreviousSlide(){
+
+  showSlide(currentSlide - 1);
+
+}
+
+
+
+
+
+
+const quizContainer = document.getElementById('quiz');
+
+const resultsContainer = document.getElementById('results');
+
+const submitButton = document.getElementById('submit');
+
+////display quiz right away
+buildQuiz();
+
+
+//  pagination
+
+const previousButton = document.getElementById("previous");
+
+const nextButton = document.getElementById("next");
+
+const slides = document.querySelectorAll(".slide");
+
+let currentSlide = 0;
+
+
+showSlide(0);
+
+
+
+
+
+
+
+
+
+
 
 
 //on submit, show results
 submitButton.addEventListener('click', showResults);
+
+previousButton.addEventListener("click", showPreviousSlide);
+
+nextButton.addEventListener("click", showNextSlide);
