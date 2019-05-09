@@ -21,6 +21,7 @@ h1{
   margin-bottom: 10px;
 }
 .answers {
+  margin-top: 20px;
   margin-bottom: 20px;
   text-align: left;
   display: inline-block;
@@ -29,6 +30,18 @@ h1{
   display: block;
   margin-bottom: 10px;
 }
+
+
+#buttons{
+
+  margin-top: 450px;
+
+
+}
+
+
+
+
 button{
   font-family: 'Work Sans', sans-serif;
     font-size: 22px;
@@ -52,6 +65,7 @@ button:hover{
   position: absolute;
   left: 0px;
   top: 0px;
+  margin-top: 50px;
   width: 100%;
   z-index: 1;
   opacity: 0;
@@ -65,4 +79,17 @@ button:hover{
   position: relative;
   height: 200px;
   margin-top: 40px;
+}
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY MAX-WIDTH: 576PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+@media (max-width: 576px) {
+
+
+
+
 }
