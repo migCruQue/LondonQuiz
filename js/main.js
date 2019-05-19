@@ -13,7 +13,8 @@ const myQuestions = [
           b: 320,
           c: 6
               },
-      correctAnswer: 'c'
+      correctAnswer: 'c',
+      picSrc: 'img/The-Great-Fire-of-London.jpg',
 
 
 
@@ -25,7 +26,8 @@ const myQuestions = [
           b: 'The Wolseley',
           c: 'St Pancras Hotel'
               },
-      correctAnswer: 'c'
+      correctAnswer: 'c',
+      picSrc: 'img/spice-girls.jpg',
 
 
 
@@ -38,7 +40,8 @@ const myQuestions = [
           b: 'Fishamble Street',
           c: 'Pudding Lane'
               },
-      correctAnswer: 'c'
+      correctAnswer: 'c',
+      picSrc: 'img/greatfirestarting.jpg',
 
 
 
@@ -51,7 +54,8 @@ const myQuestions = [
           b: 'Walk',
           c: 'Taxi'
               },
-      correctAnswer: 'b'
+      correctAnswer: 'b',
+      picSrc: 'img/piccadilly.jpg',
 
 
 
@@ -64,7 +68,8 @@ const myQuestions = [
           b: "St John's Wood",
           c: 'Maida Vale'
               },
-      correctAnswer: 'b'
+      correctAnswer: 'b',
+      picSrc: 'img/abbey-road.jpg',
 
 
     },
@@ -76,7 +81,8 @@ const myQuestions = [
           b: 'The Natural History museum',
           c: 'The Tate Modern'
               },
-      correctAnswer: 'a'
+      correctAnswer: 'a',
+      picSrc: 'img/muse_dorsay.jpg',
 
 
     },
@@ -88,7 +94,8 @@ const myQuestions = [
           b: '2009',
           c: '2010'
               },
-      correctAnswer: 'c'
+      correctAnswer: 'c',
+      picSrc: 'img/bikes.jpg',
 
 
     },
@@ -101,7 +108,9 @@ const myQuestions = [
           b: 	'1641',
           c: '1941'
               },
-      correctAnswer: 'c'
+      correctAnswer: 'c',
+      picSrc: 'img/execution.jpg',
+
 
 
     },
@@ -113,7 +122,8 @@ const myQuestions = [
           b: '2009-2013',
           c: '2008-2012'
               },
-      correctAnswer: 'a'
+      correctAnswer: 'a',
+      picSrc: 'img/shard.jpg',
 
 
     },
@@ -125,7 +135,8 @@ const myQuestions = [
           b: '270',
           c: '130'
               },
-      correctAnswer: 'b'
+      correctAnswer: 'b',
+      picSrc: 'img/london-underground.jpg',
 
 
     }
@@ -170,10 +181,12 @@ function buildQuiz(){
               }
 
 
-      //add this question and its answer to the output
+      //add this question and its answer to the output   <img src="${currentQuestion.picSrc}">
       output.push(
 
           `<div class="slide">
+
+
 
             <div class="question"> ${currentQuestion.question} </div>
 
