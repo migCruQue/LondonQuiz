@@ -181,12 +181,12 @@ function buildQuiz(){
               }
 
 
-      //add this question and its answer to the output   <img src="${currentQuestion.picSrc}">
+      //add this question and its answer to the output
       output.push(
 
           `<div class="slide">
 
-
+           <div class="background-pic mx-auto" style="background-image: url('${currentQuestion.picSrc}');"></div>
 
             <div class="question"> ${currentQuestion.question} </div>
 
@@ -261,6 +261,9 @@ function showResults(){
 function showSlide(n){
 
   slides[currentSlide].classList.remove('active-slide');
+
+  slides[n].classList.add('active-slide');
+
 
   slides[n].classList.add('active-slide');
 

@@ -16,11 +16,23 @@ h1{
   background-color: #444;
   color: #fff;
 }
+
+
+.background-pic{
+
+width: 500px;
+height: 250px;
+background-size: contain;
+background-repeat: no-repeat;
+
+}
 .question{
   font-size: 30px;
   margin-top: 50px;
   margin-bottom: 25px;
 }
+
+
 .answers {
   margin-top: 20px;
   margin-bottom: 20px;
