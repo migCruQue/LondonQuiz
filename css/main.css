@@ -24,6 +24,7 @@ width: 500px;
 height: 250px;
 background-size: contain;
 background-repeat: no-repeat;
+background-position: center;
 
 }
 .question{
@@ -56,7 +57,9 @@ background-repeat: no-repeat;
 
 
 button{
-  font-family: 'Work Sans', sans-serif;
+
+    width: 500px;
+    font-family: 'Work Sans', sans-serif;
     font-size: 22px;
     background-color: #279;
     color: #fff;
@@ -79,7 +82,6 @@ button:hover{
   left: 0px;
   top: 0px;
   margin-top: 100px;
-  width: 100%;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.5s;
