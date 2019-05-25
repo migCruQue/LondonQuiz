@@ -186,7 +186,7 @@ function buildQuiz(){
 
           `<div class="slide">
 
-           <div class="background-pic mx-auto" style="background-image: url('${currentQuestion.picSrc}');"></div>
+           <div class="background-pic" style="background-image: url('${currentQuestion.picSrc}');"></div>
 
             <div class="question"> ${currentQuestion.question} </div>
 
@@ -251,6 +251,11 @@ function showResults(){
       });
 
       //show number of correct answers out of total
+
+
+      // REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
+      // quiz-container.classList.add('display-none');
+
       resultsContainer.innerHTML = numberCorrect + ' out of ' + myQuestions.length;
 
 }
@@ -338,6 +343,10 @@ const nextButton = document.getElementById("next");
 const slides = document.querySelectorAll(".slide");
 
 let currentSlide = 0;
+
+
+// 
+// const quiz-container = document.getElementById("quiz-container");
 
 
 showSlide(0);
