@@ -145,6 +145,37 @@ const myQuestions = [
 ];
 
 
+const myResults = [
+
+    {queenSays: `The queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you`,
+    picSrc: `img/peasants.jpg`},
+
+    {queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)`,
+    picSrc: `img/obe-medal.png`},
+
+    {queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)`,
+    picSrc: `img/obe-medal.png`},
+
+    {queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)`,
+    picSrc: `img/cbe-medal.jpg`},
+
+
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //FUNCTION TO BUILD THE QUIZ
 function buildQuiz(){
@@ -202,7 +233,7 @@ function buildQuiz(){
       );
 
       //combine our output list into one string of HTML and put it on the page
-      quizContainer.innerHTML = output.join('');
+      quiz.innerHTML = output.join('');
 
 
 
@@ -213,8 +244,12 @@ function buildQuiz(){
 function showResults(){
 
 
+  // REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
+  quizContainer.classList.add('display-none');
+
+
   //stores answer containers from our quiz
-  const answerContainers = quizContainer.querySelectorAll('.answers');
+  const answerContainers = quiz.querySelectorAll('.answers');
 
   //keep tracks of user's answers
   let numberCorrect = 0;
@@ -238,25 +273,42 @@ function showResults(){
           numberCorrect++;
 
           //color the answers green
-          answerContainers[questionNumber].style.color = 'lightgreen';
+          // answerContainers[questionNumber].style.color = 'lightgreen';
 
         }  else {
 
             //if the answer is wrong or blank
             //color the answer red
-            answerContainers[questionNumber].style.color = 'red';
+            // answerContainers[questionNumber].style.color = 'red';
 
         }
 
       });
 
+      let i = 0;
+
+      if (numberCorrect >= 9){i=3;} else if (numberCorrect >= 7){i=2;} else if (numberCorrect >= 5){i=1;}
+
+
       //show number of correct answers out of total
 
+      // THIS CONSTANT IS GOING TO HOLD THE HTML FOR THE RESULT DIV
+      const output = [];
 
-      // REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
-      // quiz-container.classList.add('display-none');
+      output.push(
 
-      resultsContainer.innerHTML = numberCorrect + ' out of ' + myQuestions.length;
+        `<h1>CORRECTED ANSWERS ${numberCorrect} OUT OF ${myQuestions.length}</h1>
+         <img src="img/queen.jpg" alt="queen">
+         <div id="queensApproval"></div>
+         <h1>${myResults[i].queenSays}</h1>
+         <img src=${myResults[i].picSrc}>`
+      );
+
+
+
+        // numberCorrect + ' out of ' + myQuestions.length;  TO SHOW HOW MANY CORRECTED ANSWERS
+
+      resultsContainer.innerHTML = output.join('');
 
 }
 
@@ -322,9 +374,9 @@ function showPreviousSlide(){
 
 
 
+const quizContainer = document.getElementById('quiz-container');
 
-
-const quizContainer = document.getElementById('quiz');
+const quiz = document.getElementById('quiz');
 
 const resultsContainer = document.getElementById('results');
 
@@ -345,8 +397,7 @@ const slides = document.querySelectorAll(".slide");
 let currentSlide = 0;
 
 
-// 
-// const quiz-container = document.getElementById("quiz-container");
+
 
 
 showSlide(0);
