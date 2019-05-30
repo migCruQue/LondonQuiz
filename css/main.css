@@ -9,6 +9,8 @@ body{
   text-align: center;
   background-color: #f8f6f0;
 }
+
+
 h1{
   font-weight: 300;
   margin: 0px;
@@ -17,6 +19,29 @@ h1{
   background-color: #444;
   color: #fff;
 }
+
+
+/* GAME PRESENTATION + START BUTTON */
+#start {
+
+background-image: url('../img/londonStar.jpg');
+background-size: cover;
+height: 100vh;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 .background-pic{
@@ -93,6 +118,11 @@ background-position: center;
 
   display: block;
 }
+
+
+
+
+
 
 
 
