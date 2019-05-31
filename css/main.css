@@ -22,9 +22,28 @@ h1{
 
 
 /* GAME PRESENTATION + START BUTTON */
+
+.tag-wrap {
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+}
+.tag {
+  background: #FB8C00;
+  color: #222;
+  padding: 2rem 3rem 2rem 4rem;
+  font: bold 32px system-ui;
+  /* clip-path: polygon(30px 0%, 83% 0%, 95% 100%, -1px 100%, 14% 40%); */
+}
+
+
+
+
+
+
+
 #start {
 
-background-image: url('../img/londonStar.jpg');
+/* background-image: url('../img/londonStar.jpg'); */
+background: linear-gradient(#3b3399, transparent 75%), linear-gradient(33deg, #0006cc, transparent);
 height: 100vh;
 padding: 15rem 2rem;
 background-size: cover;

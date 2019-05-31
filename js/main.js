@@ -381,6 +381,7 @@ function showPreviousSlide(){
 function start(){
 
   startDiv.classList.add('display-none');
+  quizContainer.classList.remove('display-none');
 
 
 }
