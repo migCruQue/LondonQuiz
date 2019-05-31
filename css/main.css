@@ -25,18 +25,29 @@ h1{
 #start {
 
 background-image: url('../img/londonStar.jpg');
-background-size: cover;
 height: 100vh;
+padding: 15rem 2rem;
+background-size: cover;
+margin-left: auto;
+margin-right: auto;
 
+}
 
+#start h1 {
+
+font-size: 30px;
+
+}
+
+#start button{
+
+margin-top: 50px;
 
 }
 
 
 
-
-
-
+/* GAME PRESENTATION + START BUTTON */
 
 
 
@@ -141,12 +152,17 @@ background-position: center;
 /* MAKES THE BIGGER THE HEIGHT BACKGROUND PIC */
   .background-pic{
 
-  height: 350px;
+    height: 350px;
 
 
   }
 
-}
+
+/* GAME PRESENTATION + START BUTTON */
+  #start h1 {
+
+    padding: 50px;
+    font-size: 60px;
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
