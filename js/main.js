@@ -298,15 +298,32 @@ function showResults(){
 
       output.push(
 
-        `<h1>CORRECTED ANSWERS ${numberCorrect} OUT OF ${myQuestions.length}</h1>
+        `<div class="row">
 
-         <div id="queensApproval">
-         <img src="img/queen.jpg" alt="queen" class="queen">
-         <img src=${myResults[i].picSrc} class="medal">
+              <div class="col-12">
+
+                    <h1 class="mb-0">${numberCorrect} OUT OF ${myQuestions.length}</h1>
+
+                    <img src="img/queen.jpg" alt="queen" id="queen">
+
+              </div>
+
          </div>
-         <h1>${myResults[i].queenSays}</h1>
-         `
+
+         <div class="row">
+
+             <div class="col-12">
+
+                 <p class="mb-0">${myResults[i].queenSays}</p>
+
+                 <img src=${myResults[i].picSrc} id="medallion">
+
+             </div>
+
+         </div>`
       );
+
+
 
       // <img src=${myResults[i].picSrc}>
 

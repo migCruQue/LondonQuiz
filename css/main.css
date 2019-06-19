@@ -41,41 +41,30 @@ margin-top: 50px;
 #results {
 
   background-color: red;
-  height: 100vh;
-  padding: 15rem 2rem;
+  padding: 2rem 2rem;
   background-size: cover;
-  display: grid;
-  grid-template-rows: repeat(2, 1fr 2fr);
-  grid-template-areas:
-    "score"
-    "queen"
-    "queenssays"
-    "medallion";
 
 }
 
 #results h1 {
-
-grid-area: score;
-font-family: 'Rajdhani', sans-serif;
-font-size: 39px;
-background-color: #3595dc;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 49px;
+  background-color: #3595dc;
 
 }
 
 #queen {
 
-  grid-area: queen;
-  justify-self: center;
+  max-width: 200px;
+
 }
 
 #medallion {
+max-width: 250px;
 
-grid-area: medallion;
 }
 
 #results p{
-  grid-area: queenssays;
   font-family: 'Rajdhani', sans-serif;
   font-size: 25px;
   background-color: #3595dc;
