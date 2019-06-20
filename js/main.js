@@ -298,25 +298,25 @@ function showResults(){
 
       output.push(
 
-        `<div class="row">
+        `<div class="row border border-white">
 
               <div class="col-12">
 
                     <h1 class="mb-0">${numberCorrect} OUT OF ${myQuestions.length}</h1>
 
-                    <img src="img/queen.jpg" alt="queen" id="queen">
+                    <img class="rounded-circle" src="img/queen.jpg" alt="queen" id="queen">
 
               </div>
 
          </div>
 
-         <div class="row">
+         <div class="row border border-white">
 
              <div class="col-12">
 
                  <p class="mb-0">${myResults[i].queenSays}</p>
 
-                 <img src=${myResults[i].picSrc} id="medallion">
+                 <img  class="rounded" src=${myResults[i].picSrc} id="medallion">
 
              </div>
 
