@@ -302,9 +302,9 @@ function showResults(){
 
               <div class="col-12">
 
-                    <h1 class="mb-0">${numberCorrect} OUT OF ${myQuestions.length}</h1>
+                    <h1 class="mb-0 text-center">${numberCorrect} OUT OF ${myQuestions.length}</h1>
 
-                    <img class="rounded-circle" src="img/queen.jpg" alt="queen" id="queen">
+                    <img class="rounded-circle mx-auto d-block" src="img/queen.jpg" alt="queen" id="queen">
 
               </div>
 
@@ -316,7 +316,7 @@ function showResults(){
 
                  <p class="mb-0">${myResults[i].queenSays}</p>
 
-                 <img  class="rounded" src=${myResults[i].picSrc} id="medallion">
+                 <img  class="rounded mx-auto d-block" src=${myResults[i].picSrc} id="medallion">
 
              </div>
 
