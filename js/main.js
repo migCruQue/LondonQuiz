@@ -333,6 +333,8 @@ function showResults(){
 
       resultsContainer.innerHTML = output.join('');
 
+      resultsContainer.classList.remove('display-none');
+
 }
 // THIS FUNCTION DISPLAYS THE RESULT.
 
