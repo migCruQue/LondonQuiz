@@ -40,7 +40,8 @@ margin-top: 50px;
 
 #quiz-container {
 
-padding: 1rem 1rem;
+    padding: 1rem 1rem 5rem 1rem;
+    background-color: powderblue;
 
 }
 
@@ -96,6 +97,7 @@ max-width: 250px;
 
 
 .background-pic{
+background-color: #f8f9fa;
 border-style: double;
 margin: auto;
 width: 95%;
@@ -116,11 +118,11 @@ background-position: center;
 .answers {
   margin-top: 60px;
   margin-bottom: 20px;
-  text-align: center;
+  margin-left: 5rem;
 }
 .answers label{
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 
