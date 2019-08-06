@@ -290,50 +290,29 @@ function showResults(){
 
       if (numberCorrect >= 9){i=3;} else if (numberCorrect >= 7){i=2;} else if (numberCorrect >= 5){i=1;}
 
+      // SET THE SCORE TO THE NUMBER OF THE CORRECT ANSWERS.
+      let score = document.getElementById('score');
 
-      //show number of correct answers out of total
+      score.innerHTML = `${numberCorrect} OUT OF ${myQuestions.length}`;
 
-      // THIS CONSTANT IS GOING TO HOLD THE HTML FOR THE RESULT DIV
-      const output = [];
+      // DISPLAY THE APPROPRIATE MESSAGE FROM THE QUEEN.
+      let queenSentence = document.getElementById('queenSentence');
 
-      output.push(
+      queenSentence.innerHTML = `${myResults[i].queenSays}`;
 
-        `<div class="row border border-white">
+      //DISPLAY THE RELATED PIC.
+      let medallion = document.getElementById('medallion');
 
-              <div class="col-12">
-
-                    <h1 class="mb-0 text-center">${numberCorrect} OUT OF ${myQuestions.length}</h1>
-
-                    <img class="rounded-circle mx-auto d-block" src="img/queen.jpg" alt="queen" id="queen">
-
-              </div>
-
-         </div>
-
-         <div class="row border border-white">
-
-             <div class="col-12">
-
-                 <p class="mb-0">${myResults[i].queenSays}</p>
-
-                 <img  class="rounded mx-auto d-block" src=${myResults[i].picSrc} id="medallion">
-
-             </div>
-
-         </div>`
-      );
+      medallion.src = `${myResults[i].picSrc}`;
 
 
 
-      // <img src=${myResults[i].picSrc}>
 
-
-
-        // numberCorrect + ' out of ' + myQuestions.length;  TO SHOW HOW MANY CORRECTED ANSWERS
-
-      resultsContainer.innerHTML = output.join('');
 
       resultsContainer.classList.remove('display-none');
+      // setTimeOut(5000, resultsContainer.classList.add('display-none');
+
+
 
 }
 // THIS FUNCTION DISPLAYS THE RESULT.
@@ -430,6 +409,8 @@ const quizContainer = document.getElementById('quiz-container');
 const quiz = document.getElementById('quiz');
 
 const resultsContainer = document.getElementById('results');
+
+
 
 
 
