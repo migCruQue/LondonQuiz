@@ -177,7 +177,7 @@ const myResults = [
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
-//FUNCTION TO BUILD THE QUIZ
+////FUNCTION TO BUILD THE QUIZ
 function buildQuiz(){
 
   //const output stores the HTML output.
@@ -238,17 +238,11 @@ function buildQuiz(){
 
 
 }
-//FUNCTION TO BUILD THE QUIZ
+//\\FUNCTION TO BUILD THE QUIZ
 
 
-// THIS FUNCTION DISPLAYS THE RESULT.
-function showResults(){
-
-
-  // REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
-  quizContainer.classList.add('display-none');
-
-
+////FUNCTION TO CHECK THE ANSWERS
+function checking() {
   //stores answer containers from our quiz
   const answerContainers = quiz.querySelectorAll('.answers');
 
@@ -286,9 +280,27 @@ function showResults(){
 
       });
 
+      return numberCorrect;
+
+
+}
+//\\FUNCTION TO CHECK THE ANSWERS
+
+
+////THIS FUNCTION DISPLAYS THE RESULT.
+function showResults(){
+
+
+
+      quizContainer.classList.add('display-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
+
+      numberCorrect = checking();
+
       let i = 0;
 
-      if (numberCorrect >= 9){i=3;} else if (numberCorrect >= 7){i=2;} else if (numberCorrect >= 5){i=1;}
+      if (numberCorrect >= 9){i=3;}
+        else if (numberCorrect >= 7){i=2;}
+          else if (numberCorrect >= 5){i=1;}
 
       // SET THE SCORE TO THE NUMBER OF THE CORRECT ANSWERS.
       let score = document.getElementById('score');
@@ -307,15 +319,30 @@ function showResults(){
 
 
 
+      let queenDiv = document.getElementById('queenDiv');
+
+      let prize = document.getElementById('prize');
+
+      queenDiv.classList.remove('display-none');
+
+      //WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
+      setTimeout(() => {
+        queenDiv.classList.add('display-none');
+        prize.classList.remove('display-none');
+        }, 5000);
+
+      //WAIT 5 SECONDS AND HIDE THE PRIZE DIV AND GOES TO THE START DIV
+      setTimeout(() => {
+        prize.classList.add('display-none');
+        startDiv.classList.remove('display-none');
+      }, 10000);
 
 
-      resultsContainer.classList.remove('display-none');
-      // setTimeOut(5000, resultsContainer.classList.add('display-none');
 
 
 
 }
-// THIS FUNCTION DISPLAYS THE RESULT.
+//\\ THIS FUNCTION DISPLAYS THE RESULT.
 
 
 

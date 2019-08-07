@@ -40,7 +40,7 @@ margin-top: 50px;
 
 #quiz-container {
 
-    padding: 1rem 1rem 5rem 1rem;
+    padding: 1rem 1rem 14rem 1rem;
     background-color: powderblue;
 
 }
@@ -48,34 +48,52 @@ margin-top: 50px;
 
 /* DISPLAY RESULT */
 
-#results {
+#queenDiv {
 
   background-color: red;
-  padding: 2rem 2rem;
+  padding: 6rem 2rem;
   background-size: cover;
 
 }
 
-#results h1 {
-  padding: 16px;
+#queenDiv h1 {
+  margin-bottom: 4rem;
+  padding: 35px;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 49px;
+  font-size: 80px;
   background-color: #3595dc;
 
 }
 
+
+
+
+
+
 #queen {
+  height: 520px;
   margin-left: 27px;
-  max-width: 200px;
+  object-fit: contain;
 
 }
 
 #medallion {
-max-width: 250px;
+  height: 170px;
+  margin-bottom: 6rem;
+
 
 }
 
-#results p{
+#prize{
+  background-color: red;
+  padding: 12rem 2rem;
+  background-size: cover
+}
+
+
+
+
+#prize p{
   font-family: 'Rajdhani', sans-serif;
   font-size: 25px;
   background-color: #3595dc;
