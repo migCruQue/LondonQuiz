@@ -435,7 +435,6 @@ const quizContainer = document.getElementById('quiz-container');
 
 const quiz = document.getElementById('quiz');
 
-const resultsContainer = document.getElementById('results');
 
 
 

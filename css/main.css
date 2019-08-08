@@ -78,26 +78,29 @@ margin-top: 50px;
 }
 
 #medallion {
-  height: 170px;
-  margin-bottom: 6rem;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 2rem;
+  border-style: inset;
 
 
 }
 
 #prize{
-  background-color: red;
-  padding: 12rem 2rem;
-  background-size: cover
+  background-color: #ff7800;
+  padding: 12rem 0rem;
+  background-size:  contain;
 }
 
 
 
 
 #prize p{
+  border-style: outset;
   font-family: 'Rajdhani', sans-serif;
   font-size: 25px;
   background-color: #3595dc;
-  padding: 30px;
+  padding: 20px;
   color: white;
 
 
