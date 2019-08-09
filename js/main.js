@@ -163,6 +163,12 @@ const myResults = [
 
 ];
 
+
+
+
+//it points to the first slide
+let currentSlide = 0;
+
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> /// CONSTANTS & LETS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -287,6 +293,10 @@ function checking() {
 //\\FUNCTION TO CHECK THE ANSWERS
 
 
+
+
+
+
 ////THIS FUNCTION DISPLAYS THE RESULT.
 function showResults(){
 
@@ -335,6 +345,8 @@ function showResults(){
       setTimeout(() => {
         prize.classList.add('display-none');
         startDiv.classList.remove('display-none');
+        buildQuiz();
+        showSlide(0);
       }, 10000);
 
 
@@ -350,10 +362,9 @@ function showResults(){
 
 function showSlide(n){
 
+  const slides = document.querySelectorAll(".slide");
+
   slides[currentSlide].classList.remove('active-slide');
-
-  slides[n].classList.add('active-slide');
-
 
   slides[n].classList.add('active-slide');
 
@@ -411,8 +422,7 @@ function showPreviousSlide(){
 function start(){
 
   startDiv.classList.add('display-none');
-  quizContainer.classList.remove('display-none');
-
+  quizContainer.classList.remove('display-none')
 
 }
 
@@ -442,8 +452,7 @@ const quiz = document.getElementById('quiz');
 
 
 
-////display quiz right away
-buildQuiz();
+
 
 
 //  pagination
@@ -452,7 +461,11 @@ const previousButton = document.getElementById("previous");
 
 const nextButton = document.getElementById("next");
 
-const slides = document.querySelectorAll(".slide");
+
+
+
+
+
 
 const submitButton = document.getElementById('submit');
 
@@ -460,16 +473,11 @@ const startButton = document.getElementById('start-button');
 
 
 
-//it points to the first slide
-let currentSlide = 0;
 
 
 
 
 
-
-/// Show the slide
-showSlide(0);
 
 
 
@@ -488,3 +496,11 @@ previousButton.addEventListener("click", showPreviousSlide);
 nextButton.addEventListener("click", showNextSlide);
 
 startButton.addEventListener('click', start);
+
+
+////display quiz right away
+buildQuiz();
+
+
+/// Show the slide
+showSlide(0);
