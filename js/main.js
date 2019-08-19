@@ -370,18 +370,6 @@ function showSlide(n){
 
   currentSlide = n;
 
-  if (currentSlide === 0){
-
-      previousButton.style.display = 'none';
-  }
-
-  else {
-
-      previousButton.style.display = 'inline-block';
-
-
-  }
-
   if (currentSlide===slides.length-1) {
 
     nextButton.style.display = 'none';
@@ -457,7 +445,6 @@ const quiz = document.getElementById('quiz');
 
 //  pagination
 
-const previousButton = document.getElementById("previous");
 
 const nextButton = document.getElementById("next");
 
@@ -490,8 +477,6 @@ const startButton = document.getElementById('start-button');
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 //on submit, show results
 submitButton.addEventListener('click', showResults);
-
-previousButton.addEventListener("click", showPreviousSlide);
 
 nextButton.addEventListener("click", showNextSlide);
 
