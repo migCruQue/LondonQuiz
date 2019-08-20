@@ -166,8 +166,12 @@ const myResults = [
 
 
 
-//it points to the first slide
+//IN POINTS THE FIRST SLIDE
 let currentSlide = 0;
+
+
+//IT SET THE CORRECT ANSWERS TO 0
+let correctAnswers = 0;
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> /// CONSTANTS & LETS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -205,11 +209,9 @@ function buildQuiz(){
 
           `<label>
 
-            <input type="radio" name="question${questionNumber}" value="${letter}">
-
-            ${letter} :
-
-            ${currentQuestion.answers[letter]}
+            <button type="button" class="answerButton btn btn-success boton" name="question${questionNumber}" value="${letter}">
+            ${letter} : ${currentQuestion.answers[letter]}
+            </button>
 
           </label>`
 
@@ -220,14 +222,14 @@ function buildQuiz(){
 
       //add this question and its answer to the output
       output.push(
-
+          //I THINK THE ERROR IS IN THE ANSWERS DIV// TRY TO SELECT SOMETHING ELSE
           `<div class="slide">
 
            <div class="background-pic" style="background-image: url('${currentQuestion.picSrc}');"></div>
 
             <div class="question"> ${currentQuestion.question} </div>
 
-            <div class="answers"> ${answers.join("")} </div>
+            <div class="answers" id="ton"> ${answers.join("")} </div>
 
           </div>`
 
@@ -247,53 +249,16 @@ function buildQuiz(){
 //\\FUNCTION TO BUILD THE QUIZ
 
 
-////FUNCTION TO CHECK THE ANSWERS
-function checking() {
-  //stores answer containers from our quiz
-  const answerContainers = quiz.querySelectorAll('.answers');
 
-  //keep tracks of user's answers
-  let numberCorrect = 0;
 
-  //for each question...
-  myQuestions.forEach(
+////FUNCTION TO CHECK THE ANSWERS IN THE EVENT LISENER
 
-    (currentQuestion, questionNumber)  => {
+function correct(){
 
-      //find the selected answer
-      const answerContainer = answerContainers[questionNumber];
-
-      const selector = 'input[name=question' +questionNumber+ ']:checked';
-
-      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-      //if the answer is correct..
-      if (userAnswer === currentQuestion.correctAnswer){
-
-          //add the number of correct answers
-          numberCorrect++;
-
-          //color the answers green
-          // answerContainers[questionNumber].style.color = 'lightgreen';
-
-        }  else {
-
-            //if the answer is wrong or blank
-            //color the answer red
-            // answerContainers[questionNumber].style.color = 'red';
-
-        }
-
-      });
-
-      return numberCorrect;
+  if(myQuestions[currentSlide].correctAnswer == event.target.value){return true} else {return false}
 
 
 }
-//\\FUNCTION TO CHECK THE ANSWERS
-
-
-
 
 
 
@@ -304,18 +269,17 @@ function showResults(){
 
       quizContainer.classList.add('display-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
 
-      numberCorrect = checking();
 
       let i = 0;
 
-      if (numberCorrect >= 9){i=3;}
-        else if (numberCorrect >= 7){i=2;}
-          else if (numberCorrect >= 5){i=1;}
+      if (correctAnswers >= 9){i=3;}
+        else if (correctAnswers >= 7){i=2;}
+          else if (correctAnswers >= 5){i=1;}
 
       // SET THE SCORE TO THE NUMBER OF THE CORRECT ANSWERS.
       let score = document.getElementById('score');
 
-      score.innerHTML = `${numberCorrect} OUT OF ${myQuestions.length}`;
+      score.innerHTML = `${correctAnswers} OUT OF ${myQuestions.length}`;
 
       // DISPLAY THE APPROPRIATE MESSAGE FROM THE QUEEN.
       let queenSentence = document.getElementById('queenSentence');
@@ -370,22 +334,6 @@ function showSlide(n){
 
   currentSlide = n;
 
-  if (currentSlide===slides.length-1) {
-
-    nextButton.style.display = 'none';
-
-    submitButton.style.display = 'inline-block';
-
-  }
-
-  else {
-
-    nextButton.style.display = 'inline-block';
-
-    submitButton.style.display = 'none';
-
-  }
-
 
 }
 
@@ -397,11 +345,6 @@ function showNextSlide(){
 
 }
 
-function showPreviousSlide(){
-
-  showSlide(currentSlide - 1);
-
-}
 
 
 //FUNCTIONS TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
@@ -446,15 +389,6 @@ const quiz = document.getElementById('quiz');
 //  pagination
 
 
-const nextButton = document.getElementById("next");
-
-
-
-
-
-
-
-const submitButton = document.getElementById('submit');
 
 const startButton = document.getElementById('start-button');
 
@@ -475,17 +409,30 @@ const startButton = document.getElementById('start-button');
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-//on submit, show results
-submitButton.addEventListener('click', showResults);
 
-nextButton.addEventListener("click", showNextSlide);
 
 startButton.addEventListener('click', start);
+
+
 
 
 ////display quiz right away
 buildQuiz();
 
-
 /// Show the slide
 showSlide(0);
+
+// select the answer div after the buildQuiz function is called.
+document.body.addEventListener("click", event => {
+
+    if (event.target.nodeName == "BUTTON" && event.target.className =='answerButton btn btn-success boton') {
+
+        if(correct()){ correctAnswers++}
+
+    //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
+        if (currentSlide < 9){showNextSlide();} else {showResults();}
+
+    }
+
+
+});
