@@ -45,6 +45,82 @@ margin-top: 50px;
 
 }
 
+.background-pic{
+background-color: #f8f9fa;
+border-style: double;
+margin: auto;
+width: 95%;
+height: 200px;
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+
+}
+.question{
+  font-size: 22px;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+
+.answers {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: 5rem;
+}
+.answers label{
+  display: block;
+  margin-bottom: 20px;
+}
+
+
+.slide{
+  display: none;
+  margin-top: 20px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{
+  display: block;
+  opacity: 1;
+  z-index: 2;
+
+}
+.quiz-container{
+
+  height: 200px;
+  margin-top: 40px;
+}
+
+
+#ton {
+  color: #fff;
+  background-color: steelblue;
+  font-weight: 800;
+  text-align: center;
+  vertical-align: middle;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 2;
+  border-radius: .50rem;
+  width: 10rem;
+  transition: all .15s ease-in-out;
+
+}
+
+#scoreBar {
+
+  margin-top: 4rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  padding: .8rem;
+
+}
+
+/* SLIDES */
+
 
 /* DISPLAY RESULT */
 
@@ -117,69 +193,15 @@ margin-top: 50px;
 
 
 
-.background-pic{
-background-color: #f8f9fa;
-border-style: double;
-margin: auto;
-width: 95%;
-height: 200px;
-background-size: contain;
-background-repeat: no-repeat;
-background-position: center;
-
-}
-.question{
-  font-size: 22px;
-  margin-top: 50px;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-
-.answers {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 5rem;
-}
-.answers label{
-  display: block;
-  margin-bottom: 20px;
-}
 
 
 
 
-#buttons{
-  margin-top: 100px;
-  margin-bottom: 100px;
-
-}
-
-.boton{
-    margin-right: 25px;
-
-}
 
 
 
-.slide{
-  display: none;
-  margin-top: 20px;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-.active-slide{
-  display: block;
-  opacity: 1;
-  z-index: 2;
 
-}
-.quiz-container{
 
-  height: 200px;
-  margin-top: 40px;
-}
 
 /* I'LL ADD THIS CLASS TO REMOVE ELEMENTS ON THE APPLICATION. */
 .display-none {

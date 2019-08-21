@@ -169,9 +169,11 @@ const myResults = [
 //IN POINTS THE FIRST SLIDE
 let currentSlide = 0;
 
-
 //IT SET THE CORRECT ANSWERS TO 0
 let correctAnswers = 0;
+
+//SCOREBAR TO KEEP COUNTING CORRECT AND WRONG ANSWERS
+let scoreBar = '';
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> /// CONSTANTS & LETS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -209,9 +211,7 @@ function buildQuiz(){
 
           `<label>
 
-            <button type="button" class="answerButton btn btn-success boton" name="question${questionNumber}" value="${letter}">
-            ${letter} : ${currentQuestion.answers[letter]}
-            </button>
+            <button type="button" id="ton" name="question${questionNumber}" value="${letter}">${currentQuestion.answers[letter]}</button>
 
           </label>`
 
@@ -229,7 +229,7 @@ function buildQuiz(){
 
             <div class="question"> ${currentQuestion.question} </div>
 
-            <div class="answers" id="ton"> ${answers.join("")} </div>
+            <div class="answers"> ${answers.join("")} </div>
 
           </div>`
 
@@ -257,8 +257,9 @@ function correct(){
 
   if(myQuestions[currentSlide].correctAnswer == event.target.value){return true} else {return false}
 
-
 }
+
+//\\FUNCTION TO CHECK THE ANSWERS IN THE EVENT LISENER
 
 
 
@@ -376,30 +377,9 @@ const quizContainer = document.getElementById('quiz-container');
 
 const quiz = document.getElementById('quiz');
 
-
-
-
-
-
-
-
-
-
-
-//  pagination
-
-
-
 const startButton = document.getElementById('start-button');
 
-
-
-
-
-
-
-
-
+const scoreDiv = document.getElementById('scoreBar');
 
 
 
@@ -410,29 +390,42 @@ const startButton = document.getElementById('start-button');
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
+//START THE QUIZ
 startButton.addEventListener('click', start);
 
 
 
 
-////display quiz right away
-buildQuiz();
 
-/// Show the slide
-showSlide(0);
 
-// select the answer div after the buildQuiz function is called.
+//SELECT THE ANSWER DIV AFTER THE BUILDQUIZ FUNCTION IS CALLED.
 document.body.addEventListener("click", event => {
 
-    if (event.target.nodeName == "BUTTON" && event.target.className =='answerButton btn btn-success boton') {
+    if (event.target.id =='ton') {
 
-        if(correct()){ correctAnswers++}
+        if(correct()){ correctAnswers++;
+                        scoreBar += '💂'} else { scoreBar += "💩"}
+        scoreDiv.innerHTML = scoreBar;
 
     //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
-        if (currentSlide < 9){showNextSlide();} else {showResults();}
+        if (currentSlide < 9){showNextSlide();}
+
+        else {
+          showResults();
+          scoreBar = '';}
 
     }
 
 
 });
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//////      EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+////BUILD THE QUIZ
+buildQuiz();
+
+/// DISPLAY THE CURRENT SLIDE
+showSlide(0);
