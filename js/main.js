@@ -189,6 +189,17 @@ let scoreBar = '';
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
+
+// THIS FUNCTION MAKES DIV START DISSAPPEARS AND MAKE THE MAIN DIV WITH THE SLIDES APPEARS.
+function start(){
+
+  startDiv.classList.add('d-none');
+  quizContainer.classList.remove('d-none')
+
+}
+
+//\\ THIS FUNCTION START
+
 ////FUNCTION TO BUILD THE QUIZ
 function buildQuiz(){
 
@@ -268,16 +279,16 @@ function showResults(){
 
 
 
-      quizContainer.classList.add('display-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
+      quizContainer.classList.add('d-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
 
-
+      // CHECK THE NUMBER OF CORRECT ANSWERS AND SET UP A CATEGORY DEPENDS ON THE NUMBER.
       let i = 0;
 
       if (correctAnswers >= 9){i=3;}
         else if (correctAnswers >= 7){i=2;}
           else if (correctAnswers >= 5){i=1;}
 
-      // SET THE SCORE TO THE NUMBER OF THE CORRECT ANSWERS.
+      // SELECT THE DIV SCORE AND DISPLAY A SCORE WITH THE NUMBER OF ANSWER OUT OF 10
       let score = document.getElementById('score');
 
       score.innerHTML = `${correctAnswers} OUT OF ${myQuestions.length}`;
@@ -298,18 +309,18 @@ function showResults(){
 
       let prize = document.getElementById('prize');
 
-      queenDiv.classList.remove('display-none');
+      queenDiv.classList.remove('d-none');
 
       //WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
       setTimeout(() => {
-        queenDiv.classList.add('display-none');
-        prize.classList.remove('display-none');
+        queenDiv.classList.add('d-none');
+        prize.classList.remove('d-none');
         }, 5000);
 
       //WAIT 5 SECONDS AND HIDE THE PRIZE DIV AND GOES TO THE START DIV
       setTimeout(() => {
-        prize.classList.add('display-none');
-        startDiv.classList.remove('display-none');
+        prize.classList.add('d-none');
+        startDiv.classList.remove('d-none');
         buildQuiz();
         showSlide(0);
       }, 10000);
@@ -350,13 +361,7 @@ function showNextSlide(){
 
 //FUNCTIONS TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
 
-// THIS FUNCTION MAKES DIV START DISSAPPEARS AND MAKE THE MAIN DIV WITH THE SLIDES APPEARS.
-function start(){
 
-  startDiv.classList.add('display-none');
-  quizContainer.classList.remove('display-none')
-
-}
 
 
 
