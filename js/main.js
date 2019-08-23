@@ -362,6 +362,19 @@ function showNextSlide(){
 //FUNCTIONS TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
 
 
+// ANIMATIONS
+
+function intermittent(element){
+
+
+
+
+}
+
+
+//\\ ANIMATIONS
+
+
 
 
 
