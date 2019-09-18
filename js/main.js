@@ -175,6 +175,9 @@ let correctAnswers = 0;
 //SCOREBAR TO KEEP COUNTING CORRECT AND WRONG ANSWERS
 let scoreBar = '';
 
+
+// let wrongAnswer = document.get
+
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> /// CONSTANTS & LETS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -349,6 +352,10 @@ function showSlide(n){
 
 }
 
+
+//\\FUNCTION TO SHOW OR HIDE THE SLIDES
+
+
 //FUNCTION TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
 
 function showNextSlide(){
@@ -364,10 +371,11 @@ function showNextSlide(){
 
 // ANIMATIONS
 
-function intermittent(element){
+function addEmoji(emoji, parent){
 
-
-
+  let element = document.createElement('p');
+  element.innerHTML = emoji;
+  parent.appendChild(element);
 
 }
 
@@ -421,16 +429,22 @@ document.body.addEventListener("click", event => {
 
     if (event.target.id =='ton') {
 
-        if(correct()){ correctAnswers++;
-                        scoreBar += '💂'} else { scoreBar += "💩"}
-        scoreDiv.innerHTML = scoreBar;
+
+
+
+        if(correct()){
+          correctAnswers++;
+          //add a beefeater emoji to right of the button containing the right answer.
+          addEmoji('💂', event.target.parentNode);}
+              //add a poo emoji to right of the button containing the wrong answer.
+        else {addEmoji('💩', event.target.parentNode);}
 
     //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
-        if (currentSlide < 9){showNextSlide();}
+        setTimeout(() => {
+          if (currentSlide < 9){showNextSlide();}
+          else {showResults();}
+        }, 3500);
 
-        else {
-          showResults();
-          scoreBar = '';}
 
     }
 

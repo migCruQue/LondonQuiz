@@ -13,19 +13,46 @@
 
 }
 
-#start h1 {
+#start h1{
   background: linear-gradient(#03A9F4, transparent 132%);
   font-family: 'Rye', cursive;
   font-size: 30px;
   color: #f8f9fa;
+  margin-top: 5rem;
   padding: 2rem 1rem;
   border-radius: 5%;
   filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
 
 }
+
+#input_name  {
+  margin-top: 11rem;
+  background: linear-gradient(#03A9F4, transparent 132%);
+  font-family: 'Rye', cursive;
+  color: #f8f9fa;
+  border-radius: 5%;
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+
+}
+
+#input_name label{
+
+  font-size: 15px;
+
+}
+
+#input_name input{
+  margin: 0 auto;
+  width: 170px;
+  font-size: 12px;
+
+}
+
+
+
 /* //Start button animation */
 #start button{
-    margin-top: 23rem;
+    margin-top: 10rem;
     padding: 42px 0;
     width: 120px;
     height: 120px;
