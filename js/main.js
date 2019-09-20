@@ -374,6 +374,7 @@ function showNextSlide(){
 function addEmoji(emoji, parent){
 
   let element = document.createElement('p');
+  element.setAttribute("id", "emoji");
   element.innerHTML = emoji;
   parent.appendChild(element);
 
@@ -443,7 +444,7 @@ document.body.addEventListener("click", event => {
         setTimeout(() => {
           if (currentSlide < 9){showNextSlide();}
           else {showResults();}
-        }, 3500);
+        }, 2500);
 
 
     }

@@ -104,7 +104,7 @@
   font-size: 1rem;
   line-height: 2;
   border-radius: .50rem;
-  width: 10rem;
+  width: 13rem;
   transition: all .15s ease-in-out;
 
 }
@@ -141,14 +141,21 @@ background-position: center;
 
 
 .answers {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 5rem;
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
 }
 
 .answers label{
-  display: block;
+  display: flex;
   margin-bottom: 20px;
+}
+
+#emoji {
+
+  font-size: 3rem;
 }
 
 
