@@ -430,15 +430,16 @@ document.body.addEventListener("click", event => {
 
     if (event.target.id =='ton') {
 
-
-
-
         if(correct()){
           correctAnswers++;
           //add a beefeater emoji to right of the button containing the right answer.
-          addEmoji('💂', event.target.parentNode);}
-              //add a poo emoji to right of the button containing the wrong answer.
-        else {addEmoji('💩', event.target.parentNode);}
+          // addEmoji('💂', event.target.parentNode);}
+          //add a poo emoji to right of the button containing the wrong answer.
+          // else {addEmoji('💩', event.target.parentNode);
+          event.target.style = "background-color: green";
+
+
+        } else {event.target.style = "background-color: red"; }
 
     //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
         setTimeout(() => {
