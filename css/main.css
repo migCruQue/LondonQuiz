@@ -153,10 +153,7 @@ background-position: center;
   margin-bottom: 20px;
 }
 
-#emoji {
 
-  font-size: 3rem;
-}
 
 
 .slide{
@@ -187,6 +184,13 @@ background-position: center;
 
 /* SLIDES */
 
+
+
+#emoji {
+
+  font-size: 17rem;
+  padding: 14rem 2rem;
+}
 
 /* DISPLAY RESULT */
 

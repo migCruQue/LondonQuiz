@@ -269,7 +269,7 @@ function buildQuiz(){
 
 function correct(){
 
-  if(myQuestions[currentSlide].correctAnswer == event.target.value){return true} else {return false}
+  if(event.target.value == myQuestions[currentSlide].correctAnswer){return true} else {return false}
 
 }
 
@@ -408,7 +408,9 @@ const startButton = document.getElementById('start-button');
 
 const scoreDiv = document.getElementById('scoreBar');
 
+const emojiPara = document.getElementById('emojiPara');
 
+const divEmoji = document.getElementById('emoji');
 
 
 
@@ -416,13 +418,6 @@ const scoreDiv = document.getElementById('scoreBar');
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-//START THE QUIZ
-startButton.addEventListener('click', start);
-
-
-
-
 
 
 //SELECT THE ANSWER DIV AFTER THE BUILDQUIZ FUNCTION IS CALLED.
@@ -432,20 +427,25 @@ document.body.addEventListener("click", event => {
 
         if(correct()){
           correctAnswers++;
-          //add a beefeater emoji to right of the button containing the right answer.
-          // addEmoji('💂', event.target.parentNode);}
-          //add a poo emoji to right of the button containing the wrong answer.
-          // else {addEmoji('💩', event.target.parentNode);
-          event.target.style = "background-color: green";
+          emoji.style.backgroundColor = 'mediumseagreen';
+          emojiPara.innerHTML = '💂';}
 
+        else {
+          emoji.style.backgroundColor = 'burlywood';
+          emojiPara.innerHTML = '💩';}
 
-        } else {event.target.style = "background-color: red"; }
+        setTimeout(() => {
+            divEmoji.classList.remove('d-none');
+            quizContainer.classList.add('d-none');
+          }, 750);
 
     //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
         setTimeout(() => {
+          divEmoji.classList.add('d-none');
+          quizContainer.classList.remove('d-none');
           if (currentSlide < 9){showNextSlide();}
           else {showResults();}
-        }, 2500);
+        }, 2000);
 
 
     }
@@ -458,6 +458,9 @@ document.body.addEventListener("click", event => {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//////      EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
+
+//START THE QUIZ
+startButton.addEventListener('click', start);
 ////BUILD THE QUIZ
 buildQuiz();
 
