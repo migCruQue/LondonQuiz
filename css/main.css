@@ -124,7 +124,7 @@ background-color: #f8f9fa;
 border-style: double;
 margin: auto;
 width: 95%;
-height: 200px;
+height: 172px;
 background-size: contain;
 background-repeat: no-repeat;
 background-position: center;
@@ -196,28 +196,22 @@ background-position: center;
 
 #queenDiv {
 
-  background-color: red;
-  padding: 6rem 2rem;
-  background-size: cover;
-
 }
 
 #queenDiv h1 {
-  margin-bottom: 4rem;
-  padding: 35px;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 80px;
+  font-size: 20px;
   background-color: #3595dc;
 
 }
 
 
-#queen {
+/* #queen {
   height: 520px;
   margin-left: 27px;
   object-fit: contain;
 
-}
+} */
 
 #medallion {
   height: 100%;

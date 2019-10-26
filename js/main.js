@@ -15,7 +15,7 @@ const myQuestions = [
           c: 6
               },
       correctAnswer: 'c',
-      picSrc: 'img/The-Great-Fire-of-London.jpg',
+      picSrc: 'img/questions pics/mobile/The-Great-Fire-of-London_golden_mobile.jpg',
 
 
 
@@ -28,7 +28,7 @@ const myQuestions = [
           c: 'St Pancras Hotel'
               },
       correctAnswer: 'c',
-      picSrc: 'img/spice-girls.jpg',
+      picSrc: 'img/questions pics/mobile/spice-girls_mobile.jpg',
 
 
 
@@ -42,7 +42,7 @@ const myQuestions = [
           c: 'Pudding Lane'
               },
       correctAnswer: 'c',
-      picSrc: 'img/greatfirestarting.jpg',
+      picSrc: 'img/questions pics/mobile/shard_mobile.jpg',
 
 
 
@@ -56,7 +56,7 @@ const myQuestions = [
           c: 'Taxi'
               },
       correctAnswer: 'b',
-      picSrc: 'img/piccadilly.jpg',
+      picSrc: 'img/questions pics/mobile/piccadilly_mobile.jpg',
 
 
 
@@ -70,7 +70,7 @@ const myQuestions = [
           c: 'Maida Vale'
               },
       correctAnswer: 'b',
-      picSrc: 'img/abbey-road.jpg',
+      picSrc: 'img/questions pics/mobile/abbey-road_golden_mobile.jpg',
 
 
     },
@@ -83,7 +83,7 @@ const myQuestions = [
           c: 'The Tate Modern'
               },
       correctAnswer: 'a',
-      picSrc: 'img/muse_dorsay.jpg',
+      picSrc: 'img/questions pics/mobile/muse_dorsay_mobile.jpg',
 
 
     },
@@ -96,7 +96,7 @@ const myQuestions = [
           c: '2010'
               },
       correctAnswer: 'c',
-      picSrc: 'img/bikes.jpg',
+      picSrc: 'img/questions pics/mobile/bikes_golden_mobile.jpg',
 
 
     },
@@ -110,7 +110,7 @@ const myQuestions = [
           c: '1941'
               },
       correctAnswer: 'c',
-      picSrc: 'img/execution.jpg',
+      picSrc: 'img/questions pics/mobile/execution_mobile.jpg',
 
 
 
@@ -124,7 +124,7 @@ const myQuestions = [
           c: '2008-2012'
               },
       correctAnswer: 'a',
-      picSrc: 'img/shard.jpg',
+      picSrc: 'img/questions pics/mobile/shard_mobile.jpg',
 
 
     },
@@ -137,7 +137,7 @@ const myQuestions = [
           c: '130'
               },
       correctAnswer: 'b',
-      picSrc: 'img/london-underground.jpg',
+      picSrc: 'img/questions pics/mobile/london-underground_mobile.jpg',
 
 
     }
@@ -148,16 +148,20 @@ const myQuestions = [
 
 const myResults = [
 
-    {queenSays: `The queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you`,
-    picSrc: `img/peasants.jpg`},
+    {queenPic: `img/queen pics/mobile_s/queen0_golden_mobile_s.jpeg`,
+     queenSays: `The queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you`,
+     picSrc: `img/peasants.jpg`},
 
-    {queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)`,
+    {queenPic: `img/queen pics/mobile_s/queen1_golden_mobile_s.jpg`,
+     queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)`,
+     picSrc: `img/obe-medal.png`},
+
+    {queenPic: `img/queen pics/mobile_s/queen2_golden_mobile_s.jpg`,
+    queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)`,
     picSrc: `img/obe-medal.png`},
 
-    {queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)`,
-    picSrc: `img/obe-medal.png`},
-
-    {queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)`,
+    {queenPic: `img/queen pics/mobile_s/queen3_golden_mobile_s.jpg`,
+    queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)`,
     picSrc: `img/cbe-medal.jpg`},
 
 
@@ -291,42 +295,32 @@ function showResults(){
         else if (correctAnswers >= 7){i=2;}
           else if (correctAnswers >= 5){i=1;}
 
-      // SELECT THE DIV SCORE AND DISPLAY A SCORE WITH THE NUMBER OF ANSWER OUT OF 10
-      let score = document.getElementById('score');
-
-      score.innerHTML = `${correctAnswers} OUT OF ${myQuestions.length}`;
-
-      // DISPLAY THE APPROPRIATE MESSAGE FROM THE QUEEN.
-      let queenSentence = document.getElementById('queenSentence');
-
-      queenSentence.innerHTML = `${myResults[i].queenSays}`;
-
-      //DISPLAY THE RELATED PIC.
-      let medallion = document.getElementById('medallion');
-
-      medallion.src = `${myResults[i].picSrc}`;
 
 
-
+      //BUILD THE RESULT DIV
       let queenDiv = document.getElementById('queenDiv');
 
-      let prize = document.getElementById('prize');
+      queenDiv.innerHTML =
+
+      `<img class="mx-auto d-block container background-pic" src="${myResults[i].queenPic}" alt="queen" id="queen">
+
+      <h1 class="mb-0 text-center" id="queenSentence">you got ${correctAnswers} correct answers out of 10 ${myResults[i].queenSays}</h1>
+
+      <img  src="${myResults[i].picSrc}"class="rounded mx-auto d-block" id="medallion">`;
 
       queenDiv.classList.remove('d-none');
 
       //WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
       setTimeout(() => {
         queenDiv.classList.add('d-none');
-        prize.classList.remove('d-none');
         }, 5000);
 
       //WAIT 5 SECONDS AND HIDE THE PRIZE DIV AND GOES TO THE START DIV
       setTimeout(() => {
-        prize.classList.add('d-none');
         startDiv.classList.remove('d-none');
         buildQuiz();
         showSlide(0);
-      }, 10000);
+      }, 5000);
 
 
 
@@ -369,20 +363,6 @@ function showNextSlide(){
 //FUNCTIONS TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
 
 
-// ANIMATIONS
-
-function addEmoji(emoji, parent){
-
-  let element = document.createElement('p');
-  element.setAttribute("id", "emoji");
-  element.innerHTML = emoji;
-  parent.appendChild(element);
-
-}
-
-
-//\\ ANIMATIONS
-
 
 
 
@@ -411,6 +391,8 @@ const scoreDiv = document.getElementById('scoreBar');
 const emojiPara = document.getElementById('emojiPara');
 
 const divEmoji = document.getElementById('emoji');
+
+const queenDiv = document.getElementById('queenDiv');
 
 
 
