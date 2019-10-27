@@ -150,19 +150,19 @@ const myResults = [
 
     {queenPic: `img/queen pics/mobile_s/queen0_golden_mobile_s.jpeg`,
      queenSays: `The queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you`,
-     picSrc: `img/peasants.jpg`},
+     picSrc: `img/awards pics/mobile/dunce.jpg`},
 
     {queenPic: `img/queen pics/mobile_s/queen1_golden_mobile_s.jpg`,
      queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)`,
-     picSrc: `img/obe-medal.png`},
+     picSrc: `img/awards pics/mobile/mbe-medal.png`},
 
     {queenPic: `img/queen pics/mobile_s/queen2_golden_mobile_s.jpg`,
     queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)`,
-    picSrc: `img/obe-medal.png`},
+    picSrc: `img/awards pics/mobile/obe-medal.png`},
 
     {queenPic: `img/queen pics/mobile_s/queen3_golden_mobile_s.jpg`,
     queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)`,
-    picSrc: `img/cbe-medal.jpg`},
+    picSrc: `img/awards pics/mobile/cbe-medal.jpg`},
 
 
 ];
@@ -302,11 +302,11 @@ function showResults(){
 
       queenDiv.innerHTML =
 
-      `<img class="mx-auto d-block container background-pic" src="${myResults[i].queenPic}" alt="queen" id="queen">
+      `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
 
-      <h1 class="mb-0 text-center" id="queenSentence">you got ${correctAnswers} correct answers out of 10 ${myResults[i].queenSays}</h1>
+      <h1 class="mb-0" id="queenSentence">${correctAnswers} correct answers out of 10!!! <br><br> ${myResults[i].queenSays}</h1>
 
-      <img  src="${myResults[i].picSrc}"class="rounded mx-auto d-block" id="medallion">`;
+      <img  src="${myResults[i].picSrc}"class="mx-auto d-block" id="award">`;
 
       queenDiv.classList.remove('d-none');
 
