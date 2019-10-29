@@ -15,10 +15,9 @@ const myQuestions = [
           c: 6
               },
       correctAnswer: 'c',
-      picSrc: 'img/questions pics/mobile/The-Great-Fire-of-London_golden_mobile.jpg',
-
-
-
+      picMob: 'img/questions pics/mobile/The-Great-Fire-of-London_golden_mobile.jpg',
+      picTab: 'img/questions pics/tablet/The-Great-Fire-of-London_golden.jpg',
+      picLap: 'img/questions pics/laptop L/The-Great-Fire-of-London_golden.jpg',
     },
     {
       question: "2-Pop culture time. What hotel is shown in the opening of Spice Girl's song 'Wannabe'?",
@@ -28,9 +27,9 @@ const myQuestions = [
           c: 'St Pancras Hotel'
               },
       correctAnswer: 'c',
-      picSrc: 'img/questions pics/mobile/spice-girls_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/spice-girls_mobile.jpg',
+      picTab: 'img/questions pics/tablet/spice-girls_golden.jpg',
+      picLap: 'img/questions pics/laptop L/spice-girls_golden.jpg',
 
     },
 
@@ -42,9 +41,9 @@ const myQuestions = [
           c: 'Pudding Lane'
               },
       correctAnswer: 'c',
-      picSrc: 'img/questions pics/mobile/shard_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/greatfirestarting_mobile.jpg',
+      picTab: 'img/questions pics/tablet/greatfirestarting_golden.jpg',
+      picLap: 'img/questions pics/laptop L/greatfirestarting_golden.jpg',
 
     },
 
@@ -56,9 +55,9 @@ const myQuestions = [
           c: 'Taxi'
               },
       correctAnswer: 'b',
-      picSrc: 'img/questions pics/mobile/piccadilly_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/piccadilly_mobile.jpg',
+      picTab: 'img/questions pics/tablet/piccadilly_golden.jpg',
+      picLap: 'img/questions pics/laptop L/shard_golden.jpg',
 
     },
 
@@ -70,9 +69,9 @@ const myQuestions = [
           c: 'Maida Vale'
               },
       correctAnswer: 'b',
-      picSrc: 'img/questions pics/mobile/abbey-road_golden_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/abbey-road_golden_mobile.jpg',
+      picTab: 'img/questions pics/tablet/abbey-road_golden.jpg',
+      picLap: 'img/questions pics/laptop L/abbey-road_golden.jpg',
     },
 
     {
@@ -83,9 +82,9 @@ const myQuestions = [
           c: 'The Tate Modern'
               },
       correctAnswer: 'a',
-      picSrc: 'img/questions pics/mobile/muse_dorsay_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/muse_dorsay_mobile.jpg',
+      picTab: 'img/questions pics/laptop L/abbey-road_golden.jpg',
+      picLap: 'img/questions pics/laptop L/muse_dorsay_golden.jpg',
     },
 
     {
@@ -96,9 +95,9 @@ const myQuestions = [
           c: '2010'
               },
       correctAnswer: 'c',
-      picSrc: 'img/questions pics/mobile/bikes_golden_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/bikes_golden_mobile.jpg',
+      picTab: 'img/questions pics/tablet/bikes_golden.jpg',
+      picLap: 'img/questions pics/laptop L/bikes_golden.jpg',
     },
 
 
@@ -110,9 +109,9 @@ const myQuestions = [
           c: '1941'
               },
       correctAnswer: 'c',
-      picSrc: 'img/questions pics/mobile/execution_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/execution_mobile.jpg',
+      picTab: 'img/questions pics/tablet/execution_golden.jpg',
+      picLap: 'img/questions pics/laptop L/execution_golden.jpg',
 
     },
 
@@ -124,9 +123,9 @@ const myQuestions = [
           c: '2008-2012'
               },
       correctAnswer: 'a',
-      picSrc: 'img/questions pics/mobile/shard_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/shard_mobile.jpg',
+      picTab:'img/questions pics/tablet/shard_golden.jpg',
+      picLap: 'img/questions pics/laptop L/shard_golden.jpg',
     },
 
     {
@@ -137,9 +136,9 @@ const myQuestions = [
           c: '130'
               },
       correctAnswer: 'b',
-      picSrc: 'img/questions pics/mobile/london-underground_mobile.jpg',
-
-
+      picMob: 'img/questions pics/mobile/london-underground_mobile.jpg',
+      picTab: 'img/questions pics/tablet/london-underground_golden.jpg',
+      picLap: 'img/questions pics/laptop L/london-underground_golden.jpg',
     }
 
 
@@ -243,7 +242,7 @@ function buildQuiz(){
           //I THINK THE ERROR IS IN THE ANSWERS DIV// TRY TO SELECT SOMETHING ELSE
           `<div class="slide">
 
-           <div class="background-pic" style="background-image: url('${currentQuestion.picSrc}');"></div>
+           <div class="background-pic" style="background-image: url('${currentQuestion.picLap}');"></div>
 
             <div class="question"> ${currentQuestion.question} </div>
 
@@ -304,7 +303,7 @@ function showResults(){
 
       `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
 
-      <h1 class="mb-0" id="queenSentence">${correctAnswers} correct answers out of 10!!! <br><br> ${myResults[i].queenSays}</h1>
+      <h1 class="mb-0" id="queenSentence">${correctAnswers} correct answers out of 10<br><br>${myResults[i].queenSays}</h1>
 
       <img  src="${myResults[i].picSrc}"class="mx-auto d-block" id="award">`;
 
@@ -313,14 +312,14 @@ function showResults(){
       //WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
       setTimeout(() => {
         queenDiv.classList.add('d-none');
-        }, 5000);
+      }, 6500);
 
       //WAIT 5 SECONDS AND HIDE THE PRIZE DIV AND GOES TO THE START DIV
       setTimeout(() => {
         startDiv.classList.remove('d-none');
         buildQuiz();
         showSlide(0);
-      }, 5000);
+      }, 6500);
 
 
 
