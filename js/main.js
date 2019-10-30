@@ -147,21 +147,21 @@ const myQuestions = [
 
 const myResults = [
 
-    {queenPic: `img/queen pics/mobile_s/queen0_golden_mobile_s.jpeg`,
+    {queenPic: `img/queen pics/golden/queen0.jpeg`,
      queenSays: `The queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you`,
-     picSrc: `img/awards pics/mobile/dunce.jpg`},
+     picSrc: `img/awards pics/square/dunce.jpg`},
 
-    {queenPic: `img/queen pics/mobile_s/queen1_golden_mobile_s.jpg`,
+    {queenPic: `img/queen pics/golden/queen1.jpg.jpg`,
      queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)`,
-     picSrc: `img/awards pics/mobile/mbe-medal.png`},
+     picSrc: `img/awards pics/square/mbe-medal.png`},
 
-    {queenPic: `img/queen pics/mobile_s/queen2_golden_mobile_s.jpg`,
+    {queenPic: `img/queen pics/golden/queen2.jpg`,
     queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)`,
-    picSrc: `img/awards pics/mobile/obe-medal.png`},
+    picSrc: `img/awards pics/square/obe-medal.png`},
 
-    {queenPic: `img/queen pics/mobile_s/queen3_golden_mobile_s.jpg`,
+    {queenPic: `img/queen pics/golden/queen3.jpg.jpg`,
     queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)`,
-    picSrc: `img/awards pics/mobile/cbe-medal.jpg`},
+    picSrc: `img/awards pics/square/cbe-medal.jpg`},
 
 
 ];
@@ -303,7 +303,7 @@ function showResults(){
 
       `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
 
-      <h1 class="mb-0" id="queenSentence">${correctAnswers} correct answers out of 10<br><br>${myResults[i].queenSays}</h1>
+      <h1 class="mb-0 text-center mx-auto" id="queenSentence"><div id="score">0 correct answers out of 10</div><br>${myResults[i].queenSays}</h1>
 
       <img  src="${myResults[i].picSrc}"class="mx-auto d-block" id="award">`;
 
