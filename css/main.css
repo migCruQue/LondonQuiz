@@ -6,22 +6,26 @@
 
   background-image: url("../img/london_map2_320X720.jpg");
   height: 100vh;
-  padding: 3rem 2rem;
+  padding: 1rem 0rem;
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
 
 }
-
 #start h1{
   background: linear-gradient(#03A9F4, transparent 132%);
   font-family: 'Rye', cursive;
-  font-size: 30px;
   color: #f8f9fa;
-  margin-top: 5rem;
-  padding: 2rem 1rem;
+  width: 80%;
+  padding: 30px 20px;
   border-radius: 5%;
   filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+
+}
+
+#title{
+  font-size: 30px;
+  margin-top: 5rem;
 
 }
 
@@ -29,6 +33,7 @@
 /* //Start button animation */
 #start button{
     margin-top: 10rem;
+    margin-bottom: 170px;
     padding: 42px 0;
     width: 120px;
     height: 120px;
@@ -57,6 +62,13 @@
 }
 
 /* //\\Start button animation */
+
+#email h1{
+  display: inline;
+  font-size: 18px;
+  padding: 15px 20px;
+}
+
 
 /* GAME PRESENTATION + START BUTTON */
 
@@ -154,9 +166,9 @@ background-position: center;
 
 /* EMOJI DIV */
 #emoji {
-
-  font-size: 17rem;
-  padding: 14rem 2rem;
+  max-width: none;
+  font-size: 270px;
+  padding: 12rem 2rem;
 }
 /* //EMOJI DIV */
 
@@ -164,7 +176,7 @@ background-position: center;
 
 #queenDiv {
   background-color: #3595dc;
-  padding: 1rem 1rem 14rem 1rem;
+  padding: 1rem 1rem 8rem 1rem;
 
 }
 
@@ -197,8 +209,7 @@ background-position: center;
 
 #award {
   width: 30%;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  margin-top: 40px;
   border-radius: 50%;
 
 
@@ -222,6 +233,14 @@ background-position: center;
   /* DISPLAY RESULT */
   #score{
     width: 80%;
+  }
+
+  #award {
+    width: 25%;
+    margin-top: 50px;
+    border-radius: 50%;
+
+
   }
   /* /DISPLAY RESULT */
 }
@@ -248,7 +267,7 @@ background-position: center;
 
   /* DISPLAY RESULT */
   #queenDiv {
-    padding: 1rem 1rem 6rem 1rem;
+    padding: 1rem 1rem 8rem 1rem;
   }
     /* /DISPLAY RESULT */
 }
@@ -268,7 +287,7 @@ background-position: center;
 @media (min-width: 768px) {
 
   /* GAME PRESENTATION + START BUTTON */
-  #start h1 {
+  #title {
       padding: 30px;
       font-size: 79px;
       margin-top: 8rem;
@@ -313,27 +332,36 @@ background-position: center;
 
   /* EMOJI */
   #emoji {
-      font-size: 17rem;
-      max-width: 770px;
+      font-size: 330px;
+
   }
+  #emoji {
+    font-size: 330px;
+    padding: 9rem 2rem;
+}
 
   /* /EMOJI */
 
   /* DISPLAY RESULT */
   #queenDiv {
 
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 4rem 1rem;
 
   }
 
   #queen{
 
-    width: 90%;
-    height: 350px;
+    width: 82%;
+    height: 318px;
+  }
+
+  #queenDiv h1 {
+    margin-top: 40px;
   }
 
   #award {
-    width: 15%;
+    width: 13%;
+    margin-top: 40px;
   }
 
   #score{
@@ -357,13 +385,16 @@ background-position: center;
 
 @media (min-width: 1024px) {
 
-  #start h1 {
+
+  /* GAME PRESENTATION + START BUTTON */
+  #title {
 
     padding: 75px;
-    font-size: 60px;
-    margin: 0 140px;
+    font-size: 100px;
+    margin: 60px 0;
 
      }
+/* /GAME PRESENTATION + START BUTTON */
 
      /* SLIDES*/
      .background-pic {
@@ -375,8 +406,8 @@ background-position: center;
 
     /* EMOJI */
   #emoji {
-      font-size: 17rem;
-      max-width: 1024px;
+      font-size: 400px;
+
   }
 
   /* /EMOJI */
@@ -385,14 +416,17 @@ background-position: center;
 
   #queen {
       width: 78%;
+      height: 375px;
       margin-top: 50px;
     }
   #award {
-      width: 12%;
+      width: 10%;
+      margin-top: 10px;
   }
 
   #queenDiv h1{
     width: 70%;
+    margin-top: 30px;
   }
   /* /DISPLAY RESULT */
 
@@ -414,7 +448,7 @@ background-position: center;
 @media (min-width: 1440px) {
 
 
-  #start h1 {
+  #title {
     font-size: 125px;
 
      }
@@ -438,32 +472,36 @@ background-position: center;
 
      /* EMOJI */
      #emoji {
-       font-size: 27rem;
-       padding: 22rem 0rem;
-       max-width: 1440px;
+       font-size: 450px;
+       padding: 8rem 0rem;
      }
 
      /* /EMOJI */
 
      /* DISPLAY RESULT */
 
+     #queenDiv {
+    padding: 1rem 1rem 6rem 1rem;
+    }
+
      #queen {
        width: 70%;
        margin-top: 50px;
+       height: 425px;
      }
 
      #award {
-         width: 10%;
+         width: 8%;
      }
 
      #queenDiv h1{
-      font-size: 27px;
-     width: 70%;
-     line-height: 40px;
+      font-size: 25px;
+      width: 70%;
+      line-height: 40px;
      }
      /* /DISPLAY RESULT */
 
-   }
+
 
 
 
@@ -484,7 +522,7 @@ background-position: center;
 @media (min-width: 2560px) {
 
 
-  #start h1 {
+  #title {
 
 
     font-size: 260px;
@@ -495,6 +533,9 @@ background-position: center;
   #start button{
     margin-top: 200px;
     font-size: 7rem;
+    width: 180px;
+    height: 180px;
+    border-radius: 170px;
   }
 
 
@@ -533,14 +574,37 @@ background-position: center;
 
   /* EMOJI */
   #emoji {
-    font-size: 45rem;
-    max-width: 2560px;
-    padding: 42rem 0rem;
+    font-size: 800px;
+    padding: 21rem 0rem;
   }
 
   /* /EMOJI */
 
+  /* DISPLAY RESULT */
 
+  #queenDiv {
+    padding: 1rem 1rem 7rem 1rem;
+  }
+
+  #queen {
+      width: 75%;
+      max-width: 2000px;
+      height: 900px;
+      margin-top: 110px;
+  }
+
+  #queenDiv h1 {
+    font-size: 43px;
+    margin-top: 70px;
+    line-height: 75px;
+  }
+
+  #award {
+    margin-top: 20px;
+  }
+
+
+  /* /DISPLAY RESULT */
 
 
 
