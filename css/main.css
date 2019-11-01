@@ -5,6 +5,7 @@
 #start {
 
   background-image: url("../img/london_map2_320X720.jpg");
+  height: 100vh;
   padding: 3rem 0rem;
   background-size: cover;
   margin-left: auto;
