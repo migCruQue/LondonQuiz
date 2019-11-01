@@ -15,8 +15,6 @@ const myQuestions = [
           c: 6
               },
       correctAnswer: 'c',
-      picMob: 'img/questions pics/mobile/The-Great-Fire-of-London_golden_mobile.jpg',
-      picTab: 'img/questions pics/tablet/The-Great-Fire-of-London_golden.jpg',
       picLap: 'img/questions pics/laptop L/The-Great-Fire-of-London_golden.jpg',
     },
     {
@@ -27,8 +25,6 @@ const myQuestions = [
           c: 'St Pancras Hotel'
               },
       correctAnswer: 'c',
-      picMob: 'img/questions pics/mobile/spice-girls_mobile.jpg',
-      picTab: 'img/questions pics/tablet/spice-girls_golden.jpg',
       picLap: 'img/questions pics/laptop L/spice-girls_golden.jpg',
 
     },
@@ -41,8 +37,6 @@ const myQuestions = [
           c: 'Pudding Lane'
               },
       correctAnswer: 'c',
-      picMob: 'img/questions pics/mobile/greatfirestarting_mobile.jpg',
-      picTab: 'img/questions pics/tablet/greatfirestarting_golden.jpg',
       picLap: 'img/questions pics/laptop L/greatfirestarting_golden.jpg',
 
     },
@@ -55,8 +49,6 @@ const myQuestions = [
           c: 'Taxi'
               },
       correctAnswer: 'b',
-      picMob: 'img/questions pics/mobile/piccadilly_mobile.jpg',
-      picTab: 'img/questions pics/tablet/piccadilly_golden.jpg',
       picLap: 'img/questions pics/laptop L/shard_golden.jpg',
 
     },
@@ -69,8 +61,6 @@ const myQuestions = [
           c: 'Maida Vale'
               },
       correctAnswer: 'b',
-      picMob: 'img/questions pics/mobile/abbey-road_golden_mobile.jpg',
-      picTab: 'img/questions pics/tablet/abbey-road_golden.jpg',
       picLap: 'img/questions pics/laptop L/abbey-road_golden.jpg',
     },
 
@@ -82,8 +72,6 @@ const myQuestions = [
           c: 'The Tate Modern'
               },
       correctAnswer: 'a',
-      picMob: 'img/questions pics/mobile/muse_dorsay_mobile.jpg',
-      picTab: 'img/questions pics/laptop L/abbey-road_golden.jpg',
       picLap: 'img/questions pics/laptop L/muse_dorsay_golden.jpg',
     },
 
@@ -95,8 +83,6 @@ const myQuestions = [
           c: '2010'
               },
       correctAnswer: 'c',
-      picMob: 'img/questions pics/mobile/bikes_golden_mobile.jpg',
-      picTab: 'img/questions pics/tablet/bikes_golden.jpg',
       picLap: 'img/questions pics/laptop L/bikes_golden.jpg',
     },
 
@@ -109,8 +95,6 @@ const myQuestions = [
           c: '1941'
               },
       correctAnswer: 'c',
-      picMob: 'img/questions pics/mobile/execution_mobile.jpg',
-      picTab: 'img/questions pics/tablet/execution_golden.jpg',
       picLap: 'img/questions pics/laptop L/execution_golden.jpg',
 
     },
@@ -123,8 +107,6 @@ const myQuestions = [
           c: '2008-2012'
               },
       correctAnswer: 'a',
-      picMob: 'img/questions pics/mobile/shard_mobile.jpg',
-      picTab:'img/questions pics/tablet/shard_golden.jpg',
       picLap: 'img/questions pics/laptop L/shard_golden.jpg',
     },
 
@@ -136,8 +118,6 @@ const myQuestions = [
           c: '130'
               },
       correctAnswer: 'b',
-      picMob: 'img/questions pics/mobile/london-underground_mobile.jpg',
-      picTab: 'img/questions pics/tablet/london-underground_golden.jpg',
       picLap: 'img/questions pics/laptop L/london-underground_golden.jpg',
     }
 

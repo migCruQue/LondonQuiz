@@ -33,7 +33,7 @@
 /* //Start button animation */
 #start button{
     margin-top: 10rem;
-    margin-bottom: 170px;
+    margin-bottom: 225px;;
     padding: 42px 0;
     width: 120px;
     height: 120px;
@@ -159,18 +159,17 @@ background-position: center;
   margin-top: 40px;
 }
 
-
-
-
 /* SLIDES */
 
 /* EMOJI DIV */
+
 #emoji {
   max-width: none;
   font-size: 270px;
   padding: 12rem 2rem;
 }
-/* //EMOJI DIV */
+
+/* /EMOJI DIV */
 
 /* DISPLAY RESULT */
 
@@ -192,10 +191,12 @@ background-position: center;
   margin-top: 50px;
   margin-bottom: 30px;
 }
+
 #score{
   border-style: dashed;
   border-color: cyan;
 }
+
 #queenDiv h1 {
   font-family: 'MedievalSharp', cursive;
   margin-top: 50px;
@@ -206,24 +207,29 @@ background-position: center;
 
 }
 
-
 #award {
   width: 30%;
   margin-top: 40px;
   border-radius: 50%;
-
-
 }
 
-
-
-/* DISPLAY RESULT */
+/* /DISPLAY RESULT */
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY MAX-WIDTH: 375PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 375px) {
+
+/* GAME PRESENTATION + START BUTTON */
+
+  #start button{
+    margin-bottom: 226px;
+  }
+
+/* /GAME PRESENTATION + START BUTTON */
+
+
   /* SLIDES */
   .background-pic{
     height: 202px;
@@ -231,6 +237,7 @@ background-position: center;
   /* /SLIDES */
 
   /* DISPLAY RESULT */
+
   #score{
     width: 80%;
   }
@@ -239,13 +246,10 @@ background-position: center;
     width: 25%;
     margin-top: 50px;
     border-radius: 50%;
-
-
   }
+
   /* /DISPLAY RESULT */
 }
-
-
 
 
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -260,15 +264,17 @@ background-position: center;
 @media (min-width: 425px) {
   /* SLIDES */
     .background-pic{
-
-    height: 232px;
+      height: 232px;
     }
+
   /* /SLIDES */
 
   /* DISPLAY RESULT */
+
   #queenDiv {
     padding: 1rem 1rem 8rem 1rem;
   }
+
     /* /DISPLAY RESULT */
 }
 
@@ -287,6 +293,7 @@ background-position: center;
 @media (min-width: 768px) {
 
   /* GAME PRESENTATION + START BUTTON */
+
   #title {
       padding: 30px;
       font-size: 79px;
@@ -303,15 +310,12 @@ background-position: center;
 
 
   #quiz-container {
-
       padding: 1rem 1rem 8rem 1rem;
   }
 
   .background-pic{
-
       height: 412px;
       width: 90%;
-
     }
 
   .question{
@@ -319,13 +323,11 @@ background-position: center;
     }
 
   .answers {
-
     flex-direction: row;
     justify-content: space-evenly;
     }
 
   #ton{
-
     width: 11rem;
   }
   /* /SLIDES */
@@ -333,24 +335,22 @@ background-position: center;
   /* EMOJI */
   #emoji {
       font-size: 330px;
-
   }
+
   #emoji {
     font-size: 330px;
     padding: 9rem 2rem;
-}
+  }
 
   /* /EMOJI */
 
   /* DISPLAY RESULT */
+
   #queenDiv {
-
     padding: 1rem 1rem 4rem 1rem;
-
   }
 
   #queen{
-
     width: 82%;
     height: 318px;
   }
@@ -387,27 +387,29 @@ background-position: center;
 
 
   /* GAME PRESENTATION + START BUTTON */
-  #title {
 
+  #title {
     padding: 75px;
     font-size: 100px;
     margin: 60px 0;
+    }
 
-     }
 /* /GAME PRESENTATION + START BUTTON */
 
      /* SLIDES*/
+
      .background-pic {
          height: 430px;
          width: 70%;
      }
+
     /* /SLIDES*/
 
 
     /* EMOJI */
+
   #emoji {
       font-size: 400px;
-
   }
 
   /* /EMOJI */
@@ -419,6 +421,7 @@ background-position: center;
       height: 375px;
       margin-top: 50px;
     }
+
   #award {
       width: 10%;
       margin-top: 10px;
@@ -428,6 +431,7 @@ background-position: center;
     width: 70%;
     margin-top: 30px;
   }
+
   /* /DISPLAY RESULT */
 
 }
@@ -447,14 +451,21 @@ background-position: center;
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 1440px) {
 
+  /* GAME PRESENTATION + START BUTTON */
 
-  #title {
+    #title {
     font-size: 125px;
 
      }
 
-     /* SLIDES*/
+    #start button{
+      margin-bottom: 300px;
+    }
 
+  /* /GAME PRESENTATION + START BUTTON */
+
+
+     /* SLIDES*/
 
      #quiz-container {
        padding: 1rem 1rem 15rem 1rem;
@@ -467,10 +478,10 @@ background-position: center;
 
        }
 
-
      /* /SLIDES*/
 
      /* EMOJI */
+
      #emoji {
        font-size: 450px;
        padding: 8rem 0rem;
@@ -499,6 +510,7 @@ background-position: center;
       width: 70%;
       line-height: 40px;
      }
+
      /* /DISPLAY RESULT */
 
 
@@ -521,26 +533,28 @@ background-position: center;
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 2560px) {
 
+  /* GAME PRESENTATION + START BUTTON */
 
   #title {
-
-
     font-size: 260px;
     margin-top: 250px;
-
      }
 
   #start button{
     margin-top: 200px;
-    font-size: 7rem;
-    width: 180px;
-    height: 180px;
+    font-size: 80px;
+    width: 300px;
+    height: 300px;
     border-radius: 170px;
   }
 
+  #email h1 {
+    font-size: 50px;
+  }
+
+  /* /GAME PRESENTATION + START BUTTON */
 
   /* SLIDES*/
-
 
   #quiz-container {
     padding: 10rem 1rem 10rem 1rem;
@@ -560,8 +574,6 @@ background-position: center;
     margin-top: 10rem;
   }
 
-
-
     #ton {
 
     padding: 25px 10px;
@@ -569,10 +581,10 @@ background-position: center;
     width: 400px;
     }
 
-
   /* /SLIDES*/
 
   /* EMOJI */
+
   #emoji {
     font-size: 800px;
     padding: 21rem 0rem;
@@ -602,7 +614,6 @@ background-position: center;
   #award {
     margin-top: 20px;
   }
-
 
   /* /DISPLAY RESULT */
 
