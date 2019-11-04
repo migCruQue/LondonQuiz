@@ -1,26 +1,26 @@
-html, body
-{
-    height: 100%;
-    width: 100%;
-}
+
+
 
 /* GAME PRESENTATION + START BUTTON */
 
 #start {
-
-  background-image: url("../img/london_map2_320X720.jpg");
   height: 100vh;
-  padding: 3rem 0rem;
+  padding: 1rem 0rem 0rem 0rem;
+  background-image: url('../img/london_map2_320X720.jpg');
   background-size: cover;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 
 }
+
 #start h1{
   background: linear-gradient(#03A9F4, transparent 132%);
+  width: 77%;
+  font-size: 27px;
   font-family: 'Rye', cursive;
   color: #f8f9fa;
-  width: 80%;
+  margin-top: 40px;
   padding: 30px 20px;
   border-radius: 5%;
   filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
@@ -36,7 +36,8 @@ html, body
 
 /* //Start button animation */
 #start button{
-    margin-top: 10rem;
+    display: block;
+    margin-top: 200px;
     margin-bottom: 225px;;
     padding: 42px 0;
     width: 120px;
@@ -68,8 +69,9 @@ html, body
 /* //\\Start button animation */
 
 #email h1{
-  display: inline;
+  display: block;
   font-size: 18px;
+  margin-top: 267px;
   padding: 15px 20px;
 }
 
@@ -321,35 +323,38 @@ background-position: center;
 
 
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>IPHONE6/7/8 PLUS>>>>>>>> MEDIA QUERY MIN-WIDTH: 1242PX AND MIN-HEGHT 2208PX<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>IPHONE6/7/8 PLUS>>>>>>>> MEDIA QUERY (min-device-width : 414px) AND (max-device-width : 736px)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-@media (min-width: 1242px) and (min-height: 2208px){
+  @media only screen
+  and (min-device-width : 414px)
+  and (max-device-width : 736px) { /* STYLES GO HERE */}
 
   /* GAME PRESENTATION + START BUTTON */
 
-  #start {
-      padding: 1rem 0 12rem 0;
-    }
+  /* #start {
+    padding: 1rem 0rem 0rem 0rem;
+    } */
 
   #start h1{
 
-    width: 87%;
-    font-size: 130px;
-    margin-top: 200px;
+    /* width: 75%;
+    font-size: 25px; */
+    /* margin-top: 150px; */
   }
 
-  #start button {
-    margin-top: 575px;
-    margin-bottom: 760px;
-    width: 300px;
-    height: 300px;
+  /* #start button {
+    font: normal 18px sans-serif;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    width: 100px;
+    height: 100px;
     border-radius: 200px;
-  }
+  } */
 
   #email h1{
 
-    font-size: 50px;
+    font-size: 15px;
   }
 
   /* GAME PRESENTATION + START BUTTON */
