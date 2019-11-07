@@ -14,7 +14,7 @@
 
 }
 
-#start h1{
+#title{
   background: linear-gradient(#03A9F4, transparent 132%);
   width: 77%;
   font-size: 27px;
@@ -27,18 +27,12 @@
 
 }
 
-#title{
-  font-size: 30px;
-  margin-top: 5rem;
-
-}
-
 
 /* //Start button animation */
 #start button{
     display: block;
-    margin-top: 50px;
-    margin-bottom: 50px;;
+    margin-top: 200px;
+    margin-bottom: 225px;;
     padding: 42px 0;
     width: 120px;
     height: 120px;
@@ -69,9 +63,15 @@
 /* //\\Start button animation */
 
 #email h1{
+  background: linear-gradient(#03A9F4, transparent 132%);
+  font-family: 'Rye', cursive;
+  color: #f8f9fa;
+  border-radius: 5%;
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
   display: block;
+  width: 60%;
+  padding: 15px 0;
   font-size: 18px;
-  padding: 15px 20px;
 }
 
 
@@ -99,21 +99,19 @@
   border-radius: .50rem;
   width: 13rem;
   transition: all .15s ease-in-out;
-
 }
 
 
 
 .background-pic{
-background-color: #f8f9fa;
-border-style: double;
-margin: auto;
-width: 95%;
-height: 172px;
-background-size: contain;
-background-repeat: no-repeat;
-background-position: center;
-
+  background-color: #f8f9fa;
+  border-style: double;
+  margin: auto;
+  width: 95%;
+  height: 172px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 
@@ -181,7 +179,6 @@ background-position: center;
 #queenDiv {
   background-color: #3595dc;
   padding: 1rem 1rem 8rem 1rem;
-
 }
 
 #queen{
@@ -209,7 +206,6 @@ background-position: center;
   font-size: 18px;
   line-height: 32px;
   padding: 1rem 1rem;
-
 }
 
 #award {
@@ -233,9 +229,9 @@ background-position: center;
     margin-top: 45px;
   }
 
-  /* #start button{
-    margin-bottom: 270px;
-  } */
+  #start button{
+    margin-bottom: 240px;
+  }
 
 /* /GAME PRESENTATION + START BUTTON */
 
@@ -265,108 +261,6 @@ background-position: center;
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 375PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>IPHONE6/7/8>>>>>>>> MEDIA QUERY MIN-WIDTH: 375PX AND MIN-HEGHT 667PX<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-@media (min-width: 375px) and (min-height: 667px){
-
-  /* GAME PRESENTATION + START BUTTON */
-
-  /* #start {
-    padding: 1rem 0 0rem 0;
-    } */
-
-  /* #start button {
-    margin-top: 110px;
-    margin-bottom: 220px;
-  } */
-
-  /* GAME PRESENTATION + START BUTTON */
-
-
-  /* SLIDES */
-
-  #quiz-container {
-    padding: 2rem 1rem 2rem 1rem;
-  }
-
-  /* SLIDES */
-
-}
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/IPHONE6/7/8>>>>>>>> MEDIA QUERY MIN-WIDTH: 375PX AND MIN-HEGHT 667PX<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>IPHONE X>>>>>>>> MEDIA QUERY MIN-WIDTH: 375PX AND MIN-HEGHT 812PX<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-@media (min-width: 375px) and (min-height: 812px){
-
-  /* GAME PRESENTATION + START BUTTON */
-
-  #start button {
-    margin-top: 170px;
-    margin-bottom: 300px;
-  }
-
-  /* GAME PRESENTATION + START BUTTON */
-
-}
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/IPHONE X>>>>>>>> MEDIA QUERY MIN-WIDTH: 375PX AND MIN-HEGHT 812PX<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>IPHONE6/7/8 PLUS>>>>>>>> MEDIA QUERY (min-device-width : 414px) AND (max-device-width : 736px)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-  @media only screen
-  and (min-device-width : 414px)
-  and (max-device-width : 736px) { /* STYLES GO HERE */}
-
-  /* GAME PRESENTATION + START BUTTON */
-
-  /* #start {
-    padding: 1rem 0rem 0rem 0rem;
-    } */
-
-  #start h1{
-
-    /* width: 75%;
-    font-size: 25px; */
-    /* margin-top: 150px; */
-  }
-
-  /* #start button {
-    font: normal 18px sans-serif;
-    margin-top: 100px;
-    margin-bottom: 200px;
-    width: 100px;
-    height: 100px;
-    border-radius: 200px;
-  } */
-
-  #email h1{
-
-    font-size: 15px;
-  }
-
-  /* GAME PRESENTATION + START BUTTON */
-
-}
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/IPHONE6/7/8 PLUS>>>>>>>> MEDIA QUERY MIN-WIDTH: 2208PX AND MIN-HEGHT 736PX<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-
-
-
 
 
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -406,21 +300,29 @@ background-position: center;
   /* GAME PRESENTATION + START BUTTON */
 
   #title {
-      padding: 30px;
-      width: 85%;
-      margin-top: 60px;
-      font-size: 79px;
-
+    padding: 20px;
+    width: 60%;
+    margin-top: 50px;
+    font-size: 50px;
   }
 
-  /* #start button{
-       margin-top: 5rem;
-  } */
+  #start button{
+    margin-bottom: 245px;
+    margin-top: 190px;
+    width: 130px;
+    height: 130px;
+    border-radius: 100px;
+  }
+
+  #email h1{
+    width: 30%;
+    font-size: 20px;
+  }
+
 
   /* /GAME PRESENTATION + START BUTTON */
 
   /* SLIDES */
-
 
   #quiz-container {
       padding: 1rem 1rem 8rem 1rem;
@@ -501,14 +403,20 @@ background-position: center;
 
   /* GAME PRESENTATION + START BUTTON */
 
-  /* #start{
-    padding: 2rem 0rem;
-  } */
+
 
   #title {
-    padding: 75px;
-    font-size: 100px;
+    padding: 45px;
+    font-size: 75px;
+    width: 70%;
+    margin-top: 30px;
     }
+
+  #start button{
+    margin-bottom: 230px;
+    margin-top: 130px;
+
+  }
 
 /* /GAME PRESENTATION + START BUTTON */
 
@@ -568,17 +476,18 @@ background-position: center;
 @media (min-width: 1440px) {
 
   /* GAME PRESENTATION + START BUTTON */
-  #start{
-    padding: 5rem 0rem;
-  }
 
   #title {
-  font-size: 125px;
+    font-size: 125px;
+    width: 75%;
 
    }
 
   #start button{
-    margin-bottom: 300px;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 335px;
+    margin-top: 200px;
   }
 
   /* /GAME PRESENTATION + START BUTTON */
@@ -655,12 +564,13 @@ background-position: center;
   /* GAME PRESENTATION + START BUTTON */
 
   #title {
-    font-size: 260px;
-    margin-top: 250px;
+    font-size: 220px;
+    margin-top: 170px;
      }
 
   #start button{
-    margin-top: 200px;
+    margin-top: 390px;
+    margin-bottom: 600px;
     font-size: 80px;
     width: 300px;
     height: 300px;
