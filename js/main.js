@@ -295,6 +295,12 @@ document.body.addEventListener("click", event => {
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
+/////////////////////////////////SETTING UP THE DIV HEIGHT///////////////////////////////////////////////////////////////////////////
+
+startDiv.style.minHeight =  `${window.innerHeight}px`;
+
+
+
 //START THE QUIZ
 startButton.addEventListener('click', start);
 ////BUILD THE QUIZ

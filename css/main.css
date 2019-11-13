@@ -4,7 +4,6 @@
 /* GAME PRESENTATION + START BUTTON */
 
 #start {
-  height: 100vh;
   padding: 1rem 0rem 0rem 0rem;
   background-image: url('../img/london_map2_320X720.jpg');
   background-size: cover;
