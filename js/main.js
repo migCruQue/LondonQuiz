@@ -294,11 +294,19 @@ document.body.addEventListener("click", event => {
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
-/////////////////////////////////SETTING UP THE DIV HEIGHT/////EXPERIMENTAL///////////////////////////////////////////////////
+///////////////////////SETTING THE DIVS OF THE APPS TO THE WINDOW INNERHEIGHT ///I'M TRYINING TO DO IT IN A FOR LOOP OR USING JQUERY DECLARING AN ARRAY OF DIVS
+// BUT I GOT AN ERROR 'Cannot set property 'height' of undefined'/////////////////////////////////////////////
+
+// let divss= ['start', 'quiz-container', 'emoji', 'queenDiv'];
+// divss.forEach(element => $(`#${element}`).height =  `${window.innerHeight}px`);
 
 quizContainer.style.height =  `${window.innerHeight}px`;
+startDiv.style.height =  `${window.innerHeight}px`;
+emoji.style.height =  `${window.innerHeight}px`;
+queenDiv.style.height =  `${window.innerHeight}px`;
 
-/////////////////////////////////SETTING UP THE DIV HEIGHT/////EXPERIMENTAL///////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////
 
 
 //START THE QUIZ
