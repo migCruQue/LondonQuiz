@@ -3,18 +3,18 @@
 
 
 
-function resizeElementHeight(element) {
-  var height = 0;
-  var body = window.document.body;
-  if (window.innerHeight) {
-      height = window.innerHeight;
-  } else if (body.parentElement.clientHeight) {
-      height = body.parentElement.clientHeight;
-  } else if (body && body.clientHeight) {
-      height = body.clientHeight;
-  }
-  element.style.height = ((height - element.offsetTop) + "px");
-}
+// function resizeElementHeight(element) {
+//   var height = 0;
+//   var body = window.document.body;
+//   if (window.innerHeight) {
+//       height = window.innerHeight;
+//   } else if (body.parentElement.clientHeight) {
+//       height = body.parentElement.clientHeight;
+//   } else if (body && body.clientHeight) {
+//       height = body.clientHeight;
+//   }
+//   element.style.height = ((height - element.offsetTop) + "px");
+// }
 
 
 
@@ -157,9 +157,9 @@ function showResults(){
 
       `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
 
-      <h1 class="mb-0 text-center mx-auto" id="queenSentence"><div id="score" class="mx-auto">0 correct answers out of 10</div><br>${myResults[i].queenSays}</h1>
+      <h1 class="mb-0 text-center mx-auto" id="queenSentence"><div id="finalScore" class="mx-auto">0 correct answers out of 10</div><br>${myResults[i].queenSays}</h1>
 
-      <img  src="${myResults[i].picSrc}"class="mx-auto d-block" id="award">`;
+      <img  src="${myResults[i].picSrc}"class="mx-auto d-none" id="award">`;
 
       queenDiv.classList.remove('d-none');
 
@@ -231,21 +231,26 @@ function showNextSlide(){
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SELECTING HTML ELEMENTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
+// start div
 const startDiv = document.getElementById('start');
 
+const startButton = document.getElementById('start-button');
+
+// quiz div
 const quizContainer = document.getElementById('quiz-container');
 
 const quiz = document.getElementById('quiz');
 
-const startButton = document.getElementById('start-button');
+// emoji div
+const divEmoji = document.getElementById('emoji');
 
-const scoreDiv = document.getElementById('scoreBar');
+const score = document.getElementById('score');
 
 const emojiPara = document.getElementById('emojiPara');
 
-const divEmoji = document.getElementById('emoji');
-
+// results div
 const queenDiv = document.getElementById('queenDiv');
+
 
 
 
@@ -263,11 +268,15 @@ document.body.addEventListener("click", event => {
         if(correct()){
           correctAnswers++;
           emoji.style.backgroundColor = 'mediumseagreen';
-          emojiPara.innerHTML = '💂';}
+          emojiPara.innerHTML = '💂';
+          score.textContent = `${correctAnswers} OUT OF 10`;
+        }
 
         else {
           emoji.style.backgroundColor = 'burlywood';
-          emojiPara.innerHTML = '💩';}
+          emojiPara.innerHTML = '💩';
+          score.textContent = `${correctAnswers} OUT OF 10`;
+        }
 
         setTimeout(() => {
             divEmoji.classList.remove('d-none');
@@ -300,10 +309,16 @@ document.body.addEventListener("click", event => {
 // let divss= ['start', 'quiz-container', 'emoji', 'queenDiv'];
 // divss.forEach(element => $(`#${element}`).height =  `${window.innerHeight}px`);
 
-quizContainer.style.height =  `${window.innerHeight}px`;
-startDiv.style.height =  `${window.innerHeight}px`;
-emoji.style.height =  `${window.innerHeight}px`;
-queenDiv.style.height =  `${window.innerHeight}px`;
+// body.style.height =  `${window.outerHeight}px`;
+
+quizContainer.style.height =  `${window.outerHeight}px`;
+startDiv.style.height =  `${window.outerHeight}px`;
+emoji.style.height =  `${window.outerHeight}px`;
+queenDiv.style.height =  `${window.outerHeight}px`;
+
+// $('div.wholePage').each(function(){
+//     $(this).height(`${window.innerHeight}px`);
+// });
 
 
 /////////////////////////////////////////////////////////////////////////////////
