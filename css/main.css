@@ -62,23 +62,6 @@
 
 /* //\\Start button animation */
 
-#email h1{
-  background: linear-gradient(#03A9F4, transparent 132%);
-  font-family: 'Rye', cursive;
-  color: #f8f9fa;
-  border-radius: 5%;
-  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
-  display: block;
-  width: 60%;
-  padding: 15px 0;
-  font-size: 18px;
-  position: absolute;
-  bottom: 1%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%)
-}
-
 
 /* GAME PRESENTATION + START BUTTON */
 
@@ -92,14 +75,15 @@
 
 }
 
-#ton {
+#answerOption {
   color: #fff;
+  height: 50px;
   background-color: steelblue;
   font-weight: 800;
   text-align: center;
   vertical-align: middle;
   padding: .5rem .75rem;
-  font-size: 1rem;
+  font-size: 17px;
   line-height: 2;
   border-radius: .50rem;
   width: 13rem;
@@ -175,14 +159,18 @@
 }
 
 #emojiPara{
-  font-size: 270px;
+  display: block;
+  font-size: 240px;
 }
 
 
 #score, #finalScore{
+  display: block;
+  margin-top: -70px;
   border-style: inset;
   background-color: crimson;
   border-color: cyan;
+  border-radius: .50rem;
   font-size: 35px;
   color: cyan;
   width: 250px;

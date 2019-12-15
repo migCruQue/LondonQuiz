@@ -82,7 +82,7 @@ function buildQuiz(){
 
           `<label>
 
-            <button type="button" id="ton" name="question${questionNumber}" value="${letter}">${currentQuestion.answers[letter]}</button>
+            <button type="button" id="answerOption" name="question${questionNumber}" value="${letter}">${currentQuestion.answers[letter]}</button>
 
           </label>`
 
@@ -263,7 +263,7 @@ const queenDiv = document.getElementById('queenDiv');
 //SELECT THE ANSWER DIV AFTER THE BUILDQUIZ FUNCTION IS CALLED.
 document.body.addEventListener("click", event => {
 
-    if (event.target.id =='ton') {
+    if (event.target.id =='answerOption') {
 
         if(correct()){
           correctAnswers++;
@@ -302,7 +302,7 @@ document.body.addEventListener("click", event => {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//////      EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////SETTING THE DIVS OF THE APPS TO THE WINDOW INNERHEIGHT ///I'M TRYINING TO DO IT IN A FOR LOOP OR USING JQUERY DECLARING AN ARRAY OF DIVS
 // BUT I GOT AN ERROR 'Cannot set property 'height' of undefined'/////////////////////////////////////////////
 
@@ -321,7 +321,23 @@ queenDiv.style.height =  `${window.outerHeight}px`;
 // });
 
 
-/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// trying to decrease the font size of answerOption when the text content is too long
+
+$(function(){
+  $('button#answerOption').each(function(){
+    let length = $(this).text().length;
+    if(length > 22){
+      $(this).css({fontSize: '-=5'});
+    }
+
+  });
+});
+
+
+
 
 
 //START THE QUIZ
