@@ -154,8 +154,6 @@
 
 /* EMOJI DIV */
 
-
-
 #emoji {
   max-width: none;
 }
@@ -166,7 +164,7 @@
 }
 
 
-#score, #finalScore{
+#score{
   display: block;
   margin-top: -70px;
   border-style: inset;
@@ -204,11 +202,23 @@
 
 #queenDiv h1 {
   font-family: 'MedievalSharp', cursive;
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: center;
   font-size: 18px;
   line-height: 32px;
   padding: 1rem 1rem;
+}
+
+#finalScore{
+  display: block;
+  margin-top: -20px;
+  border-style: inset;
+  background-color: crimson;
+  border-color: cyan;
+  border-radius: .50rem;
+  font-size: 35px;
+  color: cyan;
+  width: 250px;
 }
 
 #award {

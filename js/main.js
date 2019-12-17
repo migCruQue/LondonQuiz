@@ -144,7 +144,9 @@ function showResults(){
 
       `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
 
-      <h1 class="mb-0 text-center mx-auto" id="queenSentence"><div id="finalScore" class="mx-auto">0 correct answers out of 10</div><br>${myResults[i].queenSays}</h1>
+      <div id="finalScore" class="mx-auto">${correctAnswers} OUT OF 10</div>
+
+      <h1 class="mb-0 text-center mx-auto" id="queenSentence">${myResults[i].queenSays}</h1>
 
       <img  src="${myResults[i].picSrc}"class="mx-auto d-none" id="award">`;
 

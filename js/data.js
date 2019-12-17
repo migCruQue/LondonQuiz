@@ -125,19 +125,19 @@ const myQuestions = [
 const myResults = [
 
     {queenPic: `img/queen pics/golden/queen0.jpeg`,
-     queenSays: `The Queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you`,
+     queenSays: `The Queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you!!`,
      picSrc: `img/awards pics/square/dunce.jpg`},
 
     {queenPic: `img/Queen pics/golden/queen1.jpg.jpg`,
-     queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)`,
+     queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)!!`,
      picSrc: `img/awards pics/square/mbe-medal.png`},
 
     {queenPic: `img/Queen pics/golden/queen2.jpg`,
-    queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)`,
+    queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)!!`,
     picSrc: `img/awards pics/square/obe-medal.png`},
 
     {queenPic: `img/Queen pics/golden/queen3.jpg.jpg`,
-    queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)`,
+    queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)!!`,
     picSrc: `img/awards pics/square/cbe-medal.jpg`},
 
 
