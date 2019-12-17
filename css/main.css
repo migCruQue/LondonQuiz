@@ -105,8 +105,10 @@
 
 
 .question{
+  display: inline;
   font-size: 18px;
-  margin: 20px 20px 25px 20px;
+  margin: 20px 13px;
+  height: 85px;
   text-align: center;
 }
 

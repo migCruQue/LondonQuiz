@@ -3,19 +3,6 @@
 
 
 
-// function resizeElementHeight(element) {
-//   var height = 0;
-//   var body = window.document.body;
-//   if (window.innerHeight) {
-//       height = window.innerHeight;
-//   } else if (body.parentElement.clientHeight) {
-//       height = body.parentElement.clientHeight;
-//   } else if (body && body.clientHeight) {
-//       height = body.clientHeight;
-//   }
-//   element.style.height = ((height - element.offsetTop) + "px");
-// }
-
 
 
 
@@ -98,7 +85,7 @@ function buildQuiz(){
 
            <div class="background-pic" style="background-image: url('${currentQuestion.picLap}');"></div>
 
-            <div class="question"> ${currentQuestion.question} </div>
+            <div class="question"><p>${currentQuestion.question}</p></div>
 
             <div class="answers"> ${answers.join("")} </div>
 
