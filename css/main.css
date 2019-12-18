@@ -2,7 +2,7 @@
 
 
 
-/* GAME PRESENTATION + START BUTTON */
+/* <!-- DIV START --> */
 
 #start {
   height: 100vh;
@@ -63,10 +63,10 @@
 /* //\\Start button animation */
 
 
-/* GAME PRESENTATION + START BUTTON */
+/* <!-- / DIV START --> */
 
 
-/* SLIDES */
+/* <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
 
 #quiz-container {
 
@@ -104,12 +104,17 @@
 }
 
 
-.question{
-  display: inline;
+#question{
+  display: table;
   font-size: 18px;
   margin: 20px 13px;
-  height: 85px;
   text-align: center;
+  height: 85px;
+}
+
+#questionChild{
+    display: table-cell;
+    vertical-align: middle;
 }
 
 
@@ -150,12 +155,18 @@
   margin-top: 40px;
 }
 
-/* SLIDES */
+/* <!-- / MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
 
-/* EMOJI DIV */
+/* <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT --> */
 
 #emoji {
   max-width: none;
+  display: table;
+}
+
+#emojiChild{
+  display: table-cell;
+  vertical-align: middle;
 }
 
 #emojiPara{
@@ -176,9 +187,9 @@
   width: 250px;
 }
 
-/* /EMOJI DIV */
+/* / <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT --> */
 
-/* DISPLAY RESULT */
+/* <!-- DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
 
 #queenDiv {
   background-color: #3595dc;
@@ -227,43 +238,41 @@
   border-radius: 50%;
 }
 
-/* /DISPLAY RESULT */
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY MIN-HEIGHT: 600PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (min-height: 375px){
-
-}
+/* /<!-- DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/ MEDIA QUERY MIN-WIDTH: 375PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY (min-width: 400px) and (min-height: 700px) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+@media (min-width: 400px) and (min-height: 700px){
 
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY MIN-WIDTH: 375PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (min-width: 375px) {
-
-/* GAME PRESENTATION + START BUTTON */
+/* <!-- DIV START --> */
 
   #title {
     font-size: 30px;
     margin-top: 175px;
   }
 
-/* /GAME PRESENTATION + START BUTTON */
+/* <!--  / DIV START --> */
 
 
-  /* SLIDES */
+/* <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
+
   .background-pic{
-    height: 202px;
+    height: 226px;
+    margin-top: 20px;
   }
-  /* /SLIDES */
 
-  /* DISPLAY RESULT */
+  #question {
+    height: 110px;
+  }
+
+  .answers label {
+    margin-bottom: 30px;
+  }
+/* <!--  / MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
+
+/* <!-- DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
 
   #score{
     width: 80%;
@@ -275,12 +284,12 @@
     border-radius: 50%;
   }
 
-  /* /DISPLAY RESULT */
+/* <!-- / DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
 }
 
 
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 375PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY (min-width: 400px) and (min-height: 700px) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
@@ -679,17 +688,17 @@
 
 
 
-@media only screen
+/* @media only screen
 and (min-device-width : 375px)
-and (max-device-width : 667px) {
+and (max-device-width : 667px) { */
 
   /* GAME PRESENTATION + START BUTTON */
 
 
 
-  #start button{
+  /* #start button{
     margin-top: 100px;
-  }
+  } */
 
 
 
@@ -698,27 +707,27 @@ and (max-device-width : 667px) {
 
   /* SLIDES */
 
-  #quiz-container {
+  /* #quiz-container {
   padding: 1rem 1rem 3rem 1rem;
-  }
+  } */
 
   /* / SLIDES */
 
 
   /* EMOJI */
 
-  #emoji {
+  /* #emoji {
     padding: 8rem 2rem;
-  }
+  } */
 
   /*  / EMOJI */
 
   /* DISPLAY RESULT */
 
-  #queenDiv {
+  /* #queenDiv {
     background-color: #3595dc;
     padding: 1rem 1rem 1rem 1rem;
-  }
+  } */
 
     /* / DISPLAY RESULT */
 
@@ -727,7 +736,7 @@ and (max-device-width : 667px) {
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY IPHONE 6/7/8  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY IPHONE 6/7/8 PLUS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -736,17 +745,17 @@ and (max-device-width : 667px) {
 
 
 
-@media only screen
+/* @media only screen
 and (min-device-width : 414px)
-and (max-device-width : 736px) {
+and (max-device-width : 736px) { */
 
   /* GAME PRESENTATION + START BUTTON */
 
 
 
-  #start button{
+  /* #start button{
     margin-top: 150px;
-  }
+  } */
 
 
 
@@ -754,26 +763,26 @@ and (max-device-width : 736px) {
 
   /* SLIDES */
 
-  #quiz-container {
+  /* #quiz-container {
   padding: 2rem 1rem 6rem 1rem;
-  }
+  } */
 
   /* / SLIDES */
 
   /* EMOJI */
 
-  #emoji {
+  /* #emoji {
     padding: 10rem 2rem;
-  }
+  } */
 
   /*  / EMOJI */
 
   /* DISPLAY RESULT */
 
-  #queenDiv {
+  /* #queenDiv {
     background-color: #3595dc;
     padding: 2rem 1rem 4rem 1rem;
-  }
+  } */
 
     /* / DISPLAY RESULT */
 
@@ -788,41 +797,41 @@ and (max-device-width : 736px) {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY IPHONE X <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media only screen
+/* @media only screen
     and (device-width : 375px)
     and (device-height : 812px)
-    and (-webkit-device-pixel-ratio : 3) {
+    and (-webkit-device-pixel-ratio : 3) { */
 
   /* GAME PRESENTATION + START BUTTON */
-      #start button {
+      /* #start button {
         margin-top: 200px;
-      }
+      } */
 
   /* /GAME PRESENTATION + START BUTTON */
 
 
   /* SLIDES */
 
-  #quiz-container {
+  /* #quiz-container {
   padding: 3rem 1rem 10rem 1rem;
-  }
+  } */
 
   /* / SLIDES */
 
   /* EMOJI */
 
-  #emoji {
+  /* #emoji {
     padding: 13rem 2rem;
-  }
+  } */
 
   /*  / EMOJI */
 
   /* DISPLAY RESULT */
 
-  #queenDiv {
+  /* #queenDiv {
     background-color: #3595dc;
     padding: 3rem 1rem 7rem 1rem;
-  }
+  } */
 
     /* / DISPLAY RESULT */
 
@@ -840,14 +849,14 @@ and (max-device-width : 736px) {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY LAPTOP WITH MDPI SCREEN <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media only screen
+/* @media only screen
     and (device-width : 1280px)
-    and (device-height : 800px) {
+    and (device-height : 800px) { */
 
   /* GAME PRESENTATION + START BUTTON */
-      #start button {
+      /* #start button {
         margin-top: 130px;
-      }
+      } */
 
   /* /GAME PRESENTATION + START BUTTON */
 
@@ -866,14 +875,14 @@ and (max-device-width : 736px) {
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY LAPTOP WITH HDPI SCREEN <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media only screen
+/* @media only screen
     and (device-width : 1440px)
-    and (device-height : 900px) {
+    and (device-height : 900px) { */
 
   /* GAME PRESENTATION + START BUTTON */
-      #start button {
+      /* #start button {
         margin-top: 170px;
-      }
+      } */
 
   /* /GAME PRESENTATION + START BUTTON */
 

@@ -85,7 +85,11 @@ function buildQuiz(){
 
            <div class="background-pic" style="background-image: url('${currentQuestion.picLap}');"></div>
 
-            <div class="question"><p>${currentQuestion.question}</p></div>
+            <div id="question">
+
+                <div id="questionChild">${currentQuestion.question}</div>
+
+            </div>
 
             <div class="answers"> ${answers.join("")} </div>
 
@@ -318,14 +322,22 @@ queenDiv.style.height =  `${window.outerHeight}px`;
 $(function(){
   $('button#answerOption').each(function(){
     let length = $(this).text().length;
-    if(length > 22){
-      $(this).css({fontSize: '-=5'});
+    if(length > 22){$(this).css({fontSize: '-=5'});
     }
-
   });
 });
 
 
+// Remove d-none class and add d-block class to <img id="award"> when the outerHeight is greater than 700px.
+if(Number((queenDiv.style.height).substring(0, 3)) > 700){
+  $('img#award').addClass('d-block');
+  $('img#award').removeClass('d-none');
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
