@@ -85,7 +85,7 @@ function buildQuiz(){
 
            <div class="background-pic" style="background-image: url('${currentQuestion.picLap}');"></div>
 
-            <div id="question">
+            <div id="question" class="mx-auto">
 
                 <div id="questionChild">${currentQuestion.question}</div>
 
@@ -152,7 +152,8 @@ function showResults(){
 
       <h1 class="mb-0 text-center mx-auto" id="queenSentence">${myResults[i].queenSays}</h1>
 
-      <img  src="${myResults[i].picSrc}"class="mx-auto d-none" id="award">`;
+      <img  src="${myResults[i].picSrc}"class="mx-auto" id="award">`;
+
 
       queenDiv.classList.remove('d-none');
 
@@ -304,10 +305,10 @@ document.body.addEventListener("click", event => {
 
 // body.style.height =  `${window.outerHeight}px`;
 
-quizContainer.style.height =  `${window.outerHeight}px`;
-startDiv.style.height =  `${window.outerHeight}px`;
-emoji.style.height =  `${window.outerHeight}px`;
-queenDiv.style.height =  `${window.outerHeight}px`;
+quizContainer.style.height =  `${window.innerHeight}px`;
+startDiv.style.height =  `${window.innerHeight}px`;
+emoji.style.height =  `${window.innerHeight}px`;
+queenDiv.style.height =  `${window.innerHeight}px`;
 
 // $('div.wholePage').each(function(){
 //     $(this).height(`${window.innerHeight}px`);
@@ -329,7 +330,7 @@ $(function(){
 
 
 // Remove d-none class and add d-block class to <img id="award"> when the outerHeight is greater than 700px.
-if(Number((queenDiv.style.height).substring(0, 3)) > 700){
+if( Number((queenDiv.style.height).substring(0, 3)) > 700 ){
   $('img#award').addClass('d-block');
   $('img#award').removeClass('d-none');
 }
