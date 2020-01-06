@@ -263,13 +263,13 @@ document.body.addEventListener("click", event => {
           correctAnswers++;
           emoji.style.backgroundColor = 'mediumseagreen';
           emojiPara.innerHTML = '💂';
-          score.textContent = `${correctAnswers} OUT OF 10`;
+          score.textContent = `${correctAnswers}  out of  ${currentSlide + 1}`;
         }
 
         else {
           emoji.style.backgroundColor = 'burlywood';
           emojiPara.innerHTML = '💩';
-          score.textContent = `${correctAnswers} OUT OF 10`;
+          score.textContent = `${correctAnswers}  out of  ${currentSlide + 1}`;
         }
 
         setTimeout(() => {
