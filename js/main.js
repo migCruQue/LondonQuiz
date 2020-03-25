@@ -11,11 +11,8 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
-//IN POINTS THE FIRST SLIDE
-let currentSlide = 0;
 
-//IT SET THE CORRECT ANSWERS TO 0
-let correctAnswers = 0;
+
 
 //SCOREBAR TO KEEP COUNTING CORRECT AND WRONG ANSWERS
 let scoreBar = '';
@@ -31,15 +28,8 @@ let scoreBar = '';
 
 
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTIONS DECLARATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-
 // THIS FUNCTION MAKES DIV START DISSAPPEARS AND MAKE THE MAIN DIV WITH THE SLIDES APPEARS.
 function start(){
-
   startDiv.classList.add('d-none');
   quizContainer.classList.remove('d-none')
 
@@ -47,82 +37,54 @@ function start(){
 
 //\\ THIS FUNCTION START
 
-////FUNCTION TO BUILD THE QUIZ
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTIONS BUILD: IT BUILDS THE QUIZ SLIDES STRUCTURE AS QUESTIONS, PICS, ANSWERS OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 function buildQuiz(){
 
-  //const output stores the HTML output.
-  const output = [];
+    const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
 
-  //for each question loop
-  myQuestions.forEach(
+    for (const element of myQuestions){    // FOR LOOP FOR EACH QUESTION OF myQuestion.
 
-    (currentQuestion, questionNumber)  => {
+        const answersHTML = [];   // answersHTML WILL STORE THE HTML FOR THE DIV class="answers" INSIDE THE DIV SLIDE
 
-      //const answers stores the list of answers choices
-      const answers = [];
+        for (const answerOption of element.answers) {  // FOR LOOP TO BUILD THE 3 OPTIONS BUTTONS
 
-      //and for each available answer...
-      for (letter in currentQuestion.answers) {
+          answersHTML.push(
 
-        //add an HTML radio button
-        answers.push(
+            `<label>
 
-          `<label>
+              <button type="button" class="answerOption"  value="${answerOption[1]}">${answerOption[0]}</button>
 
-            <button type="button" id="answerOption" name="question${questionNumber}" value="${letter}">${currentQuestion.answers[letter]}</button>
+            </label>`
+           );
 
-          </label>`
+        }
 
-                    );
+        output.push(
 
-              }
+            `<div class="slide">
 
+            <div class="background-pic" style="background-image: url('${element.picLap}');"></div>
 
-      //add this question and its answer to the output
-      output.push(
-          //I THINK THE ERROR IS IN THE ANSWERS DIV// TRY TO SELECT SOMETHING ELSE
-          `<div class="slide">
+              <div id="question" class="mx-auto">
 
-           <div class="background-pic" style="background-image: url('${currentQuestion.picLap}');"></div>
+                  <div id="questionChild">${element.question}</div>
 
-            <div id="question" class="mx-auto">
+              </div>
 
-                <div id="questionChild">${currentQuestion.question}</div>
+              <div class="answers"> ${answersHTML.join("")} </div>
 
-            </div>
+            </div>`
+        );
 
-            <div class="answers"> ${answers.join("")} </div>
+    }
 
-          </div>`
-
-
-                );
-
-            }
-
-      );
-
-      //combine our output list into one string of HTML and put it on the page
-      quiz.innerHTML = output.join('');
-
-
-
+   $('#quiz').html(output.join('')); //ASSIGN THE OUTPUT HTML TO THE DIV QUIZ
 }
-//\\FUNCTION TO BUILD THE QUIZ
-
-
-
-
-////FUNCTION TO CHECK THE ANSWERS IN THE EVENT LISENER
-
-function correct(){
-
-  if(event.target.value == myQuestions[currentSlide].correctAnswer){return true} else {return false}
-
-}
-
-//\\FUNCTION TO CHECK THE ANSWERS IN THE EVENT LISENER
-
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTIONS BUILD: IT BUILDS THE QUIZ SLIDES STRUCTURE AS QUESTIONS, PICS, ANSWERS OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
 ////THIS FUNCTION DISPLAYS THE RESULT.
@@ -135,9 +97,9 @@ function showResults(){
       // CHECK THE NUMBER OF CORRECT ANSWERS AND SET UP A CATEGORY DEPENDS ON THE NUMBER.
       let i = 0;
 
-      if (correctAnswers >= 9){i=3;}
-        else if (correctAnswers >= 7){i=2;}
-          else if (correctAnswers >= 5){i=1;}
+      if (countCorrectAnswers >= 9){i=3;}
+        else if (countCorrectAnswers >= 7){i=2;}
+          else if (countCorrectAnswers >= 5){i=1;}
 
 
 
@@ -148,7 +110,7 @@ function showResults(){
 
       `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
 
-      <div id="finalScore" class="mx-auto">${correctAnswers} OUT OF 10</div>
+      <div id="finalScore" class="mx-auto">${countCorrectAnswers} OUT OF 10</div>
 
       <h1 class="mb-0 text-center mx-auto" id="queenSentence">${myResults[i].queenSays}</h1>
 
@@ -178,24 +140,21 @@ function showResults(){
 
 
 
-//FUNCTION TO SHOW OR HIDE THE SLIDES
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// THESE FUNCTIONS IMPLEMENT THE WAY TO MOVE THROUGH SLIDES (IT REMOVES THE active-slice CLASS TO THE CURRENT SLIDE AND ADD IT TO THE FOLLOWING SLIDE.)
+
+let currentSlide = 0; //IN POINTS THE FIRST SLIDE
 
 function showSlide(n){
 
-  const slides = document.querySelectorAll(".slide");
-
-  slides[currentSlide].classList.remove('active-slide');
-
-  slides[n].classList.add('active-slide');
+  $('.slide').eq(currentSlide).removeClass('active-slide');
+  $('.slide').eq(n).addClass('active-slide');
 
   currentSlide = n;
 
-
 }
-
-
-//\\FUNCTION TO SHOW OR HIDE THE SLIDES
-
 
 //FUNCTION TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
 
@@ -205,18 +164,14 @@ function showNextSlide(){
 
 }
 
-
-
-//FUNCTIONS TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
-
-
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
 
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> /// FUNCTIONS DECLARATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+
 
 
 
@@ -233,8 +188,6 @@ const startButton = document.getElementById('start-button');
 // quiz div
 const quizContainer = document.getElementById('quiz-container');
 
-const quiz = document.getElementById('quiz');
-
 // emoji div
 const divEmoji = document.getElementById('emoji');
 
@@ -250,47 +203,85 @@ const queenDiv = document.getElementById('queenDiv');
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>> EVENTS LISTENER THAT CHECK WETHER THE CORRECT OPTION/BUTTON IS CLICKED AND TRIGGER A SERIES OF ACTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
+
+let countCorrectAnswers = 0; //DECLARING countCorrectAnswer AND SET IT
+
 //SELECT THE ANSWER DIV AFTER THE BUILDQUIZ FUNCTION IS CALLED.
+// document.body.addEventListener("click", event => {
+
+//     if (event.target.id =='answerOption') {
+
+//         if(correct()){
+//           countCorrectAnswers++;
+//           emoji.style.backgroundColor = 'mediumseagreen';
+//           emojiPara.innerHTML = '💂';
+//           score.textContent = `${countCorrectAnswers}  out of  ${currentSlide + 1}`;
+//         }
+
+//         else {
+//           emoji.style.backgroundColor = 'burlywood';
+//           emojiPara.innerHTML = '💩';
+//           score.textContent = `${countCorrectAnswers}  out of  ${currentSlide + 1}`;
+//         }
+
+//         setTimeout(() => {
+//             divEmoji.classList.remove('d-none');
+//             quizContainer.classList.add('d-none');
+//           }, 750);
+
+//     //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
+//         setTimeout(() => {
+//           divEmoji.classList.add('d-none');
+//           quizContainer.classList.remove('d-none');
+//           if (currentSlide < 9){showNextSlide();}
+//           else {showResults();}
+//         }, 2000);
+
+
+//     }
+
+
+// });
+
 document.body.addEventListener("click", event => {
 
-    if (event.target.id =='answerOption') {
+  if (event.target.classList =='answerOption') {
 
-        if(correct()){
-          correctAnswers++;
-          emoji.style.backgroundColor = 'mediumseagreen';
-          emojiPara.innerHTML = '💂';
-          score.textContent = `${correctAnswers}  out of  ${currentSlide + 1}`;
-        }
+    if(event.target.value === 'correct'){
+        countCorrectAnswers++;
+        emoji.style.backgroundColor = 'mediumseagreen';
+        emojiPara.innerHTML = '💂';
+        score.textContent = `${countCorrectAnswers}  out of  ${currentSlide + 1}`;
+      }
 
-        else {
-          emoji.style.backgroundColor = 'burlywood';
-          emojiPara.innerHTML = '💩';
-          score.textContent = `${correctAnswers}  out of  ${currentSlide + 1}`;
-        }
+      else {
+        emoji.style.backgroundColor = 'burlywood';
+        emojiPara.innerHTML = '💩';
+        score.textContent = `${countCorrectAnswers}  out of  ${currentSlide + 1}`;
+      }
 
-        setTimeout(() => {
-            divEmoji.classList.remove('d-none');
-            quizContainer.classList.add('d-none');
-          }, 750);
+      setTimeout(() => {
+          divEmoji.classList.remove('d-none');
+          quizContainer.classList.add('d-none');
+        }, 750);
 
-    //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
-        setTimeout(() => {
-          divEmoji.classList.add('d-none');
-          quizContainer.classList.remove('d-none');
-          if (currentSlide < 9){showNextSlide();}
-          else {showResults();}
-        }, 2000);
+  //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
+      setTimeout(() => {
+        divEmoji.classList.add('d-none');
+        quizContainer.classList.remove('d-none');
+        if (currentSlide < 9){showNextSlide();}
+        else {showResults();}
+      }, 2000);
 
 
-    }
+  }
 
 
 });
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//////      EVENTS LISTENER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -344,6 +335,11 @@ if( Number((queenDiv.style.height).substring(0, 3)) > 700 ){
 
 //START THE QUIZ
 startButton.addEventListener('click', start);
+// $('#startButton').on('click', () => {
+//   start()
+// });
+
+
 ////BUILD THE QUIZ
 buildQuiz();
 

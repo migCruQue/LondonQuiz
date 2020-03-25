@@ -75,7 +75,7 @@
 
 }
 
-#answerOption {
+.answerOption {
   color: #fff;
   height: 50px;
   background-color: steelblue;
@@ -433,7 +433,7 @@
        margin-top: 55px;
        }
 
-       #answerOption {
+       .answerOption {
         height: 70px;
         font-size: 23px;
         width: 17rem;
