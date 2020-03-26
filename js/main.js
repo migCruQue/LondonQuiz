@@ -17,6 +17,9 @@ const $startDiv = $('#start');
 // DIV id="quiz-container"
 const $quizContainer = $('#quiz-container');
 
+// DIV id="queenDiv"
+const $queenDiv = $('#queenDiv');
+
 // emoji div
 const divEmoji = document.getElementById('emoji');
 
@@ -84,50 +87,39 @@ function buildQuiz(){
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION showResults: THIS FUNCTION DISPLAYS THE FINAL PRESENTATION DEPENDING ON THE SCORE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
+function calculateCategory(){   // CHECK THE NUMBER OF CORRECT ANSWERS AND SET UP A CATEGORY DEPENDS ON THE NUMBER
+  if (countCorrectAnswers >= 9){return 3;}
+    else if (countCorrectAnswers >= 7){return 2;}
+      else if (countCorrectAnswers >= 5){return 1;}
+      return 0;
+}
+
+
+function buildResultDiv(){    //BUILD THE RESULT DIV
+  $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
+  $queenDiv.find('#finalScore').prepend(`${countCorrectAnswers} OUT OF 10`); 
+  $queenDiv.find('h1').prepend(`${myResults[calculateCategory()].queenSays}`);
+  $queenDiv.find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+}
+
+
+
+
+
 function showResults(){
+    buildResultDiv()
 
+    $quizContainer.addClass('d-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
 
+    $queenDiv.removeClass('d-none');
 
-      $quizContainer.addClass('d-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
-
-      // CHECK THE NUMBER OF CORRECT ANSWERS AND SET UP A CATEGORY DEPENDS ON THE NUMBER.
-      let i = 0;
-
-      if (countCorrectAnswers >= 9){i=3;}
-        else if (countCorrectAnswers >= 7){i=2;}
-          else if (countCorrectAnswers >= 5){i=1;}
-
-
-
-      //BUILD THE RESULT DIV
-      let queenDiv = document.getElementById('queenDiv');
-
-      queenDiv.innerHTML =
-
-      `<img class="mx-auto d-block container" src="${myResults[i].queenPic}" alt="queen" id="queen">
-
-      <div id="finalScore" class="mx-auto">${countCorrectAnswers} OUT OF 10</div>
-
-      <h1 class="mb-0 text-center mx-auto" id="queenSentence">${myResults[i].queenSays}</h1>
-
-      <img  src="${myResults[i].picSrc}"class="mx-auto" id="award">`;
-
-
-      queenDiv.classList.remove('d-none');
-
-      //WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
-      setTimeout(() => {
-        queenDiv.classList.add('d-none');
-      }, 6500);
-
-      //WAIT 5 SECONDS AND HIDE THE PRIZE DIV AND GOES TO THE START DIV
-      setTimeout(() => {
-        $startDiv.removeClass('d-none');
-        countCorrectAnswers = 0;
-        // buildQuiz();
-        showSlide(0);
-      }, 6500);
-
+    //WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
+    setTimeout(() => {
+      $queenDiv.addClass('d-none');
+      $startDiv.removeClass('d-none');
+      countCorrectAnswers = 0;
+      showSlide(0);
+    }, 5000);
 
 }
 
