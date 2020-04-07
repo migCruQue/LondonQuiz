@@ -12,6 +12,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 // DIV id="start"
+const startDiv = document.getElementById('start');
 const $startDiv = $('#start');
 
 // DIV id="quiz-container"
@@ -20,12 +21,9 @@ const $quizContainer = $('#quiz-container');
 // DIV id="queenDiv"
 const $queenDiv = $('#queenDiv');
 
-// emoji div
-const divEmoji = document.getElementById('emoji');
+// DIV CHECK ANSWER div
+const $checkAnswerDiv = $('#checkAnswer');
 
-const score = document.getElementById('score');
-
-const emojiPara = document.getElementById('emojiPara');
 
 // results div
 const queenDiv = document.getElementById('queenDiv');
@@ -82,6 +80,30 @@ function buildQuiz(){
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION buildQuiz <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTION build check answer div <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+function checkAnswer(correct){
+  $checkAnswerDiv.find('#score').text(`${countCorrectAnswers}  out of  ${currentSlide + 1}`);
+  
+  if(correct){
+    $checkAnswerDiv.css('background-color', 'mediumseagreen'); 
+    $checkAnswerDiv.find('#emojiPara').text('💂');
+      
+  } else {
+    $checkAnswerDiv.css('background-color', 'burlywood'); 
+    $checkAnswerDiv.find('#emojiPara').text('💂');
+  }
+}
+
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION build check answer div <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION showResults: THIS FUNCTION DISPLAYS THE FINAL PRESENTATION DEPENDING ON THE SCORE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -130,28 +152,21 @@ function showResults(){
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTIONS showSlide and showNextSlide <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<THESE FUNCTIONS IMPLEMENT THE WAY TO MOVE THROUGH SLIDES (IT REMOVES THE active-slice CLASS TO THE CURRENT SLIDE AND ADD IT TO THE FOLLOWING SLIDE.)<<<<<<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTIONS showSlide <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>*/
+/* <<<<<<<<<<<THIS FUNCTION DISPLAY THE FIRST SLIDE AT THE BEGINNNING, MOVE THE TO THE NEXT SLIDE AND CALL THE showResult() <<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<*/
+/* >>>>>>>>>>>>                                               WHEN THERE ARE NOT MORE SLIDES ( currentSlide <= 9)       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 let currentSlide = 0; //IN POINTS THE FIRST SLIDE
 
-function showSlide(n){
-
-  $('.slide').eq(currentSlide).removeClass('active-slide');
-  $('.slide').eq(n).addClass('active-slide');
-
-  currentSlide = n;
-
+function showSlide(){
+if(currentSlide <= 9){
+      $('.slide').eq(currentSlide - 1).removeClass('active-slide');
+      $('.slide').eq(currentSlide).addClass('active-slide');
+  } else {showResults()}
 }
 
-//FUNCTION TO GO TO THE NEXT SLIDE OR TO GO BACK TO THE PREVIOUS ONE
 
-function showNextSlide(){
-
-  showSlide(currentSlide + 1);
-
-}
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTIONS showSlide and showNextSlide <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -172,29 +187,24 @@ $(document).on('click', (e) => {
 
     if(e.target.value === 'correct'){
       countCorrectAnswers++;
-      emoji.style.backgroundColor = 'mediumseagreen';
-      emojiPara.innerHTML = '💂';
-      score.textContent = `${countCorrectAnswers}  out of  ${currentSlide + 1}`;
+      checkAnswer(true);
     }
 
     else if(e.target.value === 'incorrect'){
-        emoji.style.backgroundColor = 'burlywood';
-        emojiPara.innerHTML = '💩';
-        score.textContent = `${countCorrectAnswers}  out of  ${currentSlide + 1}`;
+      checkAnswer(false);
       }
 
     setTimeout(() => {
-        divEmoji.classList.remove('d-none');
+      $checkAnswerDiv.removeClass('d-none');
         $quizContainer.addClass('d-none');
       }, 750);
 
-  //CHECK IF THE SLIDE IS NOT THE LAST ONE// IF NOT CALL THE FUNCTION TO PASS THE NEXT SLIDE// IF IT IS THEN CALLS SHOWRESULTS.
     setTimeout(() => {
-      divEmoji.classList.add('d-none');
+      $checkAnswerDiv.addClass('d-none');
       $quizContainer.removeClass('d-none');
-      if (currentSlide < 9){showNextSlide();}
-      else {showResults();}
-    }, 2000);
+      currentSlide++;
+      showSlide()
+      }, 2000);
 
   }
     
@@ -219,8 +229,11 @@ $(document).on('click', (e) => {
 
 $quizContainer.height(window.innerHeight);
 $startDiv.height(window.innerHeight);
-emoji.style.height =  `${window.innerHeight}px`;
-queenDiv.style.height =  `${window.innerHeight}px`;
+$checkAnswerDiv.height(window.innerHeight);
+$queenDiv.height(window.innerHeight);
+
+startDiv.style.height =  `${window.innerHeight}px`;
+// queenDiv.style.height =  `${window.innerHeight}px`;
 
 // $('div.wholePage').each(function(){
 //     $(this).height(`${window.innerHeight}px`);

@@ -75,6 +75,35 @@
 
 }
 
+
+.answers {
+  animation-name: fadeIn;
+  animation-duration: .5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards;
+}
+/* 
+.answers:nth-of-child(1) {
+  animation-delay: 1s;
+}
+
+.answers:nth-of-child(2) {
+  animation-delay: 1.5s;
+}
+
+.answers:nth-of-child(3) {
+  animation-delay: 2s;
+} */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+
+
+
 .answerOption {
   color: #fff;
   height: 50px;
@@ -87,8 +116,8 @@
   line-height: 2;
   border-radius: .50rem;
   width: 13rem;
-  transition: all .15s ease-in-out;
 }
+
 
 
 
@@ -101,7 +130,37 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
+ animation-duration: 1.5s;    /*  CSS ANIMATION THAT MAKES THE BACKGROUND PIC OPACITY GROWS */
+  animation-name: pic_growing_opacity;
 }
+
+@keyframes pic_growing_opacity {
+  
+  0% {
+    opacity: 0.2;
+  }
+  
+  25% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  75% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
 
 
 #question{
@@ -159,7 +218,7 @@
 
 /* <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT --> */
 
-#emoji {
+#checkAnswer {
   max-width: none;
   display: table;
 }
@@ -347,7 +406,7 @@
       font-size: 350px;
   }
 
-  #emoji {
+  #checkAnswer {
     font-size: 330px;
     padding: 9rem 2rem;
   }
@@ -522,7 +581,7 @@
 
      /* EMOJI */
 
-     #emoji {
+     #checkAnswer {
        font-size: 450px;
        padding: 10rem 0rem;
      }
@@ -625,7 +684,7 @@
 
   /* EMOJI */
 
-  #emoji {
+  #checkAnswer {
     font-size: 800px;
     padding: 22rem 0rem;
   }
