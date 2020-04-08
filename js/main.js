@@ -48,7 +48,7 @@ function buildQuiz(){
 
             `<label>
 
-              <button type="button" class="answerOption"  value="${answerOption[1]}">${answerOption[0]}</button>
+              <button type="button" class="answerOption" data-id="${answerOption[0]}"  value="${answerOption[2]}">${answerOption[1]}</button>
 
             </label>`
            );
@@ -90,10 +90,9 @@ function checkAnswer(correct){
   if(correct){
     $checkAnswerDiv.css('background-color', 'mediumseagreen'); 
     $checkAnswerDiv.find('#emojiPara').text('💂');
-      
   } else {
     $checkAnswerDiv.css('background-color', 'burlywood'); 
-    $checkAnswerDiv.find('#emojiPara').text('💂');
+    $checkAnswerDiv.find('#emojiPara').text('💩');
   }
 }
 
@@ -129,7 +128,7 @@ function buildResultDiv(){    //BUILD THE RESULT DIV
 
 
 function showResults(){
-    buildResultDiv()
+    buildResultDiv();
 
     $quizContainer.addClass('d-none');// REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
 
@@ -140,7 +139,8 @@ function showResults(){
       $queenDiv.addClass('d-none');
       $startDiv.removeClass('d-none');
       countCorrectAnswers = 0;
-      showSlide(0);
+      currentSlide = 0;
+      showSlide();
     }, 5000);
 
 }
@@ -163,7 +163,10 @@ function showSlide(){
 if(currentSlide <= 9){
       $('.slide').eq(currentSlide - 1).removeClass('active-slide');
       $('.slide').eq(currentSlide).addClass('active-slide');
-  } else {showResults()}
+  } else {
+    $('.slide').eq(currentSlide).removeClass('active-slide');
+    showResults();
+  }
 }
 
 
@@ -246,19 +249,13 @@ startDiv.style.height =  `${window.innerHeight}px`;
 // trying to decrease the font size of answerOption when the text content is too long
 
 $(function(){
-  $('button#answerOption').each(function(){
+  $('button.answerOption').each(function(){
     let length = $(this).text().length;
     if(length > 22){$(this).css({fontSize: '-=5'});
     }
   });
 });
 
-
-// Remove d-none class and add d-block class to <img id="award"> when the outerHeight is greater than 700px.
-if( Number((queenDiv.style.height).substring(0, 3)) > 700 ){
-  $('img#award').addClass('d-block');
-  $('img#award').removeClass('d-none');
-}
 
 
 
