@@ -10,7 +10,7 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ASSIGNING DIVS TO VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
+const $body = $('body');
 // DIV id="start"
 const startDiv = document.getElementById('start');
 const $startDiv = $('#start');
@@ -118,7 +118,7 @@ function calculateCategory(){   // CHECK THE NUMBER OF CORRECT ANSWERS AND SET U
 
 function buildResultDiv(){    //BUILD THE RESULT DIV
   $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
-  $queenDiv.find('#finalScore').prepend(`${countCorrectAnswers} OUT OF 10`); 
+  $queenDiv.find('#finalScore').text(`${countCorrectAnswers} OUT OF 10`); 
   $queenDiv.find('h1').prepend(`${myResults[calculateCategory()].queenSays}`);
   $queenDiv.find('img#award').attr('src', myResults[calculateCategory()].picSrc);
 }
@@ -221,26 +221,11 @@ $(document).on('click', (e) => {
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-//SETTING THE DIVS OF THE APPS TO THE WINDOW INNERHEIGHT 
-///I'M TRYINING TO DO IT IN A FOR LOOP OR USING JQUERY DECLARING AN ARRAY OF DIVS
-// BUT I GOT AN ERROR 'Cannot set property 'height' of undefined'
 
-// let divss= ['start', 'quiz-container', 'emoji', 'queenDiv'];
-// divss.forEach(element => $(`#${element}`).height =  `${window.innerHeight}px`);
 
-// body.style.height =  `${window.outerHeight}px`;
+//SETTING THE BODY TO THE WINDOWHEIGHT 
 
-$quizContainer.height(window.innerHeight);
-$startDiv.height(window.innerHeight);
-$checkAnswerDiv.height(window.innerHeight);
-$queenDiv.height(window.innerHeight);
-
-startDiv.style.height =  `${window.innerHeight}px`;
-// queenDiv.style.height =  `${window.innerHeight}px`;
-
-// $('div.wholePage').each(function(){
-//     $(this).height(`${window.innerHeight}px`);
-// });
+$body.css('height', `${$(window).height()}px`);
 
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
