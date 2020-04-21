@@ -10,9 +10,8 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ASSIGNING DIVS TO VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-const $body = $('body');
 // DIV id="start"
-const startDiv = document.getElementById('start');
+
 const $startDiv = $('#start');
 
 // DIV id="quiz-container"
@@ -60,6 +59,7 @@ function buildQuiz(){
             `<div class="slide">
 
             <div class="background-pic" style="background-image: url('${element.picLap}');"></div>
+            <div style="background: orange; width: 60px; height: 20px"> </div>
 
               <div id="question" class="mx-auto">
 
@@ -119,7 +119,7 @@ function calculateCategory(){   // CHECK THE NUMBER OF CORRECT ANSWERS AND SET U
 function buildResultDiv(){    //BUILD THE RESULT DIV
   $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
   $queenDiv.find('#finalScore').text(`${countCorrectAnswers} OUT OF 10`); 
-  $queenDiv.find('h1').prepend(`${myResults[calculateCategory()].queenSays}`);
+  $queenDiv.find('h1').text(`${myResults[calculateCategory()].queenSays}`);
   $queenDiv.find('img#award').attr('src', myResults[calculateCategory()].picSrc);
 }
 
@@ -225,7 +225,7 @@ $(document).on('click', (e) => {
 
 //SETTING THE BODY TO THE WINDOWHEIGHT 
 
-$body.css('height', `${$(window).height()}px`);
+$('div.fixed-height').css('height', `${$(window).height()}px`);
 
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

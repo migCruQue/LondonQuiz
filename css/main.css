@@ -1,8 +1,8 @@
 
 
 
-
-/* <!-- DIV START --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #start {
   height: 100vh;
@@ -63,14 +63,17 @@
 /* //\\Start button animation */
 
 
-/* <!-- / DIV START --> */
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  /    DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 
-/* <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #quiz-container {
 
-    padding: 2rem 1rem 9rem 1rem;
+    padding: 2rem 1rem 0 1rem;
     background-color: powderblue;
 
 }
@@ -217,11 +220,16 @@ button[data-id="c"]  {
   margin-top: 40px;
 }
 
-/* <!-- / MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
 
-/* <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #checkAnswer {
+  padding: 3rem 1rem 9rem 1rem;
   max-width: none;
   display: table;
 }
@@ -249,9 +257,13 @@ button[data-id="c"]  {
   width: 250px;
 }
 
-/* / <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT --> */
 
-/* <!-- DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #queenDiv {
   background-color: #3595dc;
@@ -299,25 +311,26 @@ button[data-id="c"]  {
   display: none;
 }
 
-/* /<!-- DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
 
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY (min-width: 350px) and (min-height: 700px) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+
 @media (min-width: 350px) and (min-height: 700px){
 
-/* <!-- DIV START --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #title {
     font-size: 30px;
     margin-top: 175px;
   }
 
-/* <!--  / DIV START --> */
 
-
-/* <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   .background-pic{
     height: 226px;
@@ -331,9 +344,8 @@ button[data-id="c"]  {
   .answers label {
     margin-bottom: 30px;
   }
-/* <!--  / MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS --> */
 
-/* <!-- DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #queenDiv h1 {
     font-size: 25px;
@@ -348,13 +360,13 @@ button[data-id="c"]  {
     border-radius: 50%;
   }
 
-/* <!-- / DIV TO PRESENT THE QUEEN POINT OF VIEW --> */
+
 }
 
 
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY (min-width: 350px) and (min-height: 700px) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY (min-width: 350px) and (min-height: 700px) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -362,7 +374,7 @@ button[data-id="c"]  {
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 768px) and (min-height: 1024px) {
 
-  /* GAME PRESENTATION + START BUTTON */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #title {
     padding: 20px;
@@ -378,9 +390,8 @@ button[data-id="c"]  {
     border-radius: 100px;
   }
 
-  /* /GAME PRESENTATION + START BUTTON */
 
-  /* SLIDES */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #quiz-container {
       padding: 1rem 1rem 8rem 1rem;
@@ -402,9 +413,9 @@ button[data-id="c"]  {
   #ton{
     width: 11rem;
   }
-  /* /SLIDES */
 
-  /* EMOJI */
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
   #emojiPara {
       font-size: 350px;
   }
@@ -414,9 +425,8 @@ button[data-id="c"]  {
     padding: 9rem 2rem;
   }
 
-  /* /EMOJI */
 
-  /* DISPLAY RESULT */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #queenDiv {
     padding: 1rem 1rem 4rem 1rem;
@@ -436,8 +446,6 @@ button[data-id="c"]  {
     margin-top: 40px;
   }
 
-
-  /* /DISPLAY RESULT */
 }
 
 
@@ -457,9 +465,7 @@ button[data-id="c"]  {
 @media (min-width: 1024px) and (min-height: 800px) {
 
 
-  /* GAME PRESENTATION + START BUTTON */
-
-
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #title {
     padding: 45px;
@@ -475,9 +481,8 @@ button[data-id="c"]  {
       border-radius: 100px;
     }
 
-/* /GAME PRESENTATION + START BUTTON */
 
-     /* SLIDES*/
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
      .background-pic {
          height: 477px;
@@ -501,19 +506,15 @@ button[data-id="c"]  {
         width: 17rem;
       }
 
-    /* /SLIDES*/
 
-
-    /* EMOJI */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #emojiPara {
     font-size: 350px;
   }
 
 
-  /* /EMOJI */
-
-  /* DISPLAY RESULT */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #queen {
       width: 78%;
@@ -531,7 +532,6 @@ button[data-id="c"]  {
     margin-top: 30px;
   }
 
-  /* /DISPLAY RESULT */
 
 }
 
@@ -550,7 +550,7 @@ button[data-id="c"]  {
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 1440px) and (min-height: 900px) {
 
-  /* GAME PRESENTATION + START BUTTON */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #title {
     font-size: 125px;
@@ -564,10 +564,8 @@ button[data-id="c"]  {
     margin-top: 100px;
   }
 
-  /* /GAME PRESENTATION + START BUTTON */
 
-
-     /* SLIDES*/
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
      #quiz-container {
        padding: 4rem 1rem 15rem 1rem;
@@ -580,18 +578,16 @@ button[data-id="c"]  {
 
        }
 
-     /* /SLIDES*/
 
-     /* EMOJI */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
      #checkAnswer {
        font-size: 450px;
        padding: 10rem 0rem;
      }
 
-     /* /EMOJI */
 
-     /* DISPLAY RESULT */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
      #queenDiv {
     padding: 1rem 1rem 6rem 1rem;
@@ -613,12 +609,6 @@ button[data-id="c"]  {
       line-height: 40px;
      }
 
-     /* /DISPLAY RESULT */
-
-
-
-
-
 
 }
 
@@ -635,7 +625,7 @@ button[data-id="c"]  {
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 2560px) {
 
-  /* GAME PRESENTATION + START BUTTON */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV START   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #title {
     font-size: 220px;
@@ -650,13 +640,8 @@ button[data-id="c"]  {
     border-radius: 170px;
   }
 
-  #email h1 {
-    font-size: 50px;
-  }
 
-  /* /GAME PRESENTATION + START BUTTON */
-
-  /* SLIDES*/
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #quiz-container {
     padding: 15rem 1rem 15rem 1rem;
@@ -683,18 +668,16 @@ button[data-id="c"]  {
     width: 400px;
     }
 
-  /* /SLIDES*/
 
-  /* EMOJI */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #checkAnswer {
     font-size: 800px;
     padding: 22rem 0rem;
   }
 
-  /* /EMOJI */
 
-  /* DISPLAY RESULT */
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV RESULTS      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   #queenDiv {
     padding: 1rem 1rem 7rem 1rem;
@@ -716,9 +699,6 @@ button[data-id="c"]  {
   #award {
     margin-top: 20px;
   }
-
-  /* /DISPLAY RESULT */
-
 
 
 }
