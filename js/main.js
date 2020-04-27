@@ -10,6 +10,7 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ASSIGNING DIVS TO VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
 // DIV id="start"
 
 const $startDiv = $('#start');
@@ -59,7 +60,7 @@ function buildQuiz(){
             `<div class="slide">
 
             <div class="background-pic" style="background-image: url('${element.picLap}');"></div>
-            <div style="background: orange; width: 60px; height: 20px"> </div>
+            <div id="score-bar"></div>
 
               <div id="question" class="mx-auto">
 
@@ -85,7 +86,7 @@ function buildQuiz(){
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 function checkAnswer(correct){
-  $checkAnswerDiv.find('#score').text(`${countCorrectAnswers}  out of  ${currentSlide + 1}`);
+  $checkAnswerDiv.find('#score').text(`${totalPoints} POINTS`);
   
   if(correct){
     $checkAnswerDiv.css('background-color', 'mediumseagreen'); 
@@ -96,29 +97,43 @@ function checkAnswer(correct){
   }
 }
 
-
-
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION build check answer div <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTION POINTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+let startTime;  // global variable to calculate the point, I declare it globaly as it has to be access for more the one functions.
+
+function calculatePoints(){
+  const stopTime = Date.now();
+  const points =  5000 - (stopTime - startTime);
+  // if(points < 2000){return 2000} else 
+  return points;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION POINTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION showResults: THIS FUNCTION DISPLAYS THE FINAL PRESENTATION DEPENDING ON THE SCORE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 function calculateCategory(){   // CHECK THE NUMBER OF CORRECT ANSWERS AND SET UP A CATEGORY DEPENDS ON THE NUMBER
-  if (countCorrectAnswers >= 9){return 3;}
-    else if (countCorrectAnswers >= 7){return 2;}
-      else if (countCorrectAnswers >= 5){return 1;}
+  if (totalPoints >= 9){return 3;}
+    else if (totalPoints >= 7){return 2;}
+      else if (totalPoints >= 5){return 1;}
       return 0;
-}
+} 
 
 
 function buildResultDiv(){    //BUILD THE RESULT DIV
   $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
-  $queenDiv.find('#finalScore').text(`${countCorrectAnswers} OUT OF 10`); 
+  $queenDiv.find('#finalScore').text(`TOTAL POINTS ${totalPoints}`); 
   $queenDiv.find('h1').text(`${myResults[calculateCategory()].queenSays}`);
   $queenDiv.find('img#award').attr('src', myResults[calculateCategory()].picSrc);
 }
@@ -138,7 +153,7 @@ function showResults(){
     setTimeout(() => {
       $queenDiv.addClass('d-none');
       $startDiv.removeClass('d-none');
-      countCorrectAnswers = 0;
+      totalPoints = 0;
       currentSlide = 0;
       showSlide();
     }, 5000);
@@ -153,20 +168,24 @@ function showResults(){
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTIONS showSlide <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>*/
-/* <<<<<<<<<<<THIS FUNCTION DISPLAY THE FIRST SLIDE AT THE BEGINNNING, MOVE THE TO THE NEXT SLIDE AND CALL THE showResult() <<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<*/
-/* >>>>>>>>>>>>                                               WHEN THERE ARE NOT MORE SLIDES ( currentSlide <= 9)       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* <<<<<<     THIS FUNCTION DISPLAY THE FIRST SLIDE AT THE BEGINNNING, MOVE THE TO THE NEXT SLIDE AND CALL THE showResult()    <<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<*/
+/* >>>>>>>>>>>>                        WHEN THERE ARE NOT MORE SLIDES ( currentSlide <= 9)                                                            >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
 let currentSlide = 0; //IN POINTS THE FIRST SLIDE
 
 function showSlide(){
-if(currentSlide <= 9){
-      $('.slide').eq(currentSlide - 1).removeClass('active-slide');
-      $('.slide').eq(currentSlide).addClass('active-slide');
-  } else {
-    $('.slide').eq(currentSlide).removeClass('active-slide');
-    showResults();
-  }
+
+  startTime = Date.now();
+ 
+  if(currentSlide <= 9){
+        $('.slide').eq(currentSlide - 1).removeClass('active-slide');
+        $('.slide').eq(currentSlide).addClass('active-slide');
+    } else {
+      $('.slide').eq(currentSlide).removeClass('active-slide');
+      $('div#score-bar').removeClass('score-bar-paused'); 
+      showResults();
+    }
 }
 
 
@@ -182,14 +201,16 @@ if(currentSlide <= 9){
 
 
 
-let countCorrectAnswers = 0; //DECLARING countCorrectAnswer AND SET IT
+let totalPoints = 0; //DECLARING countCorrectAnswer AND SET IT
 
 $(document).on('click', (e) => {
 
   if(e.target.className === 'answerOption'){
 
+    $('div.active-slide').find('div#score-bar').addClass('score-bar-paused');    //this statement pauses the bar div animation.
+
     if(e.target.value === 'correct'){
-      countCorrectAnswers++;
+      totalPoints += calculatePoints();
       checkAnswer(true);
     }
 
@@ -253,7 +274,8 @@ $(function(){
 
 $('#start-button').on('click', () => {
   $('#start').addClass('d-none');
-  $quizContainer.removeClass('d-none')
+  $quizContainer.removeClass('d-none');
+  showSlide(0);
   
 });
 
@@ -264,4 +286,4 @@ buildQuiz();
 
                               /// DISPLAY THE CURRENT SLIDE
 
-showSlide(0);
+

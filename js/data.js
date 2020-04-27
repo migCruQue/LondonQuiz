@@ -35,7 +35,7 @@ const myQuestions = [
     },
 
     {
-      question: "4-What's the quickest route between Leicester Square and Piccadilly Circus?'",
+      question: "4-What's the quickest route between Leicester Square and Piccadilly Circus?",
       answers: [
         ['a', 'Piccadilly Line', 'incorrect'],
         ['b', 'Walk', 'correct'],
