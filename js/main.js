@@ -13,23 +13,12 @@
 
 let quizQuestions;
 
-
-// DIV id="start"
-
-const $startDiv = $('#start');
-
 // DIV id="quiz-container"
 const $quizContainer = $('#quiz-container');
 
-// DIV id="queenDiv"
-const $queenDiv = $('#queenDiv');
 
 // DIV CHECK ANSWER div
 const $checkAnswerDiv = $('#checkAnswer');
-
-
-// results div
-const queenDiv = document.getElementById('queenDiv');
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -104,7 +93,9 @@ function showSlide(){
     } else {
       $('.slide').eq(currentSlide).removeClass('active-slide');
       $('div#score-bar').removeClass('score-bar-paused'); 
-      showResults();
+      setTimeout(() => {
+        window.location.assign(`/results.html?totalPoints=${totalPoints}`);
+      })
     }
 }
 
@@ -194,68 +185,6 @@ function checkAnswer(correct){
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
-
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION showResults plus helper functions calculateCategory and  buildResultDiv
-//* this function displays the final presentation depending on the score
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-function showResults(){
-  buildResultDiv();
-
-  $quizContainer.addClass('d-none');//* REMOVE THE QUIZ-CONTAINER DIV TO SHOW THE RESULT
-
-  $queenDiv.removeClass('d-none');
-
-  //* WAIT 5 SECONDS AND HIDE THE QUEENDIV AND SHOW THE PRIZE DIV
-  setTimeout(() => {
-    $queenDiv.addClass('d-none');
-    $startDiv.removeClass('d-none');
-    totalPoints = 0;
-    currentSlide = 0;
-    showSlide();
-  }, 5000);
-
-}
-
-function calculateCategory(){   //* CHECK THE NUMBER OF CORRECT ANSWERS AND SET UP A CATEGORY DEPENDS ON THE NUMBER
-  if (totalPoints >= 9){return 3;}
-    else if (totalPoints >= 7){return 2;}
-      else if (totalPoints >= 5){return 1;}
-      return 0;
-} 
-
-
-function buildResultDiv(){    //* BUILD THE RESULT DIV
-  $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
-  $queenDiv.find('#finalScore').text(`TOTAL POINTS ${totalPoints}`); 
-  $queenDiv.find('h1').text(`${myResults[calculateCategory()].queenSays}`);
-  $queenDiv.find('img#award').attr('src', myResults[calculateCategory()].picSrc);
-}
-
-
-
-
-
-
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION showResults <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-
-
-
-
-
-
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
 //SETTING THE BODY TO THE WINDOWHEIGHT 
 
 $('div.fixed-height').css('height', `${$(window).height()}px`);
@@ -281,20 +210,11 @@ $(function(){
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 
-
-                              //*STARTING THE QUIZ
-
-$('#start-button').on('click', () => {
-  $('#start').addClass('d-none');
-  $quizContainer.removeClass('d-none');
-  showSlide(0);
-  
-});
-
-
-/                             ///*BUILD THE QUIZ
+                           ///*BUILD THE QUIZ
 
 buildQuiz();
+
+showSlide();
 
                               ///* DISPLAY THE CURRENT SLIDE
 
