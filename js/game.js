@@ -129,7 +129,7 @@ function showSlide(){
       $('div#score-bar').removeClass('score-bar-paused'); 
       window.localStorage.setItem('totalPoints', totalPoints);
       setTimeout(() => {
-        window.location.assign('/results.html');
+        window.location.assign('results.html');
       }, 2000)
     }
 }
