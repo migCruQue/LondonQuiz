@@ -1,114 +1,100 @@
 
 
-// // ARRAY OF OBJECTS: QUESTION, POSSIBLE ANSWERS AND CORRECT ANSWER
+// ARRAY OF OBJECTS: QUESTION, POSSIBLE ANSWERS AND CORRECT ANSWER
 
-// const myQuestions = [
+const myQuestions = [
 
-//     {
-//       question: '1-How many people died in the Great Fire of London in 1666?',
-//       answers: [
-//           ['a', '14.249', 'incorrect'],
-//           ['b', '320', 'incorrect'],
-//           ['c', '6', 'correct']
-//       ],
-//       picLap: 'img/questions pics/laptop L/The-Great-Fire-of-London_golden.jpg',
-//     },
-//     {
-//       question: "2-Pop culture time. What hotel is shown in the opening of Spice Girl's song 'Wannabe'?",
-//       answers: [
-//         ['a', 'The Ritz', 'incorrect'],
-//         ['b', 'The Wolseley', 'incorrect'],
-//         ['c', 'St Pancras Hotel', 'correct']
-//       ],  
-//       picLap: 'img/questions pics/laptop L/spice-girls_golden.jpg',
+    {
+        "question": "How many people died in the Great Fire of London in 1666?",
+        "option1": ["14.249", false],
+        "option2": ["320", false],
+        "option3": ["6", true],
+        "picLap": "img/questions pics/laptop L/The-Great-Fire-of-London_golden.jpg",
+        "num": "1"
+     },
+  
+     {
+      "question": "Pop culture time. What hotel is shown in the opening of Spice Girl's song 'Wannabe'?",
+      "option1": ["The Ritz", false],
+      "option2": ["The Wolseley", false],
+      "option3": ["St Pancras Hotel", true],
+      "picLap": "img/questions pics/laptop L/spice-girls_golden.jpg",
+      "num": "2"
+     },
+  
+     {
+      "question": "Where did the Great Fire of London begin?",
+      "option1": ["Drury Lane", false],
+      "option2": ["Fishamble Street", false],
+      "option3": ["Pudding Lane", true],
+      "picLap": "img/questions pics/laptop L/greatfirestarting_golden.jpg",
+      "num": "3"
+     },
+  
+     {
+        "question": "What's the quickest route between Leicester Square and Piccadilly Circus?",
+        "option1": ["Piccadilly Line", false],
+        "option2": ["Walk", true],
+        "option3": ["Taxi", false],
+        "picLap": "img/questions pics/laptop L/shard_golden.jpg",
+        "num": "4"
+     },
+  
+     {
+        "question": "What is the correct stop for Abbey Road?",
+        "option1": ["Baker Street", false],
+        "option2": ["St John's Wood", true],
+        "option3": ["Maida Vale", false],
+        "picLap": "img/questions pics/laptop L/abbey-road_golden.jpg",
+        "num": "5"
+     },
 
-//     },
-//     {
-//       question: '3-Where did the Great Fire of London begin?',
-//       answers: [
-//         ['a', 'Drury Lane', 'incorrect'],
-//         ['b', 'Fishamble Street', 'incorrect'],
-//         ['c', 'Pudding Lane', 'correct']
-//       ],
-//       picLap: 'img/questions pics/laptop L/greatfirestarting_golden.jpg',
+    {
+        "question": "London boasts the oldest public museum in the world, founded in 1753. Which is it?",
+        "option1": ["The British Museum", true],
+        "option2": ["The Natural History museum", false],
+        "option3": ["The Tate Modern", false],
+        "picLap": "img/questions pics/laptop L/muse_dorsay_golden.jpg",
+        "num": "6"
+    },
+    
+    {
+        "question": "What year were the Boris Bikes launched?",
+        "option1": ["2008", false],
+        "option2": ["2009", false],
+        "option3": ["2010", true],
+        "picLap": "img/questions pics/laptop L/bikes_golden.jpg",
+        "num": "7"
+    },
 
-//     },
+    {
+        "question": "When did the last execution in the Tower of London take place?",
+        "option1": ["1841", false],
+        "option2": ["1641", false],
+        "option3": ["1941", true],
+        "picLap": "img/questions pics/laptop L/execution_golden.jpg",
+        "num": "8"
+    },
 
-//     {
-//       question: "4-What's the quickest route between Leicester Square and Piccadilly Circus?",
-//       answers: [
-//         ['a', 'Piccadilly Line', 'incorrect'],
-//         ['b', 'Walk', 'correct'],
-//         ['c', 'Taxi', 'incorrect']
-//       ],
-//       picLap: 'img/questions pics/laptop L/shard_golden.jpg',
+    {
+        "question": "How long did it take to build the Shard?",
+        "option1": ["2007-2012", true],
+        "option2": ["2009-2013", false],
+        "option3": ["2008-2012", false],
+        "picLap": "img/questions pics/laptop L/shard_golden.jpg",
+        "num": "9"
+    },
 
-//     },
+    {
+        "question": "The London Underground consists of how many stations?",
+        "option1": ["390", false],
+        "option2": ["270", true],
+        "option3": ["130", false],
+        "picLap": "img/questions pics/laptop L/london-underground_golden.jpg",
+        "num": "10"
+    },
 
-//     {
-//       question: '5-What is the correct stop for Abbey Road?',
-//       answers: [
-//         ['a', 'Baker Street', 'incorrect'],
-//         ['b', "St John's Wood", 'correct'],
-//         ['c', 'Maida Vale', 'incorrect']
-//       ],
-//       picLap: 'img/questions pics/laptop L/abbey-road_golden.jpg',
-//     },
-
-//     {
-//       question: '6-London boasts the oldest public museum in the world, founded in 1753. Which is it?',
-//       answers: [
-//         ['a', 'The British Museum', 'correct'],
-//         ['b', 'The Natural History museum', 'incorrect'],
-//         ['c', 'The Tate Modern', 'incorrect']
-//       ],
-//       picLap: 'img/questions pics/laptop L/muse_dorsay_golden.jpg',
-//     },
-
-//     {
-//       question: '7-What year were the Boris Bikes launched?',
-//       answers: [
-//         ['a', '2008', 'incorrect'],
-//         ['b', '2009', 'incorrect'],
-//         ['c', '2010', 'correct']
-//       ],
-//       picLap: 'img/questions pics/laptop L/bikes_golden.jpg',
-//     },
-
-
-//     {
-//       question: '8-When did the last execution in the Tower of London take place?',
-//       answers: [
-//         ['a', '1841', 'incorrect'],
-//         ['b', '1641', 'incorrect'],
-//         ['c', '1941', 'correct']
-//       ],
-//       picLap: 'img/questions pics/laptop L/execution_golden.jpg',
-
-//     },
-
-//     {
-//       question: '9-How long did it take to build the Shard?',
-//       answers: [
-//         ['a', '2007-2012', 'correct'],
-//         ['b', '2009-2013', 'incorrect'],
-//         ['c', '2008-2012','incorrect']
-//       ],
-//       picLap: 'img/questions pics/laptop L/shard_golden.jpg',
-//     },
-
-//     {
-//       question: '10-The London Underground consists of how many stations?',
-//       answers: [
-//         ['a', '390', 'incorrect'],
-//         ['b', '270', 'correct'],
-//         ['c', '130','incorrect']
-//       ],
-//       picLap: 'img/questions pics/laptop L/london-underground_golden.jpg',
-//     }
-
-
-// ];
+];
 
 
 const myResults = [

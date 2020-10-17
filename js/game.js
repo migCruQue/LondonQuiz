@@ -10,21 +10,21 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 //* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ASSIGNING DIVS TO VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-let questions = [];
+// let questions = [];
 
 
-fetch('../js/questions.json', {
-  headers : { 
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-   }
+// fetch('../js/questions.json', {
+//   headers : { 
+//     'Content-Type': 'application/json',
+//     'Accept': 'application/json'
+//    }
 
-})
-.then(res => {return res.json()})
-.then(response => {
-      questions = [...response];
-      console.log(questions);
-    });
+// })
+// .then(res => {return res.json()})
+// .then(response => {
+//       questions = [...response];
+//       console.log(questions);
+//     });
 
 let quizQuestions;
 
@@ -72,7 +72,7 @@ function buildQuiz(){
     //  ];
         const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
 
-    questions.forEach(element => {
+    myQuestions.forEach(element => {
       
       output.push(
         `<div class="slide">
@@ -127,7 +127,7 @@ function showSlide(){
 
   startTime = new Date();
  
-  if(currentSlide <= (questions.length - 1)){
+  if(currentSlide <= (myQuestions.length - 1)){
         $('.slide').eq(currentSlide - 1).removeClass('active-slide');
         $('.slide').eq(currentSlide).addClass('active-slide');
     } else {
