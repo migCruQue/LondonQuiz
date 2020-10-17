@@ -2,10 +2,8 @@
 // * set the window's height
 $('div.fixed-height').css('height', `${$(window).height()}px`);
 
-// * get the totalPoints value passed through the url
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const totalPoints = urlParams.get('totalPoints');
+// * get the totalPoints value passed to localStorage
+const totalPoints = Number(window.localStorage.getItem('totalPoints'));
 
 //* return a value depending on the totalPoint variable.
 function calculateCategory(){   

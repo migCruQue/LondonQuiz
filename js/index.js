@@ -4,5 +4,6 @@ $('div.fixed-height').css('height', `${$(window).height()}px`);
 
 
 $('#start-button').on('click', () => {
-    window.location.assign("/index.html");
+    window.location.assign("/game.html");
 });
+

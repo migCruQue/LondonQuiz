@@ -10,6 +10,15 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 //* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ASSIGNING DIVS TO VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+let questions = [];
+
+
+fetch('../js/questions.json')
+.then(res => {return res.json()})
+.then(response => {
+      questions = [...response];
+      console.log(questions);
+    });
 
 let quizQuestions;
 
@@ -27,47 +36,72 @@ const $checkAnswerDiv = $('#checkAnswer');
 //* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION buildQuiz: IT BUILDS THE QUIZ SLIDES STRUCTURE AS QUESTIONS, PICS, ANSWERS OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 function buildQuiz(){
+    //   let myQuestions = [
+    //     {
+    //        "question": "How many people died in the Great Fire of London in 1666?",
+    //        "option1": ["14.249", false],
+    //        "option2": ["320", false],
+    //        "option3": ["6", true],
+    //        "picLap": "img/questions pics/laptop L/The-Great-Fire-of-London_golden.jpg",
+    //        "num": "1"
+    //    },
+     
+    //    {
+    //      "question": "Pop culture time. What hotel is shown in the opening of Spice Girl's song 'Wannabe'?",
+    //      "option1": ["The Ritz", false],
+    //      "option2": ["The Wolseley", false],
+    //      "option3": ["St Pancras Hotel", true],
+    //      "picLap": "img/questions pics/laptop L/spice-girls_golden.jpg",
+    //      "num": "2"
+    //    },
+    //    {
+    //      "question": "Where did the Great Fire of London begin?",
+    //      "option1": ["Drury Lane", false],
+    //      "option2": ["Fishamble Street", false],
+    //      "option3": ["Pudding Lane", true],
+    //      "picLap": "img/questions pics/laptop L/greatfirestarting_golden.jpg",
+    //      "num": "3"
+    //    }
+     
+    //  ];
+        const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
 
-    const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
-
-    for (const element of myQuestions){    // FOR LOOP FOR EACH QUESTION OF myQuestion.
-
-        const answersHTML = [];   // answersHTML WILL STORE THE HTML FOR THE DIV class="answers" INSIDE THE DIV SLIDE
-
-        for (const answerOption of element.answers) {  // FOR LOOP TO BUILD THE 3 OPTIONS BUTTONS
-
-          answersHTML.push(
-
-            `<label>
-
-              <button type="button" class="answerOption" data-id="${answerOption[0]}"  value="${answerOption[2]}">${answerOption[1]}</button>
-
-            </label>`
-           );
-
-        }
-
-        output.push(
-
-            `<div class="slide">
+    questions.forEach(element => {
+      
+      output.push(
+        `<div class="slide">
 
             <div class="background-pic" style="background-image: url('${element.picLap}');"></div>
+            
             <div id="score-bar"></div>
 
-              <div id="question" class="mx-auto">
+            <div id="question" class="mx-auto">
 
-                  <div id="questionChild">${element.question}</div>
+                <div id="questionChild">${element.question}</div>
 
-              </div>
+            </div>
 
-              <div class="answers"> ${answersHTML.join("")} </div>
+            <div class="answers">
+          
+            <label>
+              <button type="button" class="answerOption" data-id="a"  value="${element.option1[1]}">${element.option1[0]}</button>
+            </label>
+            
+            <label>
+              <button type="button" class="answerOption" data-id="b"  value="${element.option2[1]}">${element.option2[0]}</button>
+            </label>
+            
+            <label>
+              <button type="button" class="answerOption" data-id="c"  value="${element.option3[1]}">${element.option3[0]}</button>
+            </label>
+          
+            </div>
 
-            </div>`
-        );
+        </div>`
+      );
+    });
 
-    }
-
-   $('#quiz').html(output.join('')); //ASSIGN THE OUTPUT HTML TO THE DIV QUIZ
+  $('#quiz').html(output.join('')); //ASSIGN THE OUTPUT HTML TO THE DIV QUIZ
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 //* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION buildQuiz <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -87,15 +121,16 @@ function showSlide(){
 
   startTime = new Date();
  
-  if(currentSlide <= 9){
+  if(currentSlide <= (questions.length - 1)){
         $('.slide').eq(currentSlide - 1).removeClass('active-slide');
         $('.slide').eq(currentSlide).addClass('active-slide');
     } else {
       $('.slide').eq(currentSlide).removeClass('active-slide');
       $('div#score-bar').removeClass('score-bar-paused'); 
+      window.localStorage.setItem('totalPoints', totalPoints);
       setTimeout(() => {
-        window.location.assign(`/results.html?totalPoints=${totalPoints}`);
-      })
+        window.location.assign('/results.html');
+      }, 2000)
     }
 }
 
@@ -120,12 +155,12 @@ $(document).on('click', (e) => {
 
     $('div.active-slide').find('div#score-bar').addClass('score-bar-paused');    //*this statement pauses the bar div animation.
 
-    if(e.target.value === 'correct'){
+    if(e.target.value === 'true'){
       totalPoints += calculatePoints();
       checkAnswer(true);
     }
 
-    else if(e.target.value === 'incorrect'){
+    else if(e.target.value === 'false'){
       checkAnswer(false);
       }
 
@@ -212,9 +247,13 @@ $(function(){
 
                            ///*BUILD THE QUIZ
 
-buildQuiz();
+setTimeout( () => {
+  buildQuiz();
+  showSlide();}
+ , 500
+);
 
-showSlide();
+
 
                               ///* DISPLAY THE CURRENT SLIDE
 
