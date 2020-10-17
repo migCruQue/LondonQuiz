@@ -107,9 +107,6 @@ function showSlide(){
       $('.slide').eq(currentSlide).removeClass('active-slide');
       $('div#score-bar').removeClass('score-bar-paused'); 
       window.localStorage.setItem('totalPoints', totalPoints);
-      // setTimeout(() => {
-      //   window.location.assign('results.html');
-      // }, 2000)
       window.location.assign('results.html');
     }
 }
