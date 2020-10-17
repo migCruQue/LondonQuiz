@@ -104,9 +104,9 @@ function showSlide(){
         $('.slide').eq(currentSlide - 1).removeClass('active-slide');
         $('.slide').eq(currentSlide).addClass('active-slide');
     } else {
-      $('.slide').eq(currentSlide).removeClass('active-slide');
-      $('div#score-bar').removeClass('score-bar-paused'); 
       window.localStorage.setItem('totalPoints', totalPoints);
+      $('.slide').eq(currentSlide).removeClass('active-slide');
+      $('div#score-bar').removeClass('score-bar-paused');     
       window.location.assign('results.html');
     }
 }
