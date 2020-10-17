@@ -42,35 +42,8 @@ const $checkAnswerDiv = $('#checkAnswer');
 //* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION buildQuiz: IT BUILDS THE QUIZ SLIDES STRUCTURE AS QUESTIONS, PICS, ANSWERS OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 function buildQuiz(){
-    //   let myQuestions = [
-    //     {
-    //        "question": "How many people died in the Great Fire of London in 1666?",
-    //        "option1": ["14.249", false],
-    //        "option2": ["320", false],
-    //        "option3": ["6", true],
-    //        "picLap": "img/questions pics/laptop L/The-Great-Fire-of-London_golden.jpg",
-    //        "num": "1"
-    //    },
-     
-    //    {
-    //      "question": "Pop culture time. What hotel is shown in the opening of Spice Girl's song 'Wannabe'?",
-    //      "option1": ["The Ritz", false],
-    //      "option2": ["The Wolseley", false],
-    //      "option3": ["St Pancras Hotel", true],
-    //      "picLap": "img/questions pics/laptop L/spice-girls_golden.jpg",
-    //      "num": "2"
-    //    },
-    //    {
-    //      "question": "Where did the Great Fire of London begin?",
-    //      "option1": ["Drury Lane", false],
-    //      "option2": ["Fishamble Street", false],
-    //      "option3": ["Pudding Lane", true],
-    //      "picLap": "img/questions pics/laptop L/greatfirestarting_golden.jpg",
-    //      "num": "3"
-    //    }
-     
-    //  ];
-        const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
+
+    const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
 
     myQuestions.forEach(element => {
       
@@ -134,9 +107,10 @@ function showSlide(){
       $('.slide').eq(currentSlide).removeClass('active-slide');
       $('div#score-bar').removeClass('score-bar-paused'); 
       window.localStorage.setItem('totalPoints', totalPoints);
-      setTimeout(() => {
-        window.location.assign('results.html');
-      }, 2000)
+      // setTimeout(() => {
+      //   window.location.assign('results.html');
+      // }, 2000)
+      window.location.assign('results.html');
     }
 }
 

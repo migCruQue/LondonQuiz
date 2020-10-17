@@ -111,7 +111,7 @@ const myResults = [
     queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)!!`,
     picSrc: `img/awards pics/square/obe-medal.png`},
 
-    {queenPic: `img/Queen pics/golden/queen3.jpg.jpg`,
+    {queenPic: `img/Queen pics/golden/queen3.jpg`,
     queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)!!`,
     picSrc: `img/awards pics/square/cbe-medal.jpg`},
 
