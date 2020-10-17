@@ -29,5 +29,5 @@ const $queenDiv = $('#queenDiv');
 buildResultDiv();
 
 setTimeout(() => {
-    window.location.assign('/start.html')
+    window.location.assign('/index.html')
 }, 5000);
