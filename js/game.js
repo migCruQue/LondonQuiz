@@ -13,7 +13,13 @@
 let questions = [];
 
 
-fetch('../js/questions.json')
+fetch('../js/questions.json', {
+  headers : { 
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+   }
+
+})
 .then(res => {return res.json()})
 .then(response => {
       questions = [...response];

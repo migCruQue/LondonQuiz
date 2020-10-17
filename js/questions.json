@@ -36,12 +36,12 @@
    },
 
    {
-   "question": "What is the correct stop for Abbey Road?",
-   "option1": ["Baker Street", false],
-   "option2": ["St John's Wood", true],
-   "option3": ["Maida Vale", false],
-   "picLap": "img/questions pics/laptop L/abbey-road_golden.jpg",
-   "num": "5"
+      "question": "What is the correct stop for Abbey Road?",
+      "option1": ["Baker Street", false],
+      "option2": ["St John's Wood", true],
+      "option3": ["Maida Vale", false],
+      "picLap": "img/questions pics/laptop L/abbey-road_golden.jpg",
+      "num": "5"
    }
 
 ]
