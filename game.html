@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
     <!-- CSS MAIN LINK -->
     <link rel="stylesheet" href="css/game.css">
@@ -23,30 +23,38 @@
 
   <body id="body">
 
-            <!-- DIV START -->
-
-
-            <!-- /DIV START -->
-
             <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
-                  <div id="quiz-container" class="container-fluid fixed-height">
-
-                      <div id="quiz"></div>
+                  <div id="quizContainer" class="container fixed-height d-none">
+                        
+                          <div id="pictureQuestion"></div>
+                          
+                          <div id="score-bar"></div>
+              
+                          <div id="question" class="mx-auto">
+                              <div id="questionChild"></div>
+                          </div>
+              
+                          <div class="answers">
+                            <label>
+                              <button type="button" class="answerOption" data-number="1"  value="${element.option1[1]}">${element.option1[0]}</button>
+                            </label>
+                            
+                            <label>
+                              <button type="button" class="answerOption" data-number="2"  value="${element.option2[1]}">${element.option2[0]}</button>
+                            </label>
+                            
+                            <label>
+                              <button type="button" class="answerOption" data-number="3"  value="${element.option3[1]}">${element.option3[0]}</button>
+                            </label>
+                          </div>
 
                   </div>
-            <!-- //MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
+            <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
 
             <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
-                  <div id="checkAnswer" class="d-none container fixed-height">
-
-                      <div id="emojiChild">
-
-                          <p id="emojiPara" class="text-center"></p>
-
+                  <div id="checkAnswer" class="hidden container fixed-height">
+                          <p  id="emoji" class="text-center"></p>
                           <p id="score" class="text-center mx-auto"></p>
-
-                      </div>
-
                   </div>
             <!-- /DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
 

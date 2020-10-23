@@ -1,16 +1,60 @@
+:root {
+  background-color: #ecf5ff;
+  font-size: 62.5%;
+}
 
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* * UTILITIES */
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 80rem; 
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden{
+   display: none;
+}
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
-#quiz-container {
-
-    padding: 2rem 1rem 0 1rem;
-    background-color: powderblue;
+#quizContainer {
+  flex-direction: column;
+   background-color: powderblue;
 
 }
 
 
-.background-pic{
+#pictureQuestion {
   background-color: #f8f9fa;
   border-style: double;
   margin: auto;
@@ -49,7 +93,7 @@
 
 #score-bar{
   animation: shrink_bar 10s linear forwards;
-  animation: name duration timing-function delay iteration-count direction fill-mode;
+  align-self: flex-start;
   background: orange;
   width: 100%;
   height: 25px;
@@ -63,17 +107,13 @@
 
 
 #question{
-  display: table;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 18px;
-  margin: 3px 13px;
+  margin: 0.5rem 0.3rem;
   text-align: center;
-  height: 85px;
-}
-
-
-#questionChild{
-    display: table-cell;
-    vertical-align: middle;
+  height: 10rem;
 }
 
 .answers {
@@ -96,10 +136,10 @@
   text-align: center;
   vertical-align: middle;
   padding: .5rem .75rem;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 2;
   border-radius: .50rem;
-  width: 13rem;
+  width: 20rem;
 }
 
 
@@ -131,22 +171,6 @@ button[data-id="c"]  {
 /* THIS ANIMATION MAKES THE OPTIONS BUTTONS TO APPEAR GRADUALLY */
 
 
-.slide{
-  display: none;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-
-.active-slide{
-  display: block;
-  opacity: 1;
-  z-index: 2;
-
-}
-
-
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
@@ -155,9 +179,15 @@ button[data-id="c"]  {
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #checkAnswer {
-  padding: 3rem 1rem 9rem 1rem;
-  max-width: none;
-  display: table;
+  flex-direction: column;
+}
+
+#checkAnswer.wrong {
+  background-color: burlywood;
+}
+
+#checkAnswer.correct{
+  background-color: mediumseagreen;
 }
 
 #emojiChild{
@@ -175,7 +205,7 @@ button[data-id="c"]  {
 /* THIS ANIMATION SCALES THE EMOJI FROM SMALL TO NORMAL SIZE */
 
 
-#emojiPara{
+#emoji{
   animation: emojiAnimation 0.3s;
   display: block;
   font-size: 240px;
@@ -184,7 +214,6 @@ button[data-id="c"]  {
 
 #score{
   display: block;
-  margin-top: -70px;
   border-style: inset;
   background-color: crimson;
   border-color: cyan;
@@ -234,7 +263,7 @@ button[data-id="c"]  {
 @media (min-width: 768px) and (min-height: 1024px) {
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
-  #quiz-container {
+  #quizContainer {
       padding: 1rem 1rem 8rem 1rem;
   }
 
@@ -323,7 +352,7 @@ button[data-id="c"]  {
 @media (min-width: 1440px) and (min-height: 900px) {
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
-     #quiz-container {
+     #quizContainer {
        padding: 4rem 1rem 15rem 1rem;
      }
 
@@ -373,7 +402,7 @@ button[data-id="c"]  {
 
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
-  #quiz-container {
+  #quizContainer {
     padding: 15rem 1rem 15rem 1rem;
   }
 

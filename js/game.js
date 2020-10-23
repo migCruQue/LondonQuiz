@@ -1,237 +1,96 @@
-                            
-                                                    
-                                                    
-                                                    //  XXXXXXXXXXXXX
-                                                    //*  XX MAIN.JS XX
-                                                    //  XXXXXXXXXXXXX
+
+//* ASSIGNING ELEMENTS TO VARIABLES 
+const question = document.getElementById('question');
+const pictureQuestion = document.getElementById('pictureQuestion')
+const choices = Array.from(document.getElementsByClassName('answerOption'));
+const quizContainer = document.getElementById('quizContainer');
+const checkAnswer = document.getElementById('checkAnswer');
+const scoreText = document.getElementById('score');
+const emoji = document.getElementById('emoji');
+
+//* JQUERY VARIABLES
+const $quizContainer = $('#quizContainer');
+const $checkAnswer = $('#checkAnswer');
+
+// * VARIABLES
+let questionCounter = 0;
+let score = 0;
+let availableQuestions = [];
+let currentQuestion = {};
+let acceptingAnswers = false;
+let startTime = new Date();  // *   global variable to calculate the points based in the time the user takes to click the option button,
+                             // *   I declare it globaly as it has to be accessed for more the one functions.
 
 
+// * CONSTANTS
+const MAX_QUESTIONS = 10;
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ASSIGNING DIVS TO VARIABLES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-// let questions = [];
+// * STARTGAME FUNCTION
+startGame = () => {
+  questionCounter = 0;
+  score = 0;
+availableQuestions = [...myQuestions];
+  getNewQuestion();
+  $quizContainer.removeClass('d-none');
+};
 
-
-// fetch('../js/questions.json', {
-//   headers : { 
-//     'Content-Type': 'application/json',
-//     'Accept': 'application/json'
-//    }
-
-// })
-// .then(res => {return res.json()})
-// .then(response => {
-//       questions = [...response];
-//       console.log(questions);
-//     });
-
-let quizQuestions;
-
-// DIV id="quiz-container"
-const $quizContainer = $('#quiz-container');
-
-
-// DIV CHECK ANSWER div
-const $checkAnswerDiv = $('#checkAnswer');
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION buildQuiz: IT BUILDS THE QUIZ SLIDES STRUCTURE AS QUESTIONS, PICS, ANSWERS OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-function buildQuiz(){
-
-    const output = []; //OUTPUT WILL STORE THE HTML FOR EACH DIV SLIDE
-
-    myQuestions.forEach(element => {
-      
-      output.push(
-        `<div class="slide">
-
-            <div class="background-pic" style="background-image: url('${element.picLap}');"></div>
-            
-            <div id="score-bar"></div>
-
-            <div id="question" class="mx-auto">
-
-                <div id="questionChild">${element.question}</div>
-
-            </div>
-
-            <div class="answers">
-          
-            <label>
-              <button type="button" class="answerOption" data-id="a"  value="${element.option1[1]}">${element.option1[0]}</button>
-            </label>
-            
-            <label>
-              <button type="button" class="answerOption" data-id="b"  value="${element.option2[1]}">${element.option2[0]}</button>
-            </label>
-            
-            <label>
-              <button type="button" class="answerOption" data-id="c"  value="${element.option3[1]}">${element.option3[0]}</button>
-            </label>
-          
-            </div>
-
-        </div>`
-      );
-    });
-
-  $('#quiz').html(output.join('')); //ASSIGN THE OUTPUT HTML TO THE DIV QUIZ
-}
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION buildQuiz <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTION showSlide <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>*/
-//* This fuction display the first slide at the beginning, then it displays the subsequents slides.    
-//* When currentSlide value is 9, it calls showResult function.                                                     
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
-let currentSlide = 0; //* IN POINTS THE FIRST SLIDE
-
-let startTime = new Date();  // global variable to calculate the point, I declare it globaly as it has to be access for more the one functions.
-
-function showSlide(){
-
+// * GETNEWQUESTION FUNCTION
+getNewQuestion = () => {
+  if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS){
+      localStorage.setItem('totalPoints', score);
+      //* go to the end page
+      return window.location.assign("/results.html")
+  }
   startTime = new Date();
- 
-  if(currentSlide <= (myQuestions.length - 1)){
-        $('.slide').eq(currentSlide - 1).removeClass('active-slide');
-        $('.slide').eq(currentSlide).addClass('active-slide');
-    } else {
-      window.localStorage.setItem('totalPoints', totalPoints);
-      $('.slide').eq(currentSlide).removeClass('active-slide');
-      $('div#score-bar').removeClass('score-bar-paused');     
-      window.location.assign('results.html');
-    }
+  questionCounter++;
+  // Update the progress bar
+  // progressBarFull.style.width = `${(questionCounter/ MAX_QUESTIONS) * 100}%`;
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
+  question.innerText = `${questionCounter}/${MAX_QUESTIONS} ${currentQuestion.question}`;
+  pictureQuestion.setAttribute('style', `background-image: url('${currentQuestion.picLap}'`);
+  choices.forEach( choice => {
+      const number = choice.dataset['number'];
+      choice.innerText = currentQuestion["option" + number];  
+  });
+
+  availableQuestions.splice(questionIndex, 1);
+
+  acceptingAnswers = true;
 }
 
-
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION showSlide  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
-/* EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
-//* this event listener targets the answers option buttons, it will 
-//* trigger a series of actions depending whether it is correct or wrong.
-/* EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
-
-
-
-let totalPoints = 0; //DECLARING countCorrectAnswer AND SET IT
-
-$(document).on('click', (e) => {
-
-  if(e.target.className === 'answerOption'){
-
-    $('div.active-slide').find('div#score-bar').addClass('score-bar-paused');    //*this statement pauses the bar div animation.
-
-    if(e.target.value === 'true'){
-      totalPoints += calculatePoints();
-      checkAnswer(true);
-    }
-
-    else if(e.target.value === 'false'){
-      checkAnswer(false);
+//* EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
+choices.forEach(choice => {
+  choice.addEventListener("click", e => {
+      if(!acceptingAnswers) return;
+      acceptingAnswers = false;
+      const selectedOption = e.target.innerText;
+      if(selectedOption == currentQuestion.correct){
+        score += calculateScore();
+        $checkAnswer.removeClass('wrong').addClass('correct');
+        emoji.innerText = '💂'; 
+      } else {
+        $checkAnswer.removeClass('correct').addClass('wrong'); 
+        emoji.innerText =  '💩';
       }
+      scoreText.innerText = score; 
+      $checkAnswer.removeClass('hidden'); 
+      $quizContainer.addClass('hidden');   
 
-    setTimeout(() => {
-      $checkAnswerDiv.removeClass('d-none');
-        $quizContainer.addClass('d-none');
-      }, 750);
-
-    setTimeout(() => {
-      $checkAnswerDiv.addClass('d-none');
-      $quizContainer.removeClass('d-none');
-      currentSlide++;
-      showSlide()
+      setTimeout(() => {
+        getNewQuestion();
+        $checkAnswer.addClass('hidden'); 
+        $quizContainer.removeClass('hidden');  
       }, 2000);
-
-  }
-    
-});
-
-
-/* EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
-//* EEEEEEEEEEEEE         / EVENTS LISTENER                         EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
-/* EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTION calculatePoints <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-function calculatePoints(){
-  const timeMili = (new Date() - startTime);
-  return  (timeMili > 10000) ? 100 : 10000 - timeMili;
-}
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION calculatePoints <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>>  FUNCTION checkAnswer <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-function checkAnswer(correct){
-  $checkAnswerDiv.find('#score').text(`${totalPoints} POINTS`);
-  
-  if(correct){
-    $checkAnswerDiv.css('background-color', 'mediumseagreen'); 
-    $checkAnswerDiv.find('#emojiPara').text('💂');
-  } else {
-    $checkAnswerDiv.css('background-color', 'burlywood'); 
-    $checkAnswerDiv.find('#emojiPara').text('💩');
-  }
-}
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-//* >>>>>>>>>>>>>>>>>>>>>>>>>>>> / FUNCTION checkAnswer <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-//SETTING THE BODY TO THE WINDOWHEIGHT 
-
-$('div.fixed-height').css('height', `${$(window).height()}px`);
-
-
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-// trying to decrease the font size of answerOption when the text content is too long
-
-$(function(){
-  $('button.answerOption').each(function(){
-    let length = $(this).text().length;
-    if(length > 22){$(this).css({fontSize: '-=5'});
-    }
   });
 });
 
 
+// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
+// * if the time passes over 10000 ms the number of points will be set up to 100.
+function calculateScore(){
+    const timeTakes = (new Date() - startTime);
+    return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
+}
 
-
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-                           ///*BUILD THE QUIZ
-
-setTimeout( () => {
-  buildQuiz();
-  showSlide();}
- , 500
-);
-
-
-
-                              ///* DISPLAY THE CURRENT SLIDE
-
-
+startGame();
