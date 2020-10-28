@@ -7,14 +7,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- GOOGLE FONTS  -->
-    <link href="https://fonts.googleapis.com/css?family=Rajdhani:700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <!-- GOOGLE FONTS  -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <!-- CSS MAIN LINK -->
+    <link rel="stylesheet" href="css/standard.css">
     <link rel="stylesheet" href="css/game.css">
 
 
@@ -24,28 +21,20 @@
   <body id="body">
 
             <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
-                  <div id="quizContainer" class="container fixed-height d-none">
+                  <div id="quizContainer" class="container fixed-height">
                         
                           <div id="pictureQuestion"></div>
-                          
+
+                          <h1 id="question"></h1>
+
                           <div id="score-bar"></div>
               
-                          <div id="question" class="mx-auto">
-                              <div id="questionChild"></div>
-                          </div>
-              
                           <div class="answers">
-                            <label>
-                              <button type="button" class="answerOption" data-number="1"  value="${element.option1[1]}">${element.option1[0]}</button>
-                            </label>
+                            <label><button type="button" class="answerOption" data-number="1"></button></label>
                             
-                            <label>
-                              <button type="button" class="answerOption" data-number="2"  value="${element.option2[1]}">${element.option2[0]}</button>
-                            </label>
+                            <label><button type="button" class="answerOption" data-number="2"></button></label>
                             
-                            <label>
-                              <button type="button" class="answerOption" data-number="3"  value="${element.option3[1]}">${element.option3[0]}</button>
-                            </label>
+                            <label><button type="button" class="answerOption" data-number="3"></button></label>
                           </div>
 
                   </div>
@@ -54,7 +43,7 @@
             <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
                   <div id="checkAnswer" class="hidden container fixed-height">
                           <p  id="emoji" class="text-center"></p>
-                          <p id="score" class="text-center mx-auto"></p>
+                          <p id="score" class=" container text-center"></p>
                   </div>
             <!-- /DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
 

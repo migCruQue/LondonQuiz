@@ -1,24 +1,22 @@
 
-// * set the window's height
-$('div.fixed-height').css('height', `${$(window).height()}px`);
 
 // * get the totalPoints value passed to localStorage
 const totalPoints = Number(window.localStorage.getItem('totalPoints'));
 
 //* return a value depending on the totalPoint variable.
 function calculateCategory(){   
-    if (totalPoints >= 9){return 3;}
-      else if (totalPoints >= 7){return 2;}
-        else if (totalPoints >= 5){return 1;}
+    if (totalPoints >= 90000){return 3;}
+      else if (totalPoints >= 60000){return 2;}
+        else if (totalPoints >= 30000){return 1;}
         return 0;
   } 
   
 // * build the result div
 function buildResultDiv(){    
     $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
-    $queenDiv.find('#finalScore').text(`TOTAL POINTS ${totalPoints}`); 
-    $queenDiv.find('h1').text(`${myResults[calculateCategory()].queenSays}`);
-    $queenDiv.find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+    $queenDiv.find('#finalScore').find('h1').text(`Total:${totalPoints} Pt`);
+    $queenDiv.find('#finalScore').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+    $queenDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
 }
 
 const queenDiv = document.getElementById('queenDiv');

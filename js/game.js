@@ -1,6 +1,7 @@
 
 //* ASSIGNING ELEMENTS TO VARIABLES 
 const question = document.getElementById('question');
+const ordinal = document.getElementById('ordinal');
 const pictureQuestion = document.getElementById('pictureQuestion')
 const choices = Array.from(document.getElementsByClassName('answerOption'));
 const quizContainer = document.getElementById('quizContainer');
@@ -47,7 +48,7 @@ getNewQuestion = () => {
   // progressBarFull.style.width = `${(questionCounter/ MAX_QUESTIONS) * 100}%`;
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
-  question.innerText = `${questionCounter}/${MAX_QUESTIONS} ${currentQuestion.question}`;
+  question.innerHTML = `<span id="ordinal">${questionCounter}/${MAX_QUESTIONS}</span> &nbsp${currentQuestion.question}`;
   pictureQuestion.setAttribute('style', `background-image: url('${currentQuestion.picLap}'`);
   choices.forEach( choice => {
       const number = choice.dataset['number'];
@@ -73,7 +74,7 @@ choices.forEach(choice => {
         $checkAnswer.removeClass('correct').addClass('wrong'); 
         emoji.innerText =  '💩';
       }
-      scoreText.innerText = score; 
+      scoreText.innerText = `${score} points`; 
       $checkAnswer.removeClass('hidden'); 
       $quizContainer.addClass('hidden');   
 
