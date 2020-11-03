@@ -1,4 +1,46 @@
 
+
+// * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'
+
+function codeNumberQuestionArray(numberOfQuestions, totalQuestions){
+  let array = [];
+  while(array.length < numberOfQuestions){
+     let randomNumber = Math.floor(Math.random() * totalQuestions);
+     if(!array.includes(randomNumber)){array.push(randomNumber)}
+  }
+
+  return array;
+}
+
+let dbQuestions = [];
+
+document.addEventListener("DOMContentLoaded", event => {
+
+  const app = firebase.app();
+
+  const db = firebase.firestore();
+
+  let array  = codeNumberQuestionArray(10, 50);
+  console.log(array);
+  array.forEach( element => {
+      db.collection("questions").where("CodeNumber", "==", element)
+      .get()
+      .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              // console.log(doc.id, " => ", doc.data().question);
+              dbQuestions.push(doc.data());
+          });
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+      });
+  });
+
+  console.log(dbQuestions);
+
+});
+
 //* ASSIGNING ELEMENTS TO VARIABLES 
 const question = document.getElementById('question');
 const ordinal = document.getElementById('ordinal');
@@ -30,7 +72,7 @@ const MAX_QUESTIONS = 10;
 startGame = () => {
   questionCounter = 0;
   score = 0;
-availableQuestions = [...myQuestions];
+  availableQuestions = [...dbQuestions];
   getNewQuestion();
   $quizContainer.removeClass('d-none');
 };
@@ -49,7 +91,21 @@ getNewQuestion = () => {
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerHTML = `<span id="ordinal">${questionCounter}/${MAX_QUESTIONS}</span> &nbsp${currentQuestion.question}`;
-  pictureQuestion.setAttribute('style', `background-image: url('${currentQuestion.picLap}'`);
+  
+  // * Get the picture from firebase storage project LondonQuiz and set up the pictureQuestion src attr to the url reference.
+
+  var storage = firebase.storage();
+
+  var gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
+
+  gsReference.getDownloadURL()
+  .then(function(url) {pictureQuestion.setAttribute('style', `background-image: url('${url}'`);})
+  .catch(function(error) {
+    // Handle any errors
+  });
+
+  // * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   choices.forEach( choice => {
       const number = choice.dataset['number'];
       choice.innerText = currentQuestion["option" + number];  
@@ -93,5 +149,6 @@ function calculateScore(){
     const timeTakes = (new Date() - startTime);
     return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
 }
-
-startGame();
+setTimeout(() => {
+  startGame();
+}, 1000);
