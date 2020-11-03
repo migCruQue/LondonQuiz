@@ -1,7 +1,7 @@
 
 
-// * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'
 
+// * return an array with n different numberOfQuestion from the total amount of questions.
 function codeNumberQuestionArray(numberOfQuestions, totalQuestions){
   let array = [];
   while(array.length < numberOfQuestions){
@@ -14,6 +14,7 @@ function codeNumberQuestionArray(numberOfQuestions, totalQuestions){
 
 let dbQuestions = [];
 
+// * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'.
 document.addEventListener("DOMContentLoaded", event => {
 
   const app = firebase.app();
@@ -21,14 +22,12 @@ document.addEventListener("DOMContentLoaded", event => {
   const db = firebase.firestore();
 
   let array  = codeNumberQuestionArray(10, 50);
-  console.log(array);
+
   array.forEach( element => {
       db.collection("questions").where("CodeNumber", "==", element)
       .get()
       .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-              // doc.data() is never undefined for query doc snapshots
-              // console.log(doc.id, " => ", doc.data().question);
               dbQuestions.push(doc.data());
           });
       })
@@ -36,8 +35,6 @@ document.addEventListener("DOMContentLoaded", event => {
           console.log("Error getting documents: ", error);
       });
   });
-
-  console.log(dbQuestions);
 
 });
 
@@ -101,7 +98,6 @@ getNewQuestion = () => {
   gsReference.getDownloadURL()
   .then(function(url) {pictureQuestion.setAttribute('style', `background-image: url('${url}'`);})
   .catch(function(error) {
-    // Handle any errors
   });
 
   // * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
