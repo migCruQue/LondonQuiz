@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
   const db = firebase.firestore();
 
-  let array  = codeNumberQuestionArray(10, 50);
+  let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ, AMOUNT_QUESTIONS_COLLECTION);
 
   array.forEach( element => {
       db.collection("questions").where("CodeNumber", "==", element)
@@ -63,10 +63,12 @@ let startTime = new Date();  // *   global variable to calculate the points base
 
 
 // * CONSTANTS
-const MAX_QUESTIONS = 10;
+const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 // * STARTGAME FUNCTION
 startGame = () => {
+  clearInterval(nIntervId);
   questionCounter = 0;
   score = 0;
   availableQuestions = [...dbQuestions];
@@ -76,24 +78,18 @@ startGame = () => {
 
 // * GETNEWQUESTION FUNCTION
 getNewQuestion = () => {
-  if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS){
-      localStorage.setItem('totalPoints', score);
-      //* go to the end page
-      return window.location.assign("/results.html")
-  }
+
   startTime = new Date();
   questionCounter++;
-  // Update the progress bar
-  // progressBarFull.style.width = `${(questionCounter/ MAX_QUESTIONS) * 100}%`;
+
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
-  question.innerHTML = `<span id="ordinal">${questionCounter}/${MAX_QUESTIONS}</span> &nbsp${currentQuestion.question}`;
-  
+
   // * Get the picture from firebase storage project LondonQuiz and set up the pictureQuestion src attr to the url reference.
 
-  var storage = firebase.storage();
+  let storage = firebase.storage();
 
-  var gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
+  let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
 
   gsReference.getDownloadURL()
   .then(function(url) {pictureQuestion.setAttribute('style', `background-image: url('${url}'`);})
@@ -102,6 +98,8 @@ getNewQuestion = () => {
 
   // * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  question.innerHTML = `<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`;
+  
   choices.forEach( choice => {
       const number = choice.dataset['number'];
       choice.innerText = currentQuestion["option" + number];  
@@ -128,12 +126,16 @@ choices.forEach(choice => {
       }
       scoreText.innerText = `${score} points`; 
       $checkAnswer.removeClass('hidden'); 
-      $quizContainer.addClass('hidden');   
+      $quizContainer.addClass('hidden'); 
+      if(!availableQuestions.length == 0){getNewQuestion()}
 
       setTimeout(() => {
-        getNewQuestion();
         $checkAnswer.addClass('hidden'); 
-        $quizContainer.removeClass('hidden');  
+        $quizContainer.removeClass('hidden'); 
+        if(availableQuestions.length == 0){
+          localStorage.setItem('totalPoints', score);
+          //* go to the end page
+          window.location.assign("/results.html"); } 
       }, 2000);
   });
 });
@@ -145,6 +147,10 @@ function calculateScore(){
     const timeTakes = (new Date() - startTime);
     return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
 }
-setTimeout(() => {
-  startGame();
-}, 1000);
+
+
+  //* check if dbQuestions has been fully populated every 250ms. When it has been fully populated it launchs startGame(). 
+  let nIntervId = setInterval(() => {
+    if(dbQuestions.length === AMOUNT_QUESTIONS_QUIZ){startGame()}
+  },
+  300);
