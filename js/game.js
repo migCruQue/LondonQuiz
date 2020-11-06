@@ -1,7 +1,35 @@
 
+//* ASSIGNING ELEMENTS TO VARIABLES 
+const question = document.getElementById('question');
+const ordinal = document.getElementById('ordinal');
+const pictureQuestion = document.getElementById('pictureQuestion')
+const choices = Array.from(document.getElementsByClassName('answerOption'));
+const quizContainer = document.getElementById('quizContainer');
+const checkAnswer = document.getElementById('checkAnswer');
+const scoreText = document.getElementById('score');
+const emoji = document.getElementById('emoji');
+
+//* JQUERY VARIABLES
+const $quizContainer = $('#quizContainer');
+const $checkAnswer = $('#checkAnswer');
+
+// * VARIABLES
+let questionCounter = 0;
+let score = 0;
+let availableQuestions = [];
+let currentQuestion = {};
+let acceptingAnswers = false;
+let goToResultFlag = false;
+let startTime = new Date();  // *   global variable to calculate the points based in the time the user takes to click the option button,
+                             // *   I declare it globaly as it has to be accessed for more the one functions.
 
 
-// * return an array with n different numberOfQuestion from the total amount of questions.
+// * CONSTANTS
+const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_COLLECTION = 50;
+
+
+// * return an array with an amount(numberOfQuestion) of different random numbers from 0 to totalQuestions.
 function codeNumberQuestionArray(numberOfQuestions, totalQuestions){
   let array = [];
   while(array.length < numberOfQuestions){
@@ -38,37 +66,11 @@ document.addEventListener("DOMContentLoaded", event => {
 
 });
 
-//* ASSIGNING ELEMENTS TO VARIABLES 
-const question = document.getElementById('question');
-const ordinal = document.getElementById('ordinal');
-const pictureQuestion = document.getElementById('pictureQuestion')
-const choices = Array.from(document.getElementsByClassName('answerOption'));
-const quizContainer = document.getElementById('quizContainer');
-const checkAnswer = document.getElementById('checkAnswer');
-const scoreText = document.getElementById('score');
-const emoji = document.getElementById('emoji');
-
-//* JQUERY VARIABLES
-const $quizContainer = $('#quizContainer');
-const $checkAnswer = $('#checkAnswer');
-
-// * VARIABLES
-let questionCounter = 0;
-let score = 0;
-let availableQuestions = [];
-let currentQuestion = {};
-let acceptingAnswers = false;
-let startTime = new Date();  // *   global variable to calculate the points based in the time the user takes to click the option button,
-                             // *   I declare it globaly as it has to be accessed for more the one functions.
 
 
-// * CONSTANTS
-const AMOUNT_QUESTIONS_QUIZ = 10;
-const AMOUNT_QUESTIONS_COLLECTION = 50;
-
-// * STARTGAME FUNCTION
+// ! STARTGAME FUNCTION
 startGame = () => {
-  clearInterval(nIntervId);
+  clearInterval(nIntervId);       // * this stops the setInterval that start the game
   questionCounter = 0;
   score = 0;
   availableQuestions = [...dbQuestions];
@@ -76,41 +78,55 @@ startGame = () => {
   $quizContainer.removeClass('d-none');
 };
 
-// * GETNEWQUESTION FUNCTION
+// ! GETNEWQUESTION FUNCTION
 getNewQuestion = () => {
 
-  startTime = new Date();
-  questionCounter++;
+  if(availableQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){	
+    localStorage.setItem('totalPoints', score);
+    goToResultFlag = true;	
+    //* go to the end page	
+    setTimeout(() => {window.location.assign("/results.html")}, 2000);	
+  } else {
+    startTime = new Date();
+    questionCounter++;
 
-  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-  currentQuestion = availableQuestions[questionIndex];
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
 
-  // * Get the picture from firebase storage project LondonQuiz and set up the pictureQuestion src attr to the url reference.
+    // * Get the picture from firebase storage project LondonQuiz and set up the pictureQuestion src attr to the url reference.
 
-  let storage = firebase.storage();
+    let storage = firebase.storage();
 
-  let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
+    let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
 
-  gsReference.getDownloadURL()
-  .then(function(url) {pictureQuestion.setAttribute('style', `background-image: url('${url}'`);})
-  .catch(function(error) {
-  });
+    gsReference.getDownloadURL()
+    .then(function(url) {pictureQuestion.setAttribute('style', `background-image: url('${url}'`);})
+    .catch(function(error) {
+    });
 
-  // * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  question.innerHTML = `<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`;
-  
-  choices.forEach( choice => {
-      const number = choice.dataset['number'];
-      choice.innerText = currentQuestion["option" + number];  
-  });
+    question.innerHTML = `<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`;
+    
+    choices.forEach( choice => {
+        const number = choice.dataset['number'];
+        choice.innerText = currentQuestion["option" + number];  
+    });
 
-  availableQuestions.splice(questionIndex, 1);
+    availableQuestions.splice(questionIndex, 1);
 
-  acceptingAnswers = true;
+    acceptingAnswers = true;
+    }
 }
 
-//* EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
+// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
+// * if the time passes over 10000 ms the number of points will be set up to 100.
+function calculateScore(){
+  const timeTakes = (new Date() - startTime);
+  return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
+}
+
+//! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
 choices.forEach(choice => {
   choice.addEventListener("click", e => {
       if(!acceptingAnswers) return;
@@ -127,30 +143,23 @@ choices.forEach(choice => {
       scoreText.innerText = `${score} points`; 
       $checkAnswer.removeClass('hidden'); 
       $quizContainer.addClass('hidden'); 
-      if(!availableQuestions.length == 0){getNewQuestion()}
-
+      getNewQuestion();
+      
       setTimeout(() => {
-        $checkAnswer.addClass('hidden'); 
-        $quizContainer.removeClass('hidden'); 
-        if(availableQuestions.length == 0){
-          localStorage.setItem('totalPoints', score);
-          //* go to the end page
-          window.location.assign("/results.html"); } 
-      }, 2000);
+        if(!goToResultFlag){
+          $checkAnswer.addClass('hidden'); 
+          $quizContainer.removeClass('hidden');}
+        }
+        , 2000);
   });
 });
 
 
-// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
-// * if the time passes over 10000 ms the number of points will be set up to 100.
-function calculateScore(){
-    const timeTakes = (new Date() - startTime);
-    return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
-}
+
 
 
   //* check if dbQuestions has been fully populated every 250ms. When it has been fully populated it launchs startGame(). 
   let nIntervId = setInterval(() => {
     if(dbQuestions.length === AMOUNT_QUESTIONS_QUIZ){startGame()}
   },
-  300);
+  500);
