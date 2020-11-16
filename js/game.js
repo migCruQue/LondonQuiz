@@ -25,7 +25,7 @@ let startTime = new Date();  // *   global variable to calculate the points base
 
 
 // * CONSTANTS
-const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_QUIZ = 20;
 const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 
@@ -158,7 +158,7 @@ choices.forEach(choice => {
 
 
 
-  //* check if dbQuestions has been fully populated every 250ms. When it has been fully populated it launchs startGame(). 
+  //* check if dbQuestions has been fully populated every 500ms. When it has been fully populated it launchs startGame(). 
   let nIntervId = setInterval(() => {
     if(dbQuestions.length === AMOUNT_QUESTIONS_QUIZ){startGame()}
   },
