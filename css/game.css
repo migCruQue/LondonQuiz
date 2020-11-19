@@ -108,6 +108,7 @@
   font-size: 2.2rem;
   border-radius: .50rem;
   width: 26rem;
+  height: 5rem;
 }
 
 
@@ -219,6 +220,7 @@ button[data-id="c"]  {
 
     .answerOption {
       width: 30rem;
+      height: 7rem;
       font-size: 2.5rem;
     }
 
@@ -259,9 +261,6 @@ button[data-id="c"]  {
     margin: 4rem 0 4rem 3rem;
   }
 
-  .answerOption {
-    height: 7rem;
-  }
 
   /* CHECKANSWER DIV */
   #emoji {

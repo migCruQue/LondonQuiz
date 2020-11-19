@@ -1,5 +1,5 @@
 
-$('#start-button').on('click', () => {
+$('#startBTN').on('click', () => {
     window.location.assign("game.html");
 });
 
