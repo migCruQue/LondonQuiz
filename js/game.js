@@ -9,9 +9,6 @@ const checkAnswer = document.getElementById('checkAnswer');
 const scoreText = document.getElementById('score');
 const emoji = document.getElementById('emoji');
 
-//* JQUERY VARIABLES
-const $quizContainer = $('#quizContainer');
-const $checkAnswer = $('#checkAnswer');
 
 // * VARIABLES
 let questionCounter = 0;
@@ -25,7 +22,7 @@ let startTime = new Date();  // *   global variable to calculate the points base
 
 
 // * CONSTANTS
-const AMOUNT_QUESTIONS_QUIZ = 20;
+const AMOUNT_QUESTIONS_QUIZ = 10;
 const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 
@@ -75,7 +72,7 @@ startGame = () => {
   score = 0;
   availableQuestions = [...dbQuestions];
   getNewQuestion();
-  $quizContainer.removeClass('d-none');
+  quizContainer.classList.remove("d-none");
 };
 
 // ! GETNEWQUESTION FUNCTION
@@ -134,22 +131,25 @@ choices.forEach(choice => {
       const selectedOption = e.target.innerText;
       if(selectedOption == currentQuestion.correct){
         score += calculateScore();
-        $checkAnswer.removeClass('wrong').addClass('correct');
+        checkAnswer.classList.remove('wrong');
+        checkAnswer.classList.add('correct');
         emoji.innerText = '💂'; 
       } else {
-        $checkAnswer.removeClass('correct').addClass('wrong'); 
+        checkAnswer.classList.remove('correct');
+        checkAnswer.classList.add('wrong');
         emoji.innerText =  '💩';
       }
       scoreText.innerText = `${score} points`; 
-      $checkAnswer.removeClass('hidden'); 
-      $quizContainer.addClass('hidden'); 
+      checkAnswer.classList.remove('hidden'); 
+      quizContainer.classList.add('hidden'); 
       getNewQuestion();
       
       setTimeout(() => {
         if(!goToResultFlag){
-          $checkAnswer.addClass('hidden'); 
-          $quizContainer.removeClass('hidden');}
+          checkAnswer.classList.add('hidden'); 
+          quizContainer.classList.remove('hidden');
         }
+      }
         , 2000);
   });
 });

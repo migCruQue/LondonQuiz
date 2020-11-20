@@ -3,9 +3,10 @@
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #quizContainer {
-  flex-direction: column;
-  background-color: powderblue;
+  grid-template-rows: repeat(24, minmax(0,1fr));
+  justify-items: center;
   padding: 0;
+  background-color: powderblue;
   font-family: 'Montserrat', sans-serif;
   background-color: powderblue;
   background: linear-gradient(to left top, blue, white, red);
@@ -14,10 +15,8 @@
 
 
 #pictureQuestion {
-  position: relative;
-  top: 2rem;
+  grid-row: 5;
   border: 2px double oldlace;
-  margin-bottom: 2rem;
   width: 95%;
   height: 20rem;
   background-size: cover;
@@ -52,13 +51,13 @@
 
 
 #score-bar{
+  grid-row: 10;
   animation: shrink_bar 10s linear forwards;
-  align-self:flex-start;
+  justify-self: start;
+  margin-left: 0.7em;
   background: orange;
   width: 85%;
-  margin-left: 3rem;
   height: 1.7rem;
-  margin-bottom: 2rem;
   border-radius: 8px;
 }
 
@@ -68,6 +67,7 @@
 
 
 #question{
+  grid-row: 12;
   color: #042b4c;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -85,16 +85,11 @@
 }
 
 .answers {
+  grid-row: 19;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.answers label{
-  display: flex;
-  margin-bottom: 3rem;
 }
 
 .answerOption {
@@ -111,24 +106,29 @@
   height: 5rem;
 }
 
+.answerOption:nth-child(1),
+.answerOption:nth-child(2){
+  margin-bottom: 3rem;
+}
+
 
 /* THIS ANIMATION MAKES THE OPTIONS BUTTONS TO APPEAR GRADUALLY */
-button.answerOption  {
+.answerOption  {
   animation-name: fadeIn;
   animation-duration: .5s;
   animation-timing-function: ease-out;
   animation-fill-mode: backwards;
 }
 
-button[data-id="a"] {
+.answerOption[data-id="a"] {
   animation-delay: .25s;
 }
 
-button[data-id="b"]  {
+.answerOption[data-id="b"]  {
   animation-delay: 0.5s;
 }
 
-button[data-id="c"]  {
+.answerOption[data-id="c"]  {
   animation-delay: 0.75s;
 }
 
