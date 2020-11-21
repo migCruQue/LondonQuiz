@@ -15,11 +15,14 @@
   .container {
     width: 100vw;
     height: 100vh;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .flex {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    padding: 2rem;
   }
   
   .container > * {
@@ -41,6 +44,8 @@
 
   .grid {
     display: grid;
+    justify-items: center;
+    align-items: center;
   }
   
   .hidden{

@@ -1,24 +1,24 @@
 
 #queenDiv {
-    position: relative;
+    grid-template-rows: repeat(24, minmax(0,1fr));
+    justify-items: center;
     background-color: #3595dc;
-    flex-direction: column;
-    margin: 0;
     padding: 0;
   }
   
   #queen{
-    margin-top: 2rem;
-    border: 2px inset cadetblue;
+    grid-row: 1 /10;
     width: 95%;
     height: 20rem;
+    border: 2px inset cadetblue;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   #finalScore{
-    margin: 3rem 0 19rem;
+    position: relative; /*to place award at the right bottom inside finalScore using position absotute; */
+    grid-row: 12 / 16;
     background-color: #25edb5;
     box-shadow: 5px -5px 5px 0px #9bed14;
     border-color: rgb(1,33,105);
@@ -30,11 +30,14 @@
   div#finalScore h1 {
     font-family: 'Press Start 2P', cursive;
     font-size: 1.8rem;
-    color: rgb(4 52 99);
+    color: rgb(4, 52, 99);
     line-height: 4rem;
   }
   
   #award {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
     width: 10vh;
     height: 10vh;
     align-self: flex-end;
@@ -63,7 +66,7 @@ h1#queenSentence{
 @media (min-width: 375px) and (min-height: 812px) {
 
   #finalScore {
-    margin: 8rem 0 30rem;
+    grid-row: 10 / 16;
     width: 32rem;
     height: 16rem;
   }
@@ -87,13 +90,14 @@ h1#queenSentence{
 @media (min-width: 768px) and (min-height: 1024px){
 
   #queen {
+    grid-row: 5 /10;
     height: 50rem;
   }
 
   #finalScore {
-    margin: 4rem 0 25rem;
     width: 40rem;
     height: 18rem;
+    grid-row: 16 ;
   }
 
   div#finalScore h1 {
@@ -122,29 +126,30 @@ h1#queenSentence{
   }
 
   #queen {
-    width: 65%;
-    height: 50rem;
+    width: 55%;
+    height: 40rem;
+    grid-row: 2;
   }
 
   #finalScore {
-    margin: 17rem 1rem 0 0;
-    width: 42rem;
-    height: 20rem;
+    grid-row: 15;
+    width: 40rem;
+    height: 16rem;
   }
   div#finalScore h1 {
-    font-size: 3rem;
-    line-height: 7rem;
+    font-size: 2.5rem;
+    line-height: 5rem;
   }
 
   #award {
-    width: 12vh;
-    height: 12vh;
+    width: 10vh;
+    height: 10vh;
   }
 
   h1#queenSentence {
-    font-size: 3rem;
-    line-height: 7rem;
-    padding: 5rem 2rem;
+    font-size: 2.5rem;
+    line-height: 5rem;
+    padding: 3rem 2rem;
   }
 }
 
@@ -160,13 +165,6 @@ h1#queenSentence{
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 @media (min-width: 1440px) and (min-height: 900px){
 
-  #queen {
-    height: 58rem;
-  }
-
-  #finalScore {
-    margin: 23rem 4rem 0 0;
-  }
 }
 
 
@@ -182,14 +180,14 @@ h1#queenSentence{
 @media (min-width: 2560px) and (min-height: 1200px){
 
   #queen {
-    height: 90rem;
-    width: 60%;
+    height: 70rem;
+    width: 45%;
   }
 
   #finalScore {
-    margin: 35rem 20rem 0 0;
+    grid-row: 14;
     width: 60rem;
-    height: 35rem;
+    height: 30rem;
   }
 
   div#finalScore h1 {
@@ -198,9 +196,9 @@ h1#queenSentence{
   }
 
   h1#queenSentence {
-    font-size: 7rem;
-    line-height: 12rem;
-    padding: 14rem 10rem;
+    font-size: 6rem;
+    line-height: 10rem;
+    padding: 8rem 5rem;
   }
 }
 

@@ -82,7 +82,7 @@ getNewQuestion = () => {
     localStorage.setItem('totalPoints', score);
     goToResultFlag = true;	
     //* go to the end page	
-    setTimeout(() => {window.location.assign("/results.html")}, 2000);	
+    setTimeout(() => {window.location.assign("results.html")}, 2000);	
   } else {
     startTime = new Date();
     questionCounter++;
