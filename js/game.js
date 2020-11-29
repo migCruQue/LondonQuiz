@@ -159,7 +159,9 @@ choices.forEach(choice => {
 
 
   //* check if dbQuestions has been fully populated every 500ms. When it has been fully populated it launchs startGame(). 
-  let nIntervId = setInterval(() => {
-    if(dbQuestions.length === AMOUNT_QUESTIONS_QUIZ){startGame()}
-  },
-  500);
+  // let nIntervId = setInterval(() => {
+  //   if(dbQuestions.length === AMOUNT_QUESTIONS_QUIZ){startGame()}
+  // },
+  // 500);
+
+  setTimeout(() => {startGame()}, 1250);
