@@ -115,10 +115,10 @@ h1#queenSentence{
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MEDIA QUERY MIN-WIDTH: 1280PX AND MIN-HEIGHT: 800PX <<<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MEDIA QUERY MIN-WIDTH: 1280PX AND MIN-HEIGHT: 600PX <<<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-@media (min-width: 1280px) and (min-height: 800px){
+@media (min-width: 1280px) and (min-height: 600px){
 
   #queenDiv {
     flex-direction: row-reverse;
@@ -126,15 +126,15 @@ h1#queenSentence{
   }
 
   #queen {
-    width: 55%;
-    height: 40rem;
+    width: 40%;
+    height: 30rem;
     grid-row: 2;
   }
 
   #finalScore {
-    grid-row: 15;
+    grid-row: 14;
     width: 40rem;
-    height: 16rem;
+    height: 14rem;
   }
   div#finalScore h1 {
     font-size: 2.5rem;
@@ -149,13 +149,13 @@ h1#queenSentence{
   h1#queenSentence {
     font-size: 2.5rem;
     line-height: 5rem;
-    padding: 3rem 2rem;
+    padding: 2rem;
   }
 }
 
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 1280PX AND MIN-HEIGHT: 800PX <<<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 1280PX AND MIN-HEIGHT: 600PX <<<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
 

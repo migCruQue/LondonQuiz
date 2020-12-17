@@ -56,7 +56,7 @@ let dbQuestions = [];
 
 
 // * constants
-const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_QUIZ = 3;
 const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 
