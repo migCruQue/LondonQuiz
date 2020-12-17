@@ -2,7 +2,13 @@
 
 //* SET THE BODY HEIGHT TO THE Window.HEIGHT
 const body = document.querySelector('body');
-body.style.height = window.innerHeight;
+body.style.height = `${window.innerHeight}px`;
+
+const wH = document.querySelector('#wH');
+wH.textContent = `${window.innerWidth}px Width, ${window.innerHeight}px Height`;
+wH.style.fontSize = '30px';
+wH.style.color = 'red';
+wH.style.backgroundColor = 'white';
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
