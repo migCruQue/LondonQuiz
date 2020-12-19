@@ -4,11 +4,11 @@
 const body = document.querySelector('body');
 body.style.height = `${window.innerHeight}px`;
 
-const wH = document.querySelector('#wH');
-wH.textContent = `${window.innerWidth}px Width, ${window.innerHeight}px Height`;
-wH.style.fontSize = '30px';
-wH.style.color = 'red';
-wH.style.backgroundColor = 'white';
+// const wH = document.querySelector('#wH');
+// wH.textContent = `${window.innerWidth}px Width, ${window.innerHeight}px Height`;
+// wH.style.fontSize = '30px';
+// wH.style.color = 'red';
+// wH.style.backgroundColor = 'white';
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -29,7 +29,7 @@ startBTN.addEventListener('click', () => {
 //* Assigning HTML element to variables 
 const question = document.getElementById('question');
 const ordinal = document.getElementById('ordinal');
-const pictureQuestion = document.getElementById('pictureQuestion')
+const imgQuestion = document.getElementById('imgQuestion')
 const choices = Array.from(document.getElementsByClassName('answerOption'));
 const quizContainer = document.getElementById('quizContainer');
 const loading = document.getElementById('loading');
@@ -56,7 +56,7 @@ let dbQuestions = [];
 
 
 // * constants
-const AMOUNT_QUESTIONS_QUIZ = 3;
+const AMOUNT_QUESTIONS_QUIZ = 10;
 const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 
@@ -143,7 +143,7 @@ function getImageQuestion (currentQuestion) {
   let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
 
   gsReference.getDownloadURL()
-  .then(function(url) {pictureQuestion.setAttribute('src', `${url}`);})
+  .then(function(url) {imgQuestion.setAttribute('src', `${url}`);})
   .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
 }
 

@@ -20,11 +20,17 @@
 
 
 
-#pictureQuestion {
+#divImage {
   grid-row: 5;
   border: 2px double oldlace;
-  width: 95%;
-  height: 20rem;
+  width: 31em;
+  height: 20em;
+  object-fit: cover;
+}
+
+#imgQuestion {
+  height: 100%;
+  width: 100%;
 }
 
 
@@ -195,10 +201,9 @@
 @media (min-width: 375px) and (min-height: 812px) {
     
   /* QUIZCONTAINER DIV  */
-    #pictureQuestion {  
-      top: -4rem;
-      height: 22rem;
-      margin-bottom: 0;
+    #divImage {  
+      width: 35rem;
+      height: 27rem
     }
 
     #question {
@@ -240,9 +245,10 @@
 
 @media (min-width: 768px) and (min-height: 1024px){
    /* QUIZCONTAINER DIV  */
-   #pictureQuestion { 
+   #divImage { 
     grid-row: 2 / 12;
-    height: 48rem;
+    height: 45rem;
+    width: 70rem;
   }
 
   #question {
@@ -282,9 +288,9 @@
 
 @media (min-width: 1280px) and (min-height: 600px){
   /* QUIZCONTAINER DIV  */
-  #pictureQuestion {
-    width: 50%;
-    height: 32rem;
+  #divImage {
+    width: 55rem;
+    height: 38rem;
     grid-row: 3 / 12;
   }
 
@@ -361,7 +367,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 2300px) {    
   
-  #pictureQuestion {
+  #divImage {
     width: 60%;
     height: 70rem;
   }
