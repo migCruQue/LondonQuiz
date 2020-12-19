@@ -9,6 +9,8 @@ body.style.height = `${window.innerHeight}px`;
 // wH.style.color = 'red';
 // wH.style.backgroundColor = 'white';
 
+let hola = 'hola';
+
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Varibles from startDiv
