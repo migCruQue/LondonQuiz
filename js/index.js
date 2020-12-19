@@ -1,21 +1,26 @@
 
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 //* SET THE BODY HEIGHT TO THE Window.HEIGHT
-const body = document.querySelector('body');
-body.style.height = `${window.innerHeight}px`;
-
-// const wH = document.querySelector('#wH');
-// wH.textContent = `${window.innerWidth}px Width, ${window.innerHeight}px Height`;
-// wH.style.fontSize = '30px';
-// wH.style.color = 'red';
-// wH.style.backgroundColor = 'white';
-
-let hola = 'hola';
+// const body = document.querySelector('body');
+// body.style.height = `${window.innerHeight}px`;
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Varibles from startDiv
 const startBTN = document.querySelector('#startBTN');
 const startDiv = document.querySelector('#startDiv');
+
+// const wH = document.querySelector('#wH');
+// $(document).height();
+// wH.textContent = ` window ${window.innerWidth}px Width, ${window.innerHeight}px Height || 
+// body ${body.style.width}px Width, ${body.style.height}px Height || startDiv ${startDiv.style.width}px Width, ${startDiv.style.height}px Height`;
+// wH.style.fontSize = '20px';
+// wH.style.color = 'red';
+// wH.style.backgroundColor = 'white';
 
 //Event Listener in the start button to start the game
 startBTN.addEventListener('click', () => {

@@ -1,23 +1,9 @@
-
-/* hola */
-html {
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  background: #99f; /* Safari for iOS and Opera for Android in fullscreen mode?!?! */
-}
-
 body {
-  padding: 0;
-  margin: 0;
-  color: #000;
-  width: 100%; /* I was desperate! This was a wild guess... And worked! */
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  background: #99f;
+  height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  margin: 0 auto;
 }
+
 
 :root {
     background-color: #ecf5ff;
