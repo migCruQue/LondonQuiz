@@ -282,7 +282,7 @@ let mobileOffset;
         mobileOffset = test.offset;
         wH.textContent = `${test.offset}`;
         wH.style.fontSize = '20px';
-        wH.style.color = 'red';
+        wH.style.color = 'green';
         wH.style.backgroundColor = 'white';
 }());
 
@@ -291,5 +291,6 @@ if(mobileOffset ==! 0){
   let optionalHeader = document.querySelector('#optionalHeader');
   optionalHeader.height = `${mobileOffset}px`;
   optionalHeader.classList.remove('hidden'); 
+  wH.textContent += ' header done';
 }
 
