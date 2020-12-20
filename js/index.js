@@ -273,10 +273,13 @@ const queenDiv = document.querySelector('#queenDiv');
 setTimeout(() => {startGame()}, 500);
 
 
+let mobileOffset;
+
 (function () {
         // initialize the test
         const test = vhCheck();
         const wH = document.querySelector('#wH');
+        mobileOffset = test.offset;
         wH.textContent = `${test.offset}`;
         wH.style.fontSize = '20px';
         wH.style.color = 'red';
@@ -284,5 +287,9 @@ setTimeout(() => {startGame()}, 500);
 }());
 
 
-
+if(mobileOffset ==! 0){
+  let optionalHeader = document.querySelector('#optionalHeader');
+  optionalHeader.height = `${mobileOffset}px`;
+  optionalHeader.classList.remove('hidden'); 
+}
 
