@@ -1,11 +1,8 @@
 body {
-  min-height: 100vh;
-  /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: -webkit-fill-available;
+  height: 100vh;
+  /* If you need to support browser without CSS var support (<= IE11) */
+  height: calc(100vh - var(--vh-offset, 0px));
+  /* enable vh fix */
 }
 
 

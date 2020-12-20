@@ -9,13 +9,6 @@
 const startBTN = document.querySelector('#startBTN');
 const startDiv = document.querySelector('#startDiv');
 
-// const wH = document.querySelector('#wH');
-// $(document).height();
-// wH.textContent = ` window ${window.innerWidth}px Width, ${window.innerHeight}px Height || 
-// body ${body.style.width}px Width, ${body.style.height}px Height || startDiv ${startDiv.style.width}px Width, ${startDiv.style.height}px Height`;
-// wH.style.fontSize = '20px';
-// wH.style.color = 'red';
-// wH.style.backgroundColor = 'white';
 
 //Event Listener in the start button to start the game
 startBTN.addEventListener('click', () => {
@@ -278,3 +271,18 @@ const queenDiv = document.querySelector('#queenDiv');
 
 // * Start the game.
 setTimeout(() => {startGame()}, 500);
+
+
+(function () {
+        // initialize the test
+        const test = vhCheck();
+        const wH = document.querySelector('#wH');
+        wH.textContent = `${test.offset}`;
+        wH.style.fontSize = '20px';
+        wH.style.color = 'red';
+        wH.style.backgroundColor = 'white';
+}());
+
+
+
+
