@@ -23,7 +23,7 @@
   </head>
 
   <body id="body">
-            <div id="optionalHeader"><h1>Header</h1></div>
+            
             <!-- Start Div intro -->
                   <div id="startDiv" class="container grid">
                     <p id="wH"></p>
@@ -32,8 +32,11 @@
                   </div>
             <!-- Start Div intro -->
             <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
-                  <div id="quizContainer" class="hidden container grid">
+                  <div id="quizContainer" class="hidden container flex">
                         
+                         <!-- header to fit the main content in mobile browsers -->
+                         <div id="header_div" class="mobile_cover"><img src="../img/phone_header_footer/london_sky_line.png" alt="london skyline"></div>
+
                          <div id="divImage"><img id="imgQuestion"></div>
 
                           <h1 id="question"></h1>
@@ -47,7 +50,9 @@
                             
                            <button type="button" class="answerOption" data-number="3"></button>
                           </div>
-
+                          
+                          <!-- footer to fit the main content in mobile browsers -->
+                          <div id="footer_div" class="mobile_cover"><img src="../img/phone_header_footer/london_sky_line.png" alt="london skyline"></div>
                   </div>
             <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
 
@@ -97,9 +102,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>	
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>	
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->           
-    
-    <!-- vh-check, Check the if  Some mobile browsers compute the vh CSS unit without taking care of the url bar -->
-    <script src="https://unpkg.com/vh-check/dist/vh-check.min.js"></script>
 
     <!-- MAIN JS SCRIPT -->
     <script src="js/index.js"></script>

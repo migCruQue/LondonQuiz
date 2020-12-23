@@ -1,6 +1,5 @@
 
 #startDiv {
-    height: calc(var(--vh, 1vh) * 100);
     background-image: url('../img/london_map2.jpg');
     background-size: cover;
     grid-template-rows: repeat(12, minmax(0,1fr));

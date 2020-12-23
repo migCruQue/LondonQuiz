@@ -2,28 +2,42 @@
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #quizContainer {
-  height: calc(var(--vh, 1vh) * 100);
-  grid-template-rows: repeat(24, minmax(0, 1fr));
+  /* grid-template-rows: repeat(24, minmax(0, 1fr)); */
+  flex-direction: column;
   padding: 0;
   background-color: powderblue;
   font-family: 'Montserrat', sans-serif;
-  background-color: powderblue;
-  background: linear-gradient(to left top, blue, white, red);
+  background-color: deepskyblue;
 }
 
+.mobile_cover {
+  position: fixed;
+  bottom: 0;
+  height: 8%;
+  background-color: deepskyblue;
+}
 
+#header_div { top: 0}
+#footer_div {bottom: 0}
+.mobile_cover img {
+  transform: scale(0.5);
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 
 #divImage {
-  grid-row: 5;
+  margin-top: 2rem;
   border: 2px double oldlace;
-  width: 31em;
-  height: 20em;
+  width: 28em;
+  height: 16em;
   object-fit: cover;
 }
 
 #imgQuestion {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 
@@ -39,7 +53,7 @@
 
 
 #score-bar{
-  grid-row: 10;
+  /* grid-row: 10; */
   animation: shrink_bar 10s linear forwards;
   justify-self: start;
   margin-left: 0.7em;
@@ -55,7 +69,7 @@
 
 
 #question{
-  grid-row: 12;
+  /* grid-row: 12; */
   color: #042b4c;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -73,7 +87,7 @@
 }
 
 .answers {
-  grid-row: 19;
+  margin: 2em 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,21 +96,20 @@
 
 .answerOption {
   color: rgb(229,231,233);
-  background-color: steelblue;
+  background-color: #0b81e4;
   font-family: inherit;
-  font-weight: 800;
   text-align: center;
   vertical-align: middle;
   padding: .75rem .75rem;
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   border-radius: .50rem;
   width: 26rem;
-  height: 5rem;
+  height: 4rem;
 }
 
 .answerOption:nth-child(1),
 .answerOption:nth-child(2){
-  margin-bottom: 3rem;
+  margin-bottom: 2.3rem;
 }
 
 

@@ -1,11 +1,11 @@
 
 //* SET THE BODY HEIGHT TO THE Window.HEIGHT
-// const body = document.querySelector('body');
-// body.style.height = `${window.innerHeight}px`;
+const body = document.querySelector('body');
+body.style.height = `${window.innerHeight}px`;
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Varibles from startDiv
+// Variables from startDiv
 const startBTN = document.querySelector('#startBTN');
 const startDiv = document.querySelector('#startDiv');
 
@@ -273,24 +273,4 @@ const queenDiv = document.querySelector('#queenDiv');
 setTimeout(() => {startGame()}, 500);
 
 
-let mobileOffset;
-
-(function () {
-        // initialize the test
-        const test = vhCheck();
-        const wH = document.querySelector('#wH');
-        mobileOffset = test.offset;
-        wH.textContent = `${test.offset}`;
-        wH.style.fontSize = '20px';
-        wH.style.color = 'green';
-        wH.style.backgroundColor = 'white';
-}());
-
-
-if(mobileOffset ==! 0){
-  let optionalHeader = document.querySelector('#optionalHeader');
-  optionalHeader.height = `${mobileOffset}px`;
-  optionalHeader.classList.remove('hidden'); 
-  wH.textContent += ' header done';
-}
 

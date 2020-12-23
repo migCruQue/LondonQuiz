@@ -1,10 +1,3 @@
-body {
-  height: 100vh;
-  /* If you need to support browser without CSS var support (<= IE11) */
-  height: calc(100vh - var(--vh-offset, 0px));
-  /* enable vh fix */
-}
-
 
 :root {
     background-color: #ecf5ff;
@@ -18,10 +11,6 @@ body {
     color: #333;
   }
 
-  #optionalHeader {
-    height: 74px;
-  }
-  
   /* * UTILITIES */
   
   .container {
@@ -62,4 +51,9 @@ body {
   
   .hidden{
      display: none;
+  }
+
+  .phone_header_footer{
+    width: 100%;
+    height: 20%;
   }
