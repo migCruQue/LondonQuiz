@@ -11,9 +11,9 @@
 }
 
 .mobile_cover {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
-  height: 8%;
+  height: 20%;
   background-color: deepskyblue;
 }
 
