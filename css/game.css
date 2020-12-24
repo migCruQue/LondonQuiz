@@ -19,12 +19,13 @@
 
 #header_div { top: 0}
 #footer_div {bottom: 0}
+
 .mobile_cover img {
-  transform: scale(0.5);
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
+
 
 #divImage {
   margin-top: 2rem;
