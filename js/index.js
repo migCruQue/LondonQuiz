@@ -23,7 +23,8 @@ startBTN.addEventListener('click', () => {
 //* Assigning HTML element to variables 
 const question = document.getElementById('question');
 const ordinal = document.getElementById('ordinal');
-const imgQuestion = document.getElementById('imgQuestion')
+const imgQuestion = document.getElementById('imgQuestion');
+const footer_img = document.getElementById('footer_img');
 const choices = Array.from(document.getElementsByClassName('answerOption'));
 const quizContainer = document.getElementById('quizContainer');
 const loading = document.getElementById('loading');
@@ -137,7 +138,10 @@ function getImageQuestion (currentQuestion) {
   let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
 
   gsReference.getDownloadURL()
-  .then(function(url) {imgQuestion.setAttribute('src', `${url}`);})
+  .then(function(url) {
+    imgQuestion.setAttribute('src', `${url}`);
+    footer_img.setAttribute('src', `${url}`);                      
+  })
   .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
 }
 
