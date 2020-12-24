@@ -11,16 +11,13 @@
 }
 
 .mobile_cover {
-  /* position: fixed; */
   bottom: 0;
-  height: 20%;
+  height: 12%;
   background-color: deepskyblue;
 }
 
-#header_div { top: 0}
-#footer_div {bottom: 0}
-
 .mobile_cover img {
+  transform: scale(0.6);
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -97,7 +94,7 @@
 
 .answerOption {
   color: rgb(229,231,233);
-  background-color: #0b81e4;
+  background-color: #f74954;
   font-family: inherit;
   text-align: center;
   vertical-align: middle;
