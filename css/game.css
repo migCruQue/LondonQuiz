@@ -2,16 +2,14 @@
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV QUIZ CONTAINER   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #quizContainer {
-  /* grid-template-rows: repeat(24, minmax(0, 1fr)); */
   flex-direction: column;
-  padding: 3rem 0 2rem 0;
+  padding: 0 0 3rem 0;
   background-color: powderblue;
   font-family: 'Montserrat', sans-serif;
   background-color: deepskyblue;
 }
 
 #divImage {
-  margin-top: 2rem;
   border: 2px double oldlace;
   width: 28em;
   height: 16em;
@@ -37,10 +35,9 @@
 
 
 #score-bar{
-  /* grid-row: 10; */
   animation: shrink_bar 10s linear forwards;
-  justify-self: start;
-  margin-left: 0.7em;
+  align-self: start;
+  margin: 1rem 1rem;
   background: orange;
   width: 85%;
   height: 1.7rem;
@@ -53,11 +50,10 @@
 
 
 #question{
-  /* grid-row: 12; */
   color: #042b4c;
   font-size: 1.5rem;
   line-height: 2rem;
-  margin: 0.5rem 0.3rem;
+  margin: 1.5rem 0.3rem;
   text-align: center;
   padding: 0.8rem;
 }
