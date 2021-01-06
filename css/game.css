@@ -4,23 +4,26 @@
 #quizContainer {
   /* grid-template-rows: repeat(24, minmax(0, 1fr)); */
   flex-direction: column;
-  padding: 0;
+  padding: 30rem 0;
   background-color: powderblue;
   font-family: 'Montserrat', sans-serif;
   background-color: deepskyblue;
 }
 
-.mobile_cover {
+#header_div {
   height: 12%;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  background-image: url("../img/phone_header_footer/london_Bridge_silhouette.jpg");
   /* background-color: deepskyblue; */
 }
 
-.mobile_cover img {
+/* .mobile_cover img {
   transform: scale(0.6);
   height: 100%;
   width: 100%;
   object-fit: cover;
-}
+} */
 
 
 #divImage {
