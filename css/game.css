@@ -38,7 +38,7 @@
   animation: shrink_bar 10s linear forwards;
   align-self: start;
   margin: 1rem 1rem;
-  background: orange;
+  background: rgb(255, 0, 0);
   width: 85%;
   height: 1.7rem;
   border-radius: 8px;
@@ -53,7 +53,7 @@
   color: #042b4c;
   font-size: 1.5rem;
   line-height: 2rem;
-  margin: 1.5rem 0.3rem;
+  margin: 1rem 0.3rem;
   text-align: center;
   padding: 0.8rem;
 }
@@ -67,9 +67,10 @@
 }
 
 .answers {
-  margin: 2em 0;
+  height: 30%;
+  margin: 1em 0 2em 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
 }
@@ -85,11 +86,6 @@
   border-radius: .50rem;
   width: 26rem;
   height: 4rem;
-}
-
-.answerOption:nth-child(1),
-.answerOption:nth-child(2){
-  margin-bottom: 2.3rem;
 }
 
 
@@ -129,7 +125,7 @@
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX      DIV CHECK ANSWERS   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
 #checkAnswer {
-  grid-template-rows: repeat(12, minmax(0,1fr));
+  flex-direction: column;
 }
 
 #checkAnswer.wrong {
@@ -150,16 +146,13 @@
 
 
 #emoji{
-  grid-row: 2 / 8;
   animation: emojiAnimation 0.3s;
-  display: block;
   text-align: center;
   font-size: 25rem;
 }
 
 
 #score{
-  grid-row: 9 / 11;
   background-color: crimson;
   box-shadow: -5px 5px -5px 0px #444823;
   border-radius: .50rem;
@@ -184,20 +177,58 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 @media (orientation: landscape) {
+
+  /* quizContainer div */
+
+  #quizContainer {
+   padding: 0;   /*  REMOVE THE BOTTOM PADDING FOR MOBILE BROWSER */
+  }
+
+  #divImage {
+    width: 26em;
+    height: 15em;
+    margin-top: 0.7rem;
+  }
+
+  #question {
+    margin: 1.5rem 0.3rem 0.5rem 0.3rem;
+    font-size: 1.3rem;
+  }
+
+  #score-bar {
+    margin: 0 0 0 2rem;
+  }
   
   .answers{
     flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+    margin: 0.8rem 0 2rem 0;
   }
 
-    .answerOption:nth-child(1), .answerOption:nth-child(2) {
-      margin-right: 2rem;
-    }
 
   .answerOption {
-      font-size: 1.5rem;
-      width: 16rem;
-      height: 5rem;
+      font-size: 1.3rem;
+      width: 17rem;
+      height: 4.5rem;
     }
+
+  /* checkAnswer div */
+
+  #checkAnswer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #emoji {
+    font-size: 20rem;
+    width: 30%;
+  }
+
+  #score {
+    font-size: 2.8rem;
+    width: 23rem;
+  }
 
 }
 
@@ -258,7 +289,6 @@
 @media (min-width: 768px) and (min-height: 1024px){
    /* QUIZCONTAINER DIV  */
    #divImage { 
-    grid-row: 2 / 12;
     height: 45rem;
     width: 70rem;
   }
@@ -266,14 +296,6 @@
   #question {
     grid-row: 15;
     font-size: 2.6rem;
-  }
-
-  #score-bar {
-    grid-row: 13;
-  }
-
-  .answers {
-    grid-row: 20;
   }
 
 
@@ -294,6 +316,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
+
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MEDIA QUERY MIN-WIDTH: 1280PX AND MIN-HEIGHT: 600PX <<<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -303,23 +326,19 @@
   #divImage {
     width: 55rem;
     height: 38rem;
-    grid-row: 3 / 12;
   }
 
   #question {
-    grid-row: 16;
     line-height: 4rem;
     font-size: 3rem;
     padding: 0.5rem 0.85rem;
   }
 
   #score-bar {
-    grid-row: 14;
     margin-left: 3.7em;
   }
 
   .answers{
-    grid-row: 21;
     flex-direction: row;
   }
 

@@ -1,7 +1,7 @@
 
 //* SET THE BODY HEIGHT TO THE Window.HEIGHT
-const body = document.querySelector('body');
-body.style.height = `${window.innerHeight}px`;
+// const body = document.querySelector('body');
+// body.style.height = `${window.innerHeight}px`;
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
