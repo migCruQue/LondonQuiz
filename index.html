@@ -13,10 +13,11 @@
     
 
     <!-- CSS MAIN LINK -->
-    <link rel="stylesheet" href="css/standard.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/game.css">
-    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/startDiv.css">
+    <link rel="stylesheet" href="css/quizContainer.css">
+    <link rel="stylesheet" href="css/checkAnswer.css">
+    <link rel="stylesheet" href="css/queenDiv.css">
 
 
 
@@ -25,8 +26,7 @@
   <body id="body">
             
             <!-- Start Div intro -->
-                  <div id="startDiv" class="container grid">
-                    <p id="wH"></p>
+                  <div id="startDiv" class="container flex">
                     <h1 id="title">LONDON+QUIZ </h1>
                     <button type="button" class="text-center" id="startBTN">START</button>
                   </div>
@@ -54,7 +54,7 @@
             <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
                   <div id="checkAnswer" class="hidden container flex">
                           <p  id="emoji"></p>
-                          <p id="score" class=" container text-center"></p>
+                          <p id="score" class="container text-center"></p>
                   </div>
             <!-- /DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
 
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     
-                    <h1 class="text-center" id="queenSentence"></h1>
+                    <h1 class="text-center flex" id="queenSentence"></h1>
                   
                   </div>
             <!-- DISPLAY RESULTS DIV -->
