@@ -5,16 +5,11 @@
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Variables from startDiv
-const startBTN = document.querySelector('#startBTN');
-const startDiv = document.querySelector('#startDiv');
 
-
-//Event Listener in the start button to start the game
-startBTN.addEventListener('click', () => {
-    startDiv.classList.add('hidden');
-    quizContainer.classList.remove('hidden');
-});
+$('#startBTN').on('click', function() {          // * jQuery Event handler to the Start button to start the game
+    $('#startDiv').addClass('hidden');
+    $('#quizContainer').removeClass('hidden');
+  });
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -24,13 +19,14 @@ startBTN.addEventListener('click', () => {
 const question = document.getElementById('question');
 const ordinal = document.getElementById('ordinal');
 const imgQuestion = document.getElementById('imgQuestion');
-const footer_img = document.getElementById('footer_img');
-const choices = Array.from(document.getElementsByClassName('answerOption'));
-const quizContainer = document.getElementById('quizContainer');
 const loading = document.getElementById('loading');
-const checkAnswer = document.getElementById('checkAnswer');
+const $choices = $('.answerOption');                                               //*  jQuery variable
+const $quizContainer = $('#quizContainer');                                        //*  jQuery variable
+const $queenDiv = $('#queenDiv');                                                  //*  jQuery variable
+const $checkAnswer = $('#checkAnswer');                                            //*  jQuery variable
 const scoreText = document.getElementById('score');
 const emoji = document.getElementById('emoji');
+
 
 
 // * variables
@@ -115,10 +111,12 @@ getNewQuestion = () => {
     // * Set the question and the possible answers
     question.innerHTML = `<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`;
     
-    choices.forEach( choice => {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion["option" + number];  
+
+    $choices.each( function () {                             //* jQuery method each goes throught each .answerOption ($choices) element
+      const number = this.dataset['number'];                 //* getting its data-number attr and with that gets the currentQuestion.
+      $(this).text(currentQuestion["option" + number]);  
     });
+
 
     getImageQuestion(currentQuestion);
 
@@ -150,19 +148,16 @@ function calculateScore(){
 }
 
 //! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
-choices.forEach(choice => {
-  choice.addEventListener("click", e => {
+  $choices.on("click", e => {
       if(!acceptingAnswers) return;
       acceptingAnswers = false;
       const selectedOption = e.target.innerText;
       if(selectedOption == currentQuestion.correct){
         score += calculateScore();
-        checkAnswer.classList.remove('wrong');
-        checkAnswer.classList.add('correct');
+        $checkAnswer.removeClass('wrong').addClass('correct');
         emoji.innerText = '💂'; 
       } else {
-        checkAnswer.classList.remove('correct');
-        checkAnswer.classList.add('wrong');
+        $checkAnswer.removeClass('correct').addClass('wrong');
         emoji.innerText =  '💩';
       }
       scoreText.innerText = `${score} points`; 
@@ -182,30 +177,30 @@ choices.forEach(choice => {
           
         } , 2000);
 
-  });
 });
+
 
 //* to hide the quizDiv and show the checkAnswer div using the HIDDEN class
 function hideQuizdisplayCheck() {
-  checkAnswer.classList.remove('hidden'); 
-  quizContainer.classList.add('hidden'); 
+  $checkAnswer.removeClass('hidden'); 
+  $quizContainer.addClass('hidden'); 
 }
 
 //* to hide the checkAnswer and show the quizDiv div using the HIDDEN class
 function hideCheckdisplayQuiz() {
-  quizContainer.classList.remove('hidden'); 
-  checkAnswer.classList.add('hidden'); 
+  $quizContainer.removeClass('hidden'); 
+  $checkAnswer.addClass('hidden'); 
 }
 
 //* to hide the checkAnswer and show the queenDiv div using the HIDDEN class
 function hideCheckdisplayQueen() {
-  queenDiv.classList.remove('hidden'); 
-  checkAnswer.classList.add('hidden'); 
+  $queenDiv.removeClass('hidden'); 
+  $checkAnswer.addClass('hidden'); 
 }
 
 //* to hide the queenDiv and go back to the begginning showing the startDiv div using the HIDDEN class
 function hideQueendisplayStart() {
-  queenDiv.classList.add('hidden'); 
+  $queenDiv.addClass('hidden'); 
   startDiv.classList.remove('hidden'); 
 }
 
@@ -244,9 +239,6 @@ function calculateCategory(){
         else if (totalPoints >= 30000){return 1;}
         return 0;
   } 
-
-// DIV id="queenDiv"
-const $queenDiv = $('#queenDiv');  
   
 // * build the result div
 function buildResultDiv(){    
@@ -260,15 +252,6 @@ function buildResultDiv(){
     $queenDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
 }
 
-
-// DIV SHOW RESULTS id="queenDiv"
-const queenDiv = document.querySelector('#queenDiv');
-
-// buildResultDiv();
-
-
-
-// * DISPLAY RESULTS DIV  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // * Start the game.
 setTimeout(() => {startGame()}, 500);
