@@ -23,7 +23,7 @@
 
 
 
-/*  CSS ANIMATION THAT MAKES THE BACKGROUND PIC OPACITY GROWS */
+/*  CSS ANIMATION THAT MAKES SCORE BAR SHRINKS  */
 @keyframes shrink_bar{
   100%{
     background: red;
@@ -96,15 +96,15 @@
   animation-fill-mode: backwards;
 }
 
-.answerOption[data-id="a"] {
+.answerOption[data-number="1"] {
   animation-delay: .25s;
 }
 
-.answerOption[data-id="b"]  {
+.answerOption[data-number="2"]  {
   animation-delay: 0.5s;
 }
 
-.answerOption[data-id="c"]  {
+.answerOption[data-number="3"]  {
   animation-delay: 0.75s;
 }
 

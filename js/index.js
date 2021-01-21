@@ -16,10 +16,8 @@ $('#startBTN').on('click', function() {          // * jQuery Event handler to th
 
 // ! MAIN FUNCTIONAL GAME || DIV QUIZCONTAINER & DIV CHECKANSWER ////////////////////////////////////////////////////////////////
 //* Assigning HTML element to variables 
-const question = document.getElementById('question');
-const ordinal = document.getElementById('ordinal');
-const imgQuestion = document.getElementById('imgQuestion');
-const loading = document.getElementById('loading');
+const $question = $('#question');                                                  //*  jQuery variable
+const $imgQuestion = $('#imgQuestion');                                            //*  jQuery variable
 const $choices = $('.answerOption');                                               //*  jQuery variable
 const $quizContainer = $('#quizContainer');                                        //*  jQuery variable
 const $queenDiv = $('#queenDiv');                                                  //*  jQuery variable
@@ -108,10 +106,9 @@ getNewQuestion = () => {
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
 
-    // * Set the question and the possible answers
-    question.innerHTML = `<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`;
+    // * jQuery method to set up the html element div question and a span for the number of question inside it. 
+    $question.html(`<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`);
     
-
     $choices.each( function () {                             //* jQuery method each goes throught each .answerOption ($choices) element
       const number = this.dataset['number'];                 //* getting its data-number attr and with that gets the currentQuestion.
       $(this).text(currentQuestion["option" + number]);  
@@ -120,9 +117,7 @@ getNewQuestion = () => {
 
     getImageQuestion(currentQuestion);
 
-
-    availableQuestions.splice(questionIndex, 1);
-    
+    availableQuestions.splice(questionIndex, 1);    
     acceptingAnswers = true;  
   }
 
@@ -136,7 +131,7 @@ function getImageQuestion (currentQuestion) {
   let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
 
   gsReference.getDownloadURL()
-  .then(function(url) {imgQuestion.setAttribute('src', `${url}`)})
+  .then(function(url) {$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})
   .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
 }
 
