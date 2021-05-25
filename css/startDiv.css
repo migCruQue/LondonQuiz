@@ -1,90 +1,139 @@
-
 #startDiv {
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-image: url('../img/london_map2.jpg');
-    background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-image: url("../img/presentation/presentation_phone_bg.jpg");
+  background-size: cover;
 }
-  
-  #title{
-    background: linear-gradient(#03A9F4, transparent 132%);
-    font-size: 3rem;
-    font-family: 'Rye', cursive;
-    color: #f8f9fa;
-    padding: 20px 10px;
-    border-radius: 5%;
-    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
-    text-align: center;
-  }
-  
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  width: 80%;
+  height: 35%;
+  background: center/100% no-repeat
+      url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+    linear-gradient(#03a9f4, transparent 132%);
+  border-radius: 5%;
+}
+
+.title {
+  position: absolute;
+  font-size: 3.5rem;
+  font-family: "Rye", cursive;
+  color: #f8f9fa;
+  filter: drop-shadow(-5px 5px 5px rgba(252, 40, 3));
+  text-align: center;
+}
+
+.title:nth-child(1) {
+  top: 10%;
+  letter-spacing: 8px;
+}
+
+.title:nth-child(2) {
+  bottom: 5%;
+  letter-spacing: 20px;
+}
+
 #startBTN {
-      padding: 42px 0;
-      width: 12rem;
-      height: 12rem;
+  position: absolute;
+  top: 65%;
+  padding: 42px 0;
+  width: 12rem;
+  height: 12rem;
 
-      /* button special settings */
-      background-color: rgb(114, 12, 148);
-      /* background-color: #ff22d8; */
-      -webkit-box-shadow: 0 4px 6px 1px rgba(0,0,0,0.3), 0 -2px 1px 1px rgba(0,0,0,0.1) inset, 0 2px 1px 1px rgba(255,255,255,0.2) inset;
-              box-shadow: 0 4px 6px 1px rgba(0,0,0,0.3), 0 -2px 1px 1px rgba(0,0,0,0.1) inset, 0 2px 1px 1px rgba(255,255,255,0.2) inset;
-      border: none;
-      border-radius: 50%;
-      color: #03A9F4;
-      font: normal 2.5rem sans-serif;
-      line-height: 1.5;
-      text-align: center;
-      text-decoration: none;
-      /* button special settings */
-  }
-  
-  @keyframes flash {
-    0% {
-      box-shadow: 0 0 10px 10px #0e9c76,
-                  0 0 30px 30px #0e9c76 inset;
-    }
-  }
-  
-  #startBTN {
-    animation: flash 2s infinite linear;
-  }
-  
+  /* button special settings */
+  background-color: rgb(114, 12, 148);
+  /* background-color: #ff22d8; */
+  -webkit-box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.3),
+    0 -2px 1px 1px rgba(0, 0, 0, 0.1) inset,
+    0 2px 1px 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.3),
+    0 -2px 1px 1px rgba(0, 0, 0, 0.1) inset,
+    0 2px 1px 1px rgba(255, 255, 255, 0.2) inset;
+  border: none;
+  border-radius: 50%;
+  color: #03a9f4;
+  font-family: "Rye", cursive;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  /* button special settings */
+}
 
+@keyframes flash {
+  0% {
+    box-shadow: 0 0 10px 10px #0e9c76, 0 0 30px 30px #0e9c76 inset;
+  }
+}
+
+#startBTN {
+  animation: flash 2s infinite linear;
+}
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 375PX  <<<<<<<<<<<<<<( IPHONE X )<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-@media (orientation: portrait) and (min-width: 375px){
-  
-  #title {
-    font-size: 3.5rem;
+@media (orientation: portrait) and (min-width: 375px) {
+  .title {
+    font-size: 4rem;
   }
 
-  #startBTN{
+  .title:nth-child(1) {
+    top: 15%;
+  }
+
+  .title:nth-child(2) {
+    bottom: 10%;
+  }
+
+  #startBTN {
     width: 150px;
     height: 150px;
   }
-
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 375PX  <<<<<<<<<><<<<<<<<<<<( IPHONE X )<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 768PX    <<<<<<<<<<<<<<<<<<<><<<<<<<<( IPAD )<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
 @media (orientation: portrait) and (min-width: 768px) {
-  #title {
-    font-size: 70px;
+  .logo {
+    background: center/85% no-repeat
+        url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+      linear-gradient(#03a9f4, transparent 132%);
+  }
+
+  .title {
+    font-size: 6rem;
     width: 85%;
   }
 
-  #startBTN{
-    width: 180px;
-    height: 180px;
+  .title:nth-child(1) {
+    top: 10%;
+    letter-spacing: 20px;
+  }
+
+  .title:nth-child(2) {
+    bottom: 5%;
+    letter-spacing: 35px;
+  }
+
+  #startBTN {
+    width: 20rem;
+    height: 20rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -96,18 +145,30 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (orientation: landscape) {
-  
-  #title{
-    font-size: 4.2rem;
-    max-width: 74%;
+  #startDiv {
+    background-image: url("../img/presentation/phone_landscape_presentation_bg.jpg");
+  }
+
+  .logo {
+    width: 50%;
+    height: 50%;
+    top: 5%;
+    background: center/80% no-repeat
+        url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+      linear-gradient(#03a9f4, transparent 132%);
+    border-radius: 5%;
+  }
+
+  .title {
+    font-size: 3.3rem;
   }
 
   #startBTN {
-    width: 11rem;
-    height: 11rem;
+    width: 9rem;
+    height: 9rem;
+    padding: 0;
+    font-size: 1.7rem;
   }
-
-
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<*/
@@ -116,18 +177,20 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 800px  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (orientation: landscape) and (min-width: 800px){
-  
-  #title{
-    font-size: 6rem;
+@media (orientation: landscape) and (min-width: 800px) {
+  .logo {
+    width: 45%;
+  }
+
+  .title {
+    font-size: 3.5rem;
   }
 
   #startBTN {
     width: 11rem;
     height: 11rem;
+    font-size: 2rem;
   }
-
-
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 800px >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<*/
@@ -136,74 +199,71 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1000px  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (orientation: landscape) and (min-width: 1000px){
-  
-  #title{
-    font-size: 8rem;
+@media (orientation: landscape) and (min-width: 1000px) {
+  #startDiv {
+    background-image: url("../img/presentation/presentation_bg.jpg");
+  }
+
+  .logo {
+    width: 55%;
+    background: center/90% no-repeat
+        url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+      linear-gradient(#03a9f4, transparent 132%);
+  }
+
+  .title {
+    font-size: 6.5rem;
   }
 
   #startBTN {
     width: 18rem;
     height: 18rem;
+    font-size: 3.5rem;
   }
-
-
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1000px >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1200px   <<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 @media (orientation: landscape) and (min-width: 1200px) {
-  
-  #title {
-    font-size: 10rem;
+  .title {
+    font-size: 7.5rem;
     width: 70%;
-    }
-
-  #startBTN{
-    width: 180px;
-    height: 180px;
   }
 }
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1200px   <<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
-
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1440PX  <<<<<<<<<<<<<<<<<<( LAPTOP HiDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
-@media (orientation: landscape) and (min-width: 1440px){
-  #title {
-    font-size: 12rem;
+@media (orientation: landscape) and (min-width: 1440px) {
+  .title {
+    font-size: 8.5rem;
     width: 80%;
-   }
+  }
 }
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1440PX  <<<<<<<<<<<<<<<<<<( LAPTOP HiDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY MIN-WIDTH: 2560PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (min-width: 2560px) {    
-  #title {
-    font-size: 20rem;
-
+@media (min-width: 2560px) {
+  .title {
+    font-size: 14rem;
   }
 
-  #startBTN{
+  #startBTN {
     font-size: 8rem;
     width: 36rem;
     height: 36rem;
