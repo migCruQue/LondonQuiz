@@ -17,7 +17,7 @@
   width: 80%;
   height: 35%;
   background: center/100% no-repeat
-      url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+      url("../img//presentation/red_london_sky_line.png"),
     linear-gradient(#03a9f4, transparent 132%);
   border-radius: 5%;
 }
@@ -111,7 +111,7 @@
 @media (orientation: portrait) and (min-width: 768px) {
   .logo {
     background: center/85% no-repeat
-        url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+        url("../img//presentation/red_london_sky_line.png"),
       linear-gradient(#03a9f4, transparent 132%);
   }
 
@@ -154,7 +154,7 @@
     height: 50%;
     top: 5%;
     background: center/80% no-repeat
-        url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+        url("../img//presentation/red_london_sky_line.png"),
       linear-gradient(#03a9f4, transparent 132%);
     border-radius: 5%;
   }
@@ -207,7 +207,7 @@
   .logo {
     width: 55%;
     background: center/90% no-repeat
-        url("../img//presentation/phone_header_footer/red_london_sky_line.png"),
+        url("../img//presentation/red_london_sky_line.png"),
       linear-gradient(#03a9f4, transparent 132%);
   }
 
