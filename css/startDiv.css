@@ -27,7 +27,7 @@
   font-size: 3.5rem;
   font-family: "Rye", cursive;
   color: #f8f9fa;
-  filter: drop-shadow(-5px 5px 5px rgba(252, 40, 3));
+  filter: drop-shadow(-5px 5px 5px rgb(252, 40, 3));
   text-align: center;
 }
 
@@ -230,8 +230,15 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 @media (orientation: landscape) and (min-width: 1200px) {
+  .logo {
+    width: 55%;
+    background: center/55% no-repeat
+        url("../img//presentation/red_london_sky_line.png"),
+      linear-gradient(#03a9f4, transparent 132%);
+  }
+
   .title {
-    font-size: 7.5rem;
+    font-size: 6rem;
     width: 70%;
   }
 }
@@ -246,8 +253,7 @@
 
 @media (orientation: landscape) and (min-width: 1440px) {
   .title {
-    font-size: 8.5rem;
-    width: 80%;
+    font-size: 7.5rem;
   }
 }
 
@@ -260,7 +266,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 2560px) {
   .title {
-    font-size: 14rem;
+    font-size: 12rem;
   }
 
   #startBTN {
