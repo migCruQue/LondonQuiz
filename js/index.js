@@ -8,20 +8,20 @@
 
 $('#startBTN').on('click', function() {          // * jQuery Event handler to the Start button to start the game
     $('#startDiv').addClass('hidden');
-    $('#quizContainer').removeClass('hidden');
+    $('#questionDiv').removeClass('hidden');
   });
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// ! MAIN FUNCTIONAL GAME || DIV QUIZCONTAINER & DIV CHECKANSWER ////////////////////////////////////////////////////////////////
+// ! MAIN FUNCTIONAL GAME || DIV questionDiv & DIV checkAnswerDiv ////////////////////////////////////////////////////////////////
 //* Assigning HTML element to variables 
 const $question = $('#question');                                                  //*  jQuery variable
 const $imgQuestion = $('#imgQuestion');                                            //*  jQuery variable
 const $choices = $('.answerOption');                                               //*  jQuery variable
-const $quizContainer = $('#quizContainer');                                        //*  jQuery variable
-const $queenDiv = $('#queenDiv');                                                  //*  jQuery variable
-const $checkAnswer = $('#checkAnswer');                                            //*  jQuery variable
+const $questionDiv = $('#questionDiv');                                        //*  jQuery variable
+const $finalScoreDiv = $('#finalScoreDiv');                                                  //*  jQuery variable
+const $checkAnswerDiv = $('#checkAnswerDiv');                                            //*  jQuery variable
 const scoreText = document.getElementById('score');
 const emoji = document.getElementById('emoji');
 
@@ -149,13 +149,13 @@ function calculateScore(){
       const selectedOption = e.target.innerText;
       if(selectedOption == currentQuestion.correct){
         score += calculateScore();
-        $checkAnswer.removeClass('wrong').addClass('correct');
+        $checkAnswerDiv.removeClass('wrong').addClass('correct');
         emoji.innerText = '💂'; 
       } else {
-        $checkAnswer.removeClass('correct').addClass('wrong');
+        $checkAnswerDiv.removeClass('correct').addClass('wrong');
         emoji.innerText =  '💩';
       }
-      scoreText.innerText = `${score} points`; 
+      scoreText.innerText = `${score} pts`; 
       
       hideQuizdisplayCheck();
       
@@ -175,31 +175,31 @@ function calculateScore(){
 });
 
 
-//* to hide the quizDiv and show the checkAnswer div using the HIDDEN class
+//* to hide the quizDiv and show the checkAnswerDiv div using the HIDDEN class
 function hideQuizdisplayCheck() {
-  $checkAnswer.removeClass('hidden'); 
-  $quizContainer.addClass('hidden'); 
+  $checkAnswerDiv.removeClass('hidden'); 
+  $questionDiv.addClass('hidden'); 
 }
 
-//* to hide the checkAnswer and show the quizDiv div using the HIDDEN class
+//* to hide the checkAnswerDiv and show the quizDiv div using the HIDDEN class
 function hideCheckdisplayQuiz() {
-  $quizContainer.removeClass('hidden'); 
-  $checkAnswer.addClass('hidden'); 
+  $questionDiv.removeClass('hidden'); 
+  $checkAnswerDiv.addClass('hidden'); 
 }
 
-//* to hide the checkAnswer and show the queenDiv div using the HIDDEN class
+//* to hide the checkAnswerDiv and show the finalScoreDiv div using the HIDDEN class
 function hideCheckdisplayQueen() {
-  $queenDiv.removeClass('hidden'); 
-  $checkAnswer.addClass('hidden'); 
+  $finalScoreDiv.removeClass('hidden'); 
+  $checkAnswerDiv.addClass('hidden'); 
 }
 
-//* to hide the queenDiv and go back to the begginning showing the startDiv div using the HIDDEN class
+//* to hide the finalScoreDiv and go back to the begginning showing the startDiv div using the HIDDEN class
 function hideQueendisplayStart() {
-  $queenDiv.addClass('hidden'); 
+  $finalScoreDiv.addClass('hidden'); 
   startDiv.classList.remove('hidden'); 
 }
 
-// ! MAIN FUNCTIONAL GAME || DIV QUIZCONTAINER & DIV CHECKANSWER ////////////////////////////////////////////////////////////////
+// ! MAIN FUNCTIONAL GAME || DIV questionDiv & DIV checkAnswerDiv ////////////////////////////////////////////////////////////////
 
 // * DISPLAY RESULTS DIV  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -207,23 +207,21 @@ function hideQueendisplayStart() {
 //* object with the info needed to build result div
 const myResults = [
 
-  {queenPic: `img/queen pics/queen0.jpeg`,
-   queenSays: `The Queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you!!`,
+  {queenPic: `img/queen_faces/queen0.png`,
+   queenSays: `I'm shocked about your lack of knowledge, you are rubish!!`,
    picSrc: `img/awards pics/square/dunce.jpg`},
 
-  {queenPic: `img/Queen pics/queen1.jpg`,
-   queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)!!`,
+  {queenPic: `img/queen_faces/queen1.png`,
+   queenSays: `Not bad, I'll name you Member of the Order of the British Empire!`,
    picSrc: `img/awards pics/square/mbe-medal.png`},
 
-  {queenPic: `img/Queen pics/queen2.jpg`,
-  queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)!!`,
+  {queenPic: `img/queen_faces/queen2.png`,
+  queenSays: `I'm impressed with you, I'll name you Officer of the Order of the British Empire!`,
   picSrc: `img/awards pics/square/obe-medal.png`},
 
-  {queenPic: `img/Queen pics/queen3.jpg`,
-  queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)!!`,
+  {queenPic: `img/queen_faces/queen3.png`,
+  queenSays: `you are brilliant, I'll name you Commander of the Order of the British Empire!`,
   picSrc: `img/awards pics/square/cbe-medal.jpg`},
-
-
 ];
 
 
@@ -237,14 +235,14 @@ function calculateCategory(){
   
 // * build the result div
 function buildResultDiv(){    
-    $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
+    $finalScoreDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
     
     // * get the totalPoints value passed to localStorage
     totalPoints = Number(score);
     
-    $queenDiv.find('#finalScore').find('h1').text(`Total:${totalPoints} Pt`);
-    $queenDiv.find('#finalScore').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
-    $queenDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
+    $finalScoreDiv.find('#final_score').find('h1').text(`${totalPoints}`);
+    $finalScoreDiv.find('#final_score').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+    $finalScoreDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
 }
 
 

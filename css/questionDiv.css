@@ -1,122 +1,192 @@
-
-#queenDiv {
-    background-color: #3595dc;
-    padding: 0;
-  }
-
-#pic_and_score {
+#questionDiv {
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+  padding: 0;
+  background-color: powderblue;
+  font-family: "Montserrat", sans-serif;
+  background-color: deepskyblue;
 }
-  
-#queen{
-  width: 95%;
-  height: 20rem;
-  margin-top: 1rem;
-  border: 2px inset cadetblue;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+
+#divImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+  height: 35%;
+  object-fit: cover;
+  margin-top: 1.2rem;
+  background-color: #f74954;
+  -webkit-box-shadow: 2px 2px 9px 3px #000000;
+  box-shadow: 2px 2px 9px 3px #000000;
 }
-  
-  #finalScore{
-    position: relative; /*to place award at the right bottom inside finalScore using position absotute; */
-    margin-top: 4rem;
-    background-color: #25edb5;
-    box-shadow: 5px -5px 5px 0px #9bed14;
-    border-color: rgb(1,33,105);
-    border-radius: .50rem;
-    width: 28rem;
-    height: 12rem;
-  }
 
-  div#finalScore h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.8rem;
-    color: rgb(4, 52, 99);
-    line-height: 4rem;
-  }
-  
-  #award {
-    position: absolute;
-    bottom: 2%;
-    right: 2%;
-    width: 10vh;
-    height: 10vh;
-    align-self: flex-end;
-    border: 2px solid #9bed14;
-    border-radius: 50%;
-  }
+#imgQuestion {
+  width: 97%;
+  height: 95%;
+}
 
-h1#queenSentence{
-    position: absolute;
-    bottom: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    line-height: 3.5rem;
-    color: rgb(229,231,233);
-    background-color:rgb(17, 71, 165);
-    border-radius: .50rem 0 0.50rem;
-    margin: 1.5rem auto 0 auto;
-    padding: 1rem 1rem;
+/* *DRAGONS DECORATION */
+
+.dragon_border_decoration {
+  position: absolute;
+  width: 4vh;
+  height: 4vh;
+  z-index: 5;
+}
+
+.dragon_border_decoration:nth-child(2) {
+  top: 0;
+  left: 0;
+}
+
+.dragon_border_decoration:nth-child(3) {
+  top: 0;
+  right: 0;
+}
+
+.dragon_border_decoration:nth-child(4) {
+  bottom: 0;
+  left: 0;
+}
+
+.dragon_border_decoration:nth-child(5) {
+  bottom: 0;
+  right: 0;
+}
+/*  CSS ANIMATION THAT MAKES SCORE BAR SHRINKS  */
+@keyframes shrink_bar {
+  100% {
+    background: red;
+    width: 10%;
   }
-  
-  
+}
 
+#score-bar {
+  animation: shrink_bar 10s linear forwards;
+  align-self: start;
+  margin: 1rem 1rem;
+  background: #f74954;
+  width: 85%;
+  height: 1.7rem;
+  border-radius: 8px;
+}
 
+.score-bar-paused {
+  animation-play-state: paused;
+}
+
+#question {
+  color: #042b4c;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: 1rem 0.3rem;
+  text-align: center;
+  padding: 0.8rem;
+}
+
+#ordinal {
+  background-color: steelblue;
+  color: rgb(229, 231, 233);
+  font-family: monospace;
+  padding: 0.3rem;
+  border-radius: 5%;
+}
+
+.answers {
+  height: 30%;
+  margin: 1em 0 2em 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.answerOption {
+  color: rgb(229, 231, 233);
+  background-color: #f74954;
+  font-family: inherit;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.75rem 0.75rem;
+  font-size: 1.7rem;
+  border-radius: 0.5rem;
+  width: 26rem;
+  height: 4rem;
+}
+
+/* THIS ANIMATION MAKES THE OPTIONS BUTTONS TO APPEAR GRADUALLY */
+.answerOption {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards;
+}
+
+.answerOption[data-number="1"] {
+  animation-delay: 0.25s;
+}
+
+.answerOption[data-number="2"] {
+  animation-delay: 0.5s;
+}
+
+.answerOption[data-number="3"] {
+  animation-delay: 0.75s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+/* THIS ANIMATION MAKES THE OPTIONS BUTTONS TO APPEAR GRADUALLY */
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 375PX  <<<<<<<<<<<<<<( IPHONE X )<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-@media (orientation: portrait) and (min-width: 375px){
-
-  #queen {
-    width: 100%;
-    height: 24rem;
-    margin-top: 6rem;
-    margin-bottom: 4rem;
+@media (orientation: portrait) and (min-width: 375px) {
+  #divImage {
+    width: 35rem;
+    height: 27rem;
   }
 
-  #finalScore {
-    width: 32rem;
-    height: 16rem;
+  #question {
+    font-size: 2rem;
+    line-height: 3rem;
   }
-  
-  h1#queenSentence {
-    font-size: 1.8rem;
-    line-height: 4.5rem;
-    padding: 3.5rem 1.5rem;
+
+  #score-bar {
+    margin: 3rem 0 3rem 3rem;
+  }
+
+  .answers {
+    height: 35%;
+  }
+  .answerOption {
+    width: 30rem;
+    height: 6.5rem;
+    font-size: 2rem;
   }
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 375PX  <<<<<<<<<><<<<<<<<<<<( IPHONE X )<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 768PX    <<<<<<<<<<<<<<<<<<<><<<<<<<<( IPAD )<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
 @media (orientation: portrait) and (min-width: 768px) {
-
-  #queen {
-    height: 50rem;
+  #divImage {
+    height: 40rem;
+    width: 68rem;
   }
 
-  #finalScore {
-    width: 40rem;
-    height: 18rem;
-    grid-row: 16 ;
-  }
-
-  div#finalScore h1 {
-    font-size: 2.7rem;
-  }
-
-  h1#queenSentence {
-    font-size: 2.7rem;
+  #question {
+    grid-row: 15;
+    font-size: 2.6rem;
   }
 }
 
@@ -124,30 +194,42 @@ h1#queenSentence{
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> /  MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 768PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<( IPAD )<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 @media (orientation: landscape) {
-
-  #pic_and_score {
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 1.4rem;
+  #questionDiv {
+    padding: 0; /*  REMOVE THE BOTTOM PADDING FOR MOBILE BROWSER */
   }
 
-  #queen {
+  #divImage {
     width: 26em;
     height: 15em;
-    margin-top: 1rem;
+    margin-top: 0.7rem;
   }
 
-  #finalScore {
-    width: 24rem;
-    height: 10rem;
+  #question {
+    margin: 1.5rem 0.3rem 0.5rem 0.3rem;
+    font-size: 1.3rem;
   }
 
+  #score-bar {
+    margin: 0 0 0 2rem;
+  }
+
+  .answers {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+    margin: 0.8rem 0 2rem 0;
+  }
+
+  .answerOption {
+    font-size: 1.3rem;
+    width: 17rem;
+    height: 4.5rem;
+  }
 }
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -155,73 +237,49 @@ h1#queenSentence{
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 800px  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 800px<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (orientation: landscape) and (min-width: 800px){
 
-  #queen {
-    width: 41em;
-    height: 23em;
+@media (orientation: landscape) and (min-width: 800px) {
+  #divImage {
+    margin-top: 2rem;
   }
 
-  #finalScore {
-    width: 27rem;
-    height: 12rem;
-    margin-top: 7rem;
+  #question {
+    margin: 1.5rem 0.3rem;
   }
 
-  #award {
-    width: 14vh;
-    height: 14vh;
+  .answers {
+    align-items: center;
   }
-
-  h1#queenSentence {
-    padding: 1.8rem 1rem;
-  }
-
 }
 
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 800px >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>> /  MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 800px<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1000px  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (orientation: landscape) and (min-width: 1000px){
-  
-  #pic_and_score {
-    padding-top: 8rem;
-    padding-left: 4rem;
+@media (orientation: landscape) and (min-width: 1000px) {
+  #divImage {
+    width: 50em;
+    height: 32em;
+    margin-top: 0;
   }
 
-  #queen {
-    width: 60em;
-    height: 35em;
+  #question {
+    font-size: 2.5rem;
   }
 
-  #finalScore {
-    width: 32rem;
-    height: 16rem;
-    margin-top: 12rem;
+  .answerOption {
+    font-size: 1.8rem;
+    width: 26rem;
+    height: 8rem;
   }
-
-  #award {
-    width: 10vh;
-    height: 10vh;
-  }
-
-  h1#queenSentence {
-    font-size: 2.3rem;
-    line-height: 4.5rem;
-    padding: 7.8rem 4rem;
-}
-
-
 }
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1000px >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1000px >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -229,99 +287,95 @@ h1#queenSentence{
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 @media (orientation: landscape) and (min-width: 1200px) {
-
-  #queenDiv {
-    flex-direction: row-reverse;
-    align-items: flex-start;
+  #questionDiv {
+    justify-content: space-evenly;
+  }
+  #divImage {
+    width: 55rem;
+    height: 38rem;
   }
 
-  #queen {
-    width: 55%;
-    height: 40rem;
-    margin: 10rem 0 0 2rem;
+  #question {
+    line-height: 4rem;
+    font-size: 3rem;
+    padding: 0.5rem 0.85rem;
   }
 
-  #finalScore {
-    width: 44rem;
-    height: 17rem;
-    margin-top: 25rem;
-  }
-  div#finalScore h1 {
-    font-size: 2.5rem;
-    line-height: 5rem;
+  #score-bar {
+    margin-left: 3.7em;
   }
 
-  #award {
-    width: 10vh;
-    height: 10vh;
+  .answers {
+    flex-direction: row;
+    height: auto;
   }
 
-  h1#queenSentence {
-    font-size: 2.5rem;
-    line-height: 5rem;
-    padding: 4rem 2rem;
+  .answerOption {
+    width: 30rem;
+    height: 9rem;
+    font-size: 3rem;
+  }
+
+  .answerOption:nth-child(1),
+  .answerOption:nth-child(2) {
+    margin-bottom: 0;
+    margin-right: 6rem;
   }
 }
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1200px   <<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
-
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1440PX  <<<<<<<<<<<<<<<<<<( LAPTOP HiDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
-@media (min-width: 1440px){
-  
-  #queen {
-    width: 60%;
-    height: 50rem;
+
+@media (orientation: landscape) and (min-width: 1440px) {
+  #emoji {
+    font-size: 40rem;
   }
 
-  h1#queenSentence {
-  padding: 6rem 2rem;
+  #score {
+    width: 35rem;
+    height: 20rem;
+    line-height: 7rem;
   }
-
 }
-
 
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 1440PX  <<<<<<<<<<<<<<<<<<( LAPTOP HiDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 
-
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY MIN-WIDTH: 2560PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-@media (min-width: 2300px){
-
-  #queen {
+@media (min-width: 2560px) {
+  #divImage {
+    width: 60%;
     height: 70rem;
-    width: 45%;
   }
 
-  #finalScore {
-    width: 60rem;
-    height: 30rem;
+  #score-bar {
+    height: 2.5rem;
   }
 
-  div#finalScore h1 {
+  #question {
     font-size: 4rem;
-    line-height: 10rem;
   }
 
-  h1#queenSentence {
-    font-size: 6rem;
-    line-height: 10rem;
-    padding: 8rem 5rem;
+  .answerOption {
+    width: 43rem;
+    height: 13rem;
+    font-size: 5rem;
+  }
+
+  .answerOption:nth-child(1),
+  .answerOption:nth-child(2) {
+    margin-right: 12rem;
   }
 }
 
-
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 2300PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 2560PX <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/

@@ -13,11 +13,11 @@
     
 
     <!-- CSS MAIN LINK -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/startDiv.css">
-    <link rel="stylesheet" href="css/quizContainer.css">
-    <link rel="stylesheet" href="css/checkAnswer.css">
-    <link rel="stylesheet" href="css/queenDiv.css">
+    <link rel="stylesheet" href="css/questionDiv.css">
+    <link rel="stylesheet" href="css/checkAnswerDiv.css">
+    <link rel="stylesheet" href="css/finalScoreDiv.css">
 
 
 
@@ -25,7 +25,7 @@
 
   <body id="body">
             
-            <!-- Start Div intro -->
+            <!-- START DIV intro -->
                   <div id="startDiv" class="flex">
                     <div class="logo">
                       <h1 class="title">LONDON</h1>
@@ -33,9 +33,9 @@
                     </div>
                     <button type="button" class="text-center" id="startBTN">START</button>
                   </div>
-            <!-- Start Div intro -->
-            <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
-                  <div id="quizContainer" class="hidden container flex">
+            <!-- START DIV  intro -->
+            <!-- QUESTION DIV WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
+                  <div id="questionDiv" class="hidden container flex">
 
                       <div id="divImage">
                           <img id="imgQuestion" /> 
@@ -44,7 +44,6 @@
                           <img class="dragon_border_decoration" alt="city of London dragon icon" src="./img/city_dragons/red_city_dragon_right.jpeg"></img>
                           <img class="dragon_border_decoration" alt="city of London dragon icon" src="./img/city_dragons/red_city_dragon_left.jpeg"></img>
                       </div>
-
 
                       <h1 id="question"></h1>
 
@@ -57,30 +56,35 @@
                           
                         <button type="button" class="answerOption" data-number="3"></button>
                       </div>
-                          
-                        
+                                 
                   </div>
-            <!-- MAIN QUIZ CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
+            <!-- QUESTION DIV CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
 
             <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
-                  <div id="checkAnswer" class="hidden container flex">
+                  <div id="checkAnswerDiv" class="hidden container flex">
                           <p  id="emoji"></p>
                           <p id="score" class="container text-center"></p>
                   </div>
             <!-- /DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
 
             <!-- DISPLAY RESULTS DIV -->
-                  <div id="queenDiv" class="container flex hidden">
-                    <div id="pic_and_score" class="container flex">
-                        <img id="queen" class="text-center" src="" alt="queen">
+                  <div id="finalScoreDiv" class="container flex">
           
-                        <div id="finalScore" class="container text-center">
-                            <h1></h1>
-                            <img src="" alt="award" class="text-center" id="award">
-                        </div>
+                    <div id="finalScore">
+                        <h1>Total Points</h1>
+                        <div class="score_number">
+                          <h1>58989</h1>
+                          <img src="img/awards pics/square/obe-medal.png" alt="award" id="award"> 
+                        </div>  
+                      </div>
+
+                    <div id="queenSays">
+                      <img id="queen" class="text-center" src="img/queen_faces/queen1.png" alt="queen">
+                      <div class="arrow_box">
+                        <h1 class="text-center flex" id="queenSentence">I'm impressed with you, I'll name you Officer of the Order of the British Empire!</h1>
+                      </div>
+                
                     </div>
-                    
-                    <h1 class="text-center flex" id="queenSentence"></h1>
                   
                   </div>
             <!-- DISPLAY RESULTS DIV -->
