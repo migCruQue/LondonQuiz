@@ -22,7 +22,7 @@ const $choices = $('.answerOption');                                            
 const $questionDiv = $('#questionDiv');                                        //*  jQuery variable
 const $finalScoreDiv = $('#finalScoreDiv');                                                  //*  jQuery variable
 const $checkAnswerDiv = $('#checkAnswerDiv');                                            //*  jQuery variable
-const scoreText = document.getElementById('score');
+const scoreText = document.querySelector('#score p');
 const emoji = document.getElementById('emoji');
 
 
@@ -155,7 +155,7 @@ function calculateScore(){
         $checkAnswerDiv.removeClass('correct').addClass('wrong');
         emoji.innerText =  '💩';
       }
-      scoreText.innerText = `${score} pts`; 
+      scoreText.innerText = `${score}`; 
       
       hideQuizdisplayCheck();
       

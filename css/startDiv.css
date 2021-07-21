@@ -7,6 +7,10 @@
   background-size: cover;
 }
 
+#startDiv * {
+  font-family: "ryeregular", cursive;
+}
+
 .logo {
   display: flex;
   flex-direction: column;
@@ -24,7 +28,6 @@
 .title {
   position: absolute;
   font-size: 4.2rem;
-  font-family: "Rye", cursive;
   color: #f8f9fa;
   filter: drop-shadow(-5px 5px 5px rgb(252, 40, 3));
   text-align: center;
@@ -59,7 +62,6 @@
   border: none;
   border-radius: 50%;
   color: #03a9f4;
-  font-family: "Rye", cursive;
   font-size: 2.5rem;
   line-height: 1.5;
   text-align: center;

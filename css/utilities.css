@@ -1,3 +1,31 @@
+/* * FONTS */
+
+@font-face {
+  font-family: "ryeregular";
+  src: url("../fonts/rye-regular-webfont.woff2") format("woff2"),
+    url("../fonts/rye-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "montserratregular";
+  src: url("../fonts/montserrat-regular-webfont.woff2") format("woff2"),
+    url("../fonts/montserrat-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "press_start_2pregular";
+  src: url("../fonts/pressstart2p-regular-webfont.woff2") format("woff2"),
+    url("../fonts/pressstart2p-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* * / FONTS */
+
 :root {
   background-color: #ecf5ff;
   font-size: 62.5%;
@@ -8,6 +36,7 @@
   margin: 0;
   padding: 0;
   color: #333;
+  font-family: "montserratregular", "Helvetica Neue";
 }
 
 /* * UTILITIES */
