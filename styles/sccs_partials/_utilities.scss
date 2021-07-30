@@ -1,0 +1,55 @@
+:root {
+  background-color: #ecf5ff;
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: "montserratregular", "Helvetica Neue";
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+// MIXINS
+
+@mixin flexCenter($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin gridCenter($justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-items: $justify;
+  align-items: $align;
+}

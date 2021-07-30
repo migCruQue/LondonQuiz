@@ -1,0 +1,352 @@
+#questionDiv {
+  @include gridCenter();
+  grid-template-columns: 100%;
+  grid-template-rows: 37% 23% 4% 36%;
+  grid-template-areas:
+    "picture"
+    "question"
+    "scorebar"
+    "answers";
+  background-color: $primary-bg-color;
+}
+
+#divImage {
+  grid-area: picture;
+  @include flexCenter();
+  position: relative;
+  width: 90%;
+  height: 85%;
+  object-fit: cover;
+  margin-top: 1.2rem;
+  background-color: $primary-color;
+  -webkit-box-shadow: 2px 2px 9px 3px #000000;
+  box-shadow: 2px 2px 9px 3px #000000;
+}
+
+#imgQuestion {
+  width: 97%;
+  height: 95%;
+}
+
+/* *DRAGONS DECORATION */
+
+.dragon_border_decoration {
+  position: absolute;
+  width: 4vh;
+  height: 4vh;
+  z-index: 5;
+}
+
+.dragon_border_decoration:nth-child(2) {
+  top: 0;
+  left: 0;
+}
+
+.dragon_border_decoration:nth-child(3) {
+  top: 0;
+  right: 0;
+}
+
+.dragon_border_decoration:nth-child(4) {
+  bottom: 0;
+  left: 0;
+}
+
+.dragon_border_decoration:nth-child(5) {
+  bottom: 0;
+  right: 0;
+}
+
+#question {
+  position: relative;
+  @include flexCenter();
+  height: 100%;
+  grid-area: question;
+  background-color: $secondary-bg-color;
+}
+
+#question dd {
+  font-size: 1rem;
+  background-color: steelblue;
+  color: rgb(229, 231, 233);
+  font-family: "press_start_2pregular", cursive;
+  padding: 0.5rem;
+  border-radius: 5%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+#question h1 {
+  color: $primary-text-color;
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 2.5rem;
+  padding: 1.5rem 1rem 1rem 0.5rem;
+}
+
+/*  CSS ANIMATION THAT MAKES SCORE BAR SHRINKS  */
+@keyframes shrink_bar {
+  100% {
+    background: red;
+    width: 10%;
+  }
+}
+
+#score-bar {
+  grid-area: scorebar;
+  @include flexCenter();
+  animation: shrink_bar 10s linear forwards;
+  justify-self: left;
+  margin: 0 1rem;
+  background: #f74954;
+  width: 85%;
+  height: 1.7rem;
+  border-radius: 8px;
+}
+
+.score-bar-paused {
+  animation-play-state: paused;
+}
+
+.answers {
+  grid-area: answers;
+  height: 100%;
+  margin: 1em 0 2em 0;
+  @include flexCenter(column, space-around);
+}
+
+.answerOption {
+  background-color: $secondary-btn-bg;
+  color: $primary-text-color;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.75rem 0.75rem;
+  font-size: 1.7rem;
+  border-radius: 0.5rem;
+  width: 26rem;
+  height: 4rem;
+}
+
+/* THIS ANIMATION MAKES THE OPTIONS BUTTONS TO APPEAR GRADUALLY */
+.answerOption {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards;
+}
+
+.answerOption[data-number="1"] {
+  animation-delay: 0.25s;
+}
+
+.answerOption[data-number="2"] {
+  animation-delay: 0.5s;
+}
+
+.answerOption[data-number="3"] {
+  animation-delay: 0.75s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+/* THIS ANIMATION MAKES THE OPTIONS BUTTONS TO APPEAR GRADUALLY */
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>  SMARTPHONE   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 24em   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+@media (orientation: portrait) and (min-width: 24em) {
+  #question h1 {
+    font-size: 1.6rem;
+    line-height: 3.5rem;
+  }
+
+  #question dd {
+    font-size: 1.3rem;
+  }
+
+  #score-bar {
+    margin: 3rem 0 3rem 3rem;
+  }
+
+  .answerOption {
+    width: 30rem;
+    height: 6.5rem;
+    font-size: 2rem;
+  }
+}
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>  SMARTPHONE   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 24em   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>   TABLET  >>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 48em      <<<<<<<<<<<<<<<<<<<><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+@media (orientation: portrait) and (min-width: 48em) {
+  #divImage {
+    width: 60%;
+  }
+
+  #question h1 {
+    font-size: 2.25rem;
+    line-height: 4.5rem;
+  }
+
+  #question dd {
+    font-size: 1.8rem;
+    margin: 1rem;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>   TABLET  >>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION PORTRAIT AND MIN-WIDTH: 48em      <<<<<<<<<<<<<<<<<<<><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+@media (orientation: landscape) {
+  #questionDiv {
+    grid-template-rows: 43% 23% 4% 30%;
+  }
+
+  #divImage {
+    width: 40%;
+    height: 90%;
+    margin: 1rem;
+  }
+
+  #question h1 {
+    font-size: 1.3rem;
+  }
+
+  #score-bar {
+    height: 1rem;
+  }
+
+  .answers {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+  }
+
+  .answerOption {
+    font-size: 1.3rem;
+    width: 17rem;
+    height: 4.5rem;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 50em  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+@media (orientation: landscape) and (min-width: 50em) {
+  #question h1 {
+    font-size: 1.4rem;
+    padding-top: 2.5rem;
+  }
+
+  #score-bar {
+    height: 2rem;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 50em  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 63em  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+@media (orientation: landscape) and (min-width: 63em) {
+  #question h1 {
+    font-size: 2rem;
+    line-height: 5rem;
+    text-align: left;
+    padding: 3rem;
+  }
+
+  #question dd {
+    font-size: 1.5rem;
+  }
+
+  .answerOption {
+    font-size: 1.8rem;
+    width: 26rem;
+    height: 8rem;
+  }
+}
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 63em  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 75em  <<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<>>><<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+@media (orientation: landscape) and (min-width: 75em) {
+  #question h1 {
+    line-height: 4rem;
+    font-size: 2.5rem;
+  }
+
+  #score-bar {
+    margin-left: 3.7em;
+  }
+
+  .answerOption {
+    width: 30rem;
+    height: 9rem;
+    font-size: 3rem;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 75em  <<<<<<<<<<<<<<<<<( LAPTOP MDPI SCREEN)<<<<<<<<>>><<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>> MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 90em  <<<<<<<<<<<<<<<<<<( LAPTOP HiDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
+
+@media (orientation: landscape) and (min-width: 90em) {
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>> / MEDIA QUERY ORIENTATION LANDSCAPE AND MIN-WIDTH: 90em  <<<<<<<<<<<<<<<<<<( LAPTOP HiDPI SCREEN)<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  MEDIA QUERY MIN-WIDTH: 160em <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+@media (min-width: 160em) {
+  #score-bar {
+    height: 2.5rem;
+  }
+
+  #question h1 {
+    font-size: 4rem;
+  }
+
+  .answerOption {
+    width: 43rem;
+    height: 13rem;
+    font-size: 5rem;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> / MEDIA QUERY MIN-WIDTH: 160em <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/

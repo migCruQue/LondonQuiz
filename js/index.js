@@ -1,28 +1,28 @@
 
-//* SET THE BODY HEIGHT TO THE Window.HEIGHT
-// const body = document.querySelector('body');
-// body.style.height = `${window.innerHeight}px`;
+
+// ! to start the game I inline style ==> display: none to all the container tabs except #startDiv.
+
+$('.container').not('#startDiv').css('display', 'none');
+
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 $('#startBTN').on('click', function() {          // * jQuery Event handler to the Start button to start the game
-    $('#startDiv').addClass('hidden');
-    $('#quizContainer').removeClass('hidden');
+    $('#startDiv').css('display', 'none');
+    $('#questionDiv').removeAttr('style');
   });
 
-//* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-// ! MAIN FUNCTIONAL GAME || DIV QUIZCONTAINER & DIV CHECKANSWER ////////////////////////////////////////////////////////////////
+// ! MAIN FUNCTIONAL GAME || DIV questionDiv & DIV checkAnswerDiv ////////////////////////////////////////////////////////////////
 //* Assigning HTML element to variables 
 const $question = $('#question');                                                  //*  jQuery variable
 const $imgQuestion = $('#imgQuestion');                                            //*  jQuery variable
 const $choices = $('.answerOption');                                               //*  jQuery variable
-const $quizContainer = $('#quizContainer');                                        //*  jQuery variable
-const $queenDiv = $('#queenDiv');                                                  //*  jQuery variable
-const $checkAnswer = $('#checkAnswer');                                            //*  jQuery variable
-const scoreText = document.getElementById('score');
+const $questionDiv = $('#questionDiv');                                        //*  jQuery variable
+const $resultsDiv = $('#resultsDiv');                                                  //*  jQuery variable
+const $checkAnswerDiv = $('#checkAnswerDiv');                                            //*  jQuery variable
+const scoreText = document.querySelector('#score p');
 const emoji = document.getElementById('emoji');
 
 
@@ -106,8 +106,8 @@ getNewQuestion = () => {
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
 
-    // * jQuery method to set up the html element div question and a span for the number of question inside it. 
-    $question.html(`<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`);
+    // * jQuery method to set up the text inside dd ORDINAL element and h1 question. 
+    $question.html(`<dd>${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</dd><h1>${currentQuestion.question}</h1>`);
     
     $choices.each( function () {                             //* jQuery method each goes throught each .answerOption ($choices) element
       const number = this.dataset['number'];                 //* getting its data-number attr and with that gets the currentQuestion.
@@ -149,24 +149,27 @@ function calculateScore(){
       const selectedOption = e.target.innerText;
       if(selectedOption == currentQuestion.correct){
         score += calculateScore();
-        $checkAnswer.removeClass('wrong').addClass('correct');
+        $checkAnswerDiv.removeClass('wrong').addClass('correct');
         emoji.innerText = '💂'; 
       } else {
-        $checkAnswer.removeClass('correct').addClass('wrong');
+        $checkAnswerDiv.removeClass('correct').addClass('wrong');
         emoji.innerText =  '💩';
       }
-      scoreText.innerText = `${score} points`; 
-      
-      hideQuizdisplayCheck();
+      scoreText.innerText = `${score}`; 
+       
+      //* to hide questinDiv and show the checkAnswerDiv
+      $questionDiv.css('display', 'none'); $checkAnswerDiv.removeAttr('style');
       
       getNewQuestion();
 
       setTimeout(() => { 
           if(!lastQuestionFlag){
-            hideCheckdisplayQuiz();
+            //* to hide questinDiv and show the checkAnswerDiv
+            $checkAnswerDiv.css('display', 'none'); $questionDiv.removeAttr('style');
             startTime = new Date();
           } else {
-            hideCheckdisplayQueen();
+            //* to hide questinDiv and show the checkAnswerDiv
+            $checkAnswerDiv.css('display', 'none'); $resultsDiv.removeAttr('style');
             setTimeout(() => { window.location.reload()}, 8000); //* reload the web application to start
           }         
           
@@ -175,55 +178,27 @@ function calculateScore(){
 });
 
 
-//* to hide the quizDiv and show the checkAnswer div using the HIDDEN class
-function hideQuizdisplayCheck() {
-  $checkAnswer.removeClass('hidden'); 
-  $quizContainer.addClass('hidden'); 
-}
-
-//* to hide the checkAnswer and show the quizDiv div using the HIDDEN class
-function hideCheckdisplayQuiz() {
-  $quizContainer.removeClass('hidden'); 
-  $checkAnswer.addClass('hidden'); 
-}
-
-//* to hide the checkAnswer and show the queenDiv div using the HIDDEN class
-function hideCheckdisplayQueen() {
-  $queenDiv.removeClass('hidden'); 
-  $checkAnswer.addClass('hidden'); 
-}
-
-//* to hide the queenDiv and go back to the begginning showing the startDiv div using the HIDDEN class
-function hideQueendisplayStart() {
-  $queenDiv.addClass('hidden'); 
-  startDiv.classList.remove('hidden'); 
-}
-
-// ! MAIN FUNCTIONAL GAME || DIV QUIZCONTAINER & DIV CHECKANSWER ////////////////////////////////////////////////////////////////
-
 // * DISPLAY RESULTS DIV  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //* object with the info needed to build result div
 const myResults = [
 
-  {queenPic: `img/queen pics/queen0.jpeg`,
-   queenSays: `The Queen is horrified about your lack of knowledge, she considers you a mere peasant and won't even look at you!!`,
+  {queenPic: `img/queen_faces/queen0.png`,
+   queenSays: `I'm shocked about your lack of knowledge, you are rubish!!`,
    picSrc: `img/awards pics/square/dunce.jpg`},
 
-  {queenPic: `img/Queen pics/queen1.jpg`,
-   queenSays: `The queen is very impressed, so she will name you Member of the Order of the British Empire (MBE)!!`,
+  {queenPic: `img/queen_faces/queen1.png`,
+   queenSays: `Not bad, I'll name you Member of the Order of the British Empire!`,
    picSrc: `img/awards pics/square/mbe-medal.png`},
 
-  {queenPic: `img/Queen pics/queen2.jpg`,
-  queenSays: `The queen is in love with you, so she will name you Officer of the Order of the British Empire (OBE)!!`,
+  {queenPic: `img/queen_faces/queen2.png`,
+  queenSays: `I'm impressed with you, I'll name you Officer of the Order of the British Empire!`,
   picSrc: `img/awards pics/square/obe-medal.png`},
 
-  {queenPic: `img/Queen pics/queen3.jpg`,
-  queenSays: `The queen just adores you , so she will name you Commander of the Order of the British Empire (CBE)!!`,
+  {queenPic: `img/queen_faces/queen3.png`,
+  queenSays: `you are brilliant, I'll name you Commander of the Order of the British Empire!`,
   picSrc: `img/awards pics/square/cbe-medal.jpg`},
-
-
 ];
 
 
@@ -237,14 +212,14 @@ function calculateCategory(){
   
 // * build the result div
 function buildResultDiv(){    
-    $queenDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
+    $resultsDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
     
     // * get the totalPoints value passed to localStorage
     totalPoints = Number(score);
     
-    $queenDiv.find('#finalScore').find('h1').text(`Total:${totalPoints} Pt`);
-    $queenDiv.find('#finalScore').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
-    $queenDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
+    $resultsDiv.find('.badge').find('h1').text(`${totalPoints}`);
+    $resultsDiv.find('.badge').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+    $resultsDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
 }
 
 
