@@ -1,17 +1,17 @@
 
-//* SET THE BODY HEIGHT TO THE Window.HEIGHT
-// const body = document.querySelector('body');
-// body.style.height = `${window.innerHeight}px`;
+
+// ! to start the game I inline style ==> display: none to all the container tabs except #startDiv.
+
+$('.container').not('#startDiv').css('display', 'none');
+
 
 //* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 $('#startBTN').on('click', function() {          // * jQuery Event handler to the Start button to start the game
-    $('#startDiv').addClass('hidden');
-    $('#questionDiv').removeClass('hidden');
+    $('#startDiv').css('display', 'none');
+    $('#questionDiv').removeAttr('style');
   });
-
-//* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // ! MAIN FUNCTIONAL GAME || DIV questionDiv & DIV checkAnswerDiv ////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ const $question = $('#question');                                               
 const $imgQuestion = $('#imgQuestion');                                            //*  jQuery variable
 const $choices = $('.answerOption');                                               //*  jQuery variable
 const $questionDiv = $('#questionDiv');                                        //*  jQuery variable
-const $finalScoreDiv = $('#finalScoreDiv');                                                  //*  jQuery variable
+const $resultsDiv = $('#resultsDiv');                                                  //*  jQuery variable
 const $checkAnswerDiv = $('#checkAnswerDiv');                                            //*  jQuery variable
 const scoreText = document.querySelector('#score p');
 const emoji = document.getElementById('emoji');
@@ -106,8 +106,8 @@ getNewQuestion = () => {
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
 
-    // * jQuery method to set up the html element div question and a span for the number of question inside it. 
-    $question.html(`<span id="ordinal">${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</span> &nbsp${currentQuestion.question}`);
+    // * jQuery method to set up the text inside dd ORDINAL element and h1 question. 
+    $question.html(`<dd>${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</dd><h1>${currentQuestion.question}</h1>`);
     
     $choices.each( function () {                             //* jQuery method each goes throught each .answerOption ($choices) element
       const number = this.dataset['number'];                 //* getting its data-number attr and with that gets the currentQuestion.
@@ -156,17 +156,20 @@ function calculateScore(){
         emoji.innerText =  '💩';
       }
       scoreText.innerText = `${score}`; 
-      
-      hideQuizdisplayCheck();
+       
+      //* to hide questinDiv and show the checkAnswerDiv
+      $questionDiv.css('display', 'none'); $checkAnswerDiv.removeAttr('style');
       
       getNewQuestion();
 
       setTimeout(() => { 
           if(!lastQuestionFlag){
-            hideCheckdisplayQuiz();
+            //* to hide questinDiv and show the checkAnswerDiv
+            $checkAnswerDiv.css('display', 'none'); $questionDiv.removeAttr('style');
             startTime = new Date();
           } else {
-            hideCheckdisplayQueen();
+            //* to hide questinDiv and show the checkAnswerDiv
+            $checkAnswerDiv.css('display', 'none'); $resultsDiv.removeAttr('style');
             setTimeout(() => { window.location.reload()}, 8000); //* reload the web application to start
           }         
           
@@ -174,32 +177,6 @@ function calculateScore(){
 
 });
 
-
-//* to hide the quizDiv and show the checkAnswerDiv div using the HIDDEN class
-function hideQuizdisplayCheck() {
-  $checkAnswerDiv.removeClass('hidden'); 
-  $questionDiv.addClass('hidden'); 
-}
-
-//* to hide the checkAnswerDiv and show the quizDiv div using the HIDDEN class
-function hideCheckdisplayQuiz() {
-  $questionDiv.removeClass('hidden'); 
-  $checkAnswerDiv.addClass('hidden'); 
-}
-
-//* to hide the checkAnswerDiv and show the finalScoreDiv div using the HIDDEN class
-function hideCheckdisplayQueen() {
-  $finalScoreDiv.removeClass('hidden'); 
-  $checkAnswerDiv.addClass('hidden'); 
-}
-
-//* to hide the finalScoreDiv and go back to the begginning showing the startDiv div using the HIDDEN class
-function hideQueendisplayStart() {
-  $finalScoreDiv.addClass('hidden'); 
-  startDiv.classList.remove('hidden'); 
-}
-
-// ! MAIN FUNCTIONAL GAME || DIV questionDiv & DIV checkAnswerDiv ////////////////////////////////////////////////////////////////
 
 // * DISPLAY RESULTS DIV  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -235,14 +212,14 @@ function calculateCategory(){
   
 // * build the result div
 function buildResultDiv(){    
-    $finalScoreDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
+    $resultsDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
     
     // * get the totalPoints value passed to localStorage
     totalPoints = Number(score);
     
-    $finalScoreDiv.find('#final_score').find('h1').text(`${totalPoints}`);
-    $finalScoreDiv.find('#final_score').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
-    $finalScoreDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
+    $resultsDiv.find('.badge').find('h1').text(`${totalPoints}`);
+    $resultsDiv.find('.badge').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+    $resultsDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
 }
 
 

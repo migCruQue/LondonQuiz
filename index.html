@@ -12,12 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&family=Press+Start+2P&display=swap" rel="stylesheet">
     
 
-    <!-- CSS MAIN LINK -->
-    <link rel="stylesheet" href="css/utilities.css">
-    <link rel="stylesheet" href="css/startDiv.css">
-    <link rel="stylesheet" href="css/questionDiv.css">
-    <link rel="stylesheet" href="css/checkAnswerDiv.css">
-    <link rel="stylesheet" href="css/finalScoreDiv.css">
+    <!-- CSS-->
+    <link rel="stylesheet" href="styles/styles.css">
 
 
 
@@ -26,7 +22,7 @@
   <body id="body">
             
             <!-- START DIV intro -->
-                  <div id="startDiv" class="flex">
+                  <div id="startDiv" class="container">
                     <div class="logo">
                       <h1 class="title">LONDON</h1>
                       <h1 class="title">QUIZ </h1>
@@ -35,7 +31,7 @@
                   </div>
             <!-- START DIV  intro -->
             <!-- QUESTION DIV WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
-                  <div id="questionDiv" class="hidden container flex">
+                  <div id="questionDiv" class="container">
 
                       <div id="divImage">
                           <img id="imgQuestion" /> 
@@ -45,7 +41,10 @@
                           <img class="dragon_border_decoration" alt="city of London dragon icon" src="./img/city_dragons/red_city_dragon_left.jpeg"></img>
                       </div>
 
-                      <h1 id="question"></h1>
+                      <div id="question">
+                        <dd></dd>
+                        <h1></h1>
+                      </div>
 
                       <div id="score-bar"></div>
           
@@ -61,27 +60,27 @@
             <!-- QUESTION DIV CONTAINER WITH PICS, QUESTIONS, ANSWERS OPTIONS -->
 
             <!-- DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
-                  <div id="checkAnswerDiv" class="hidden container flex">
+                  <div id="checkAnswerDiv" class="container">
                           <p  id="emoji"></p>
                           <div id="score"><p></p><img class="coin" src="img/coin.png" alt="coin"></div>
                   </div>
             <!-- /DIV EMOJI TO REACT TO THE ANSWER OUTPUT -->
 
             <!-- DISPLAY RESULTS DIV -->
-                  <div id="finalScoreDiv" class="container flex">
+                  <div id="resultsDiv" class="container">
           
                     <div id="finalScore">
                         <h1>Total Points</h1>
-                        <div class="score_number">
-                          <h1>58989</h1>
-                          <img src="img/awards pics/square/obe-medal.png" alt="award" id="award"> 
+                        <div class="badge">
+                          <h1></h1>
+                          <img src="" alt="award" id="award"> 
                         </div>  
                       </div>
 
                     <div id="queenSays">
-                      <img id="queen" class="text-center" src="img/queen_faces/queen1.png" alt="queen">
+                      <img id="queen" src="" alt="queen">
                       <div class="arrow_box">
-                        <h1 class="flex" id="queenSentence">I'm impressed with you, I'll name you Officer of the Order of the British Empire!</h1>
+                        <h1 class="flex" id="queenSentence"></h1>
                       </div>
                 
                     </div>
