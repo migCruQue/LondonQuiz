@@ -1,33 +1,28 @@
+// ***************************************  IMPORTING VARIABLE, OBJECTS...  *********************************************************************
+
+//* object with the info needed to build result div
+import { myResults } from './modules/data.js';
 
 
-// ! to start the game I inline style ==> display: none to all the container tabs except #startDiv.
+// ***************************************  DECLARING GLOBAL VARIABLES AND CONSTANTS  ***********************************************************
 
-$('.container').not('#startDiv').css('display', 'none');
+//*  jQuery constants (HTML elements)
+const $question = $('#question');                                              
+const $choices = $('.answerOption');                                              
+const $questionDiv = $('#questionDiv');                                        
+const $resultsDiv = $('#resultsDiv');                                                 
+const $checkAnswerDiv = $('#checkAnswerDiv'); 
+const $imgQuestion = $('#imgQuestion'); 
 
-
-//* START DIV ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-$('#startBTN').on('click', function() {          // * jQuery Event handler to the Start button to start the game
-    $('#startDiv').css('display', 'none');
-    $('#questionDiv').removeAttr('style');
-  });
-
-
-// ! MAIN FUNCTIONAL GAME || DIV questionDiv & DIV checkAnswerDiv ////////////////////////////////////////////////////////////////
-//* Assigning HTML element to variables 
-const $question = $('#question');                                                  //*  jQuery variable
-const $imgQuestion = $('#imgQuestion');                                            //*  jQuery variable
-const $choices = $('.answerOption');                                               //*  jQuery variable
-const $questionDiv = $('#questionDiv');                                        //*  jQuery variable
-const $resultsDiv = $('#resultsDiv');                                                  //*  jQuery variable
-const $checkAnswerDiv = $('#checkAnswerDiv');                                            //*  jQuery variable
+//* plain JS constants(HTML elements)
 const scoreText = document.querySelector('#score p');
 const emoji = document.getElementById('emoji');
 
+// * constants for randomly choose the questions from firebase database.
+const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_COLLECTION = 50;
 
-
-// * variables
+// * other global variables
 let questionCounter = 0;
 let score = 0;
 let totalPoints = 0;
@@ -44,9 +39,17 @@ let startTime = new Date();
 let dbQuestions = [];
 
 
-// * constants
-const AMOUNT_QUESTIONS_QUIZ = 10;
-const AMOUNT_QUESTIONS_COLLECTION = 50;
+// !(1) to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.
+
+$('.container').not('#startDiv').css('display', 'none');
+
+ // * jQuery Event handler to the Start button to start the game
+$('#startBTN').on('click', function() {         
+    $('#startDiv').css('display', 'none');
+    $('#questionDiv').removeAttr('style');
+  });
+
+
 
 
 // * return an array with an amount(numberOfQuestion) of different random numbers from 0 to totalQuestions.
@@ -87,15 +90,17 @@ document.addEventListener("DOMContentLoaded", event => {
 
 
 // ! STARTGAME FUNCTION
-startGame = () => {
+// * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
+function startGame(){
   questionCounter = 0;
   score = 0;
   availableQuestions = [...dbQuestions];
   getNewQuestion();
-};
+}
 
 // ! GETNEWQUESTION FUNCTION
-getNewQuestion = () => {
+// * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
+function getNewQuestion (){
 
   if(availableQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){	
       lastQuestionFlag = true; 
@@ -181,26 +186,6 @@ function calculateScore(){
 // * DISPLAY RESULTS DIV  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//* object with the info needed to build result div
-const myResults = [
-
-  {queenPic: `img/queen_faces/queen0.png`,
-   queenSays: `I'm shocked about your lack of knowledge, you are rubish!!`,
-   picSrc: `img/awards pics/square/dunce.jpg`},
-
-  {queenPic: `img/queen_faces/queen1.png`,
-   queenSays: `Not bad, I'll name you Member of the Order of the British Empire!`,
-   picSrc: `img/awards pics/square/mbe-medal.png`},
-
-  {queenPic: `img/queen_faces/queen2.png`,
-  queenSays: `I'm impressed with you, I'll name you Officer of the Order of the British Empire!`,
-  picSrc: `img/awards pics/square/obe-medal.png`},
-
-  {queenPic: `img/queen_faces/queen3.png`,
-  queenSays: `you are brilliant, I'll name you Commander of the Order of the British Empire!`,
-  picSrc: `img/awards pics/square/cbe-medal.jpg`},
-];
-
 
 //* return a value depending on the totalPoint variable.
 function calculateCategory(){   
@@ -212,19 +197,20 @@ function calculateCategory(){
   
 // * build the result div
 function buildResultDiv(){    
-    $resultsDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
     
-    // * get the totalPoints value passed to localStorage
-    totalPoints = Number(score);
-    
+    totalPoints = Number(score); // * get the totalPoints  value passed to localStorage
     $resultsDiv.find('.badge').find('h1').text(`${totalPoints}`);
     $resultsDiv.find('.badge').find('img#award').attr('src', myResults[calculateCategory()].picSrc);
+
+    $resultsDiv.find('img#queen').attr('src', myResults[calculateCategory()].queenPic);
     $resultsDiv.find('#queenSentence').text(`${myResults[calculateCategory()].queenSays}`);
 }
 
 
 // * Start the game.
 setTimeout(() => {startGame()}, 500);
+
+
 
 
 
