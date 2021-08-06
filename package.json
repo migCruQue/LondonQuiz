@@ -1,0 +1,25 @@
+{
+  "name": "london_quiz",
+  "version": "1.0.0",
+  "description": "It is a multi choice question game with facts related to London.",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+    "build:watch": "./node_modules/.bin/webpack --watch" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/migCruQue/LondonQuiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/migCruQue/LondonQuiz/issues"
+  },
+  "homepage": "https://github.com/migCruQue/LondonQuiz#readme",
+  "devDependencies": {
+    "webpack": "^5.48.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
