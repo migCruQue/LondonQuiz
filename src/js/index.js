@@ -1,5 +1,5 @@
 
-
+ 
 // ***************************************  DECLARING GLOBAL VARIABLES AND CONSTANTS  ***********************************************************
 
 //*  jQuery constants (HTML elements)
