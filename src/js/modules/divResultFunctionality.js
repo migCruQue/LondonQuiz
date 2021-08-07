@@ -25,11 +25,11 @@ function calculateLevel(score){
     else if (score >= 60000){return 2;}
       else if (score >= 30000){return 1;}
       return 0;
-} 1
+} 
 
-function buildResultDiv(div, level){    
+function buildResultDiv(div, score){  
+  let level = calculateLevel(score);
   
-  let score = Number(score); // * get the score  value passed to localStorage
   div.find('.badge').find('h1').text(`${score}`);
   div.find('.badge').find('img#award').attr('src', myResults[level].picSrc);
 
