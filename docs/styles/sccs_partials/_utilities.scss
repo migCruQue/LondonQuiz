@@ -48,8 +48,7 @@
 }
 
 @mixin gridCenter($justify: center, $align: center) {
-  display: flex;
-  flex-direction: $direction;
+  display: grid;
   justify-items: $justify;
   align-items: $align;
 }
