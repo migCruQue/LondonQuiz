@@ -1,9 +1,19 @@
 
 
 
-// ***************************************  IMPORTING FUNCTIONS AND OBJECT TO BUILD THE RESULTS DIV **********************************************
-
+// ***************************************  buildResultDiv builds the final div **********************************************
 import {buildResultDiv } from "./modules/divResultFunctionality";
+// **  retrievingQuestion function fetch the firebase firestore questions databe, it retrieves a certain amount of questions **
+// **  AMOUNT_QUESTIONS_QUIZ and storates in the dbQuestions variable  ********************* **********************************
+import {retrievingQuestions, dbQuestions, AMOUNT_QUESTIONS_QUIZ} from "./modules/retrievingData";
+
+// **  transition between tabs applying css property display: none and removing it respectively   *****************************
+import {
+  hideQuestionDiv_showCheckAnswerDiv, 
+  hideCheckAnswerDiv_showQuestionDiv, 
+  hideAnswerDiv_showResultsDiv } from "./modules/transitionsTabs";
+
+  // import { checkAnswerFunctionality } from "./modules/checkAnswersFunctionality";
 
 
 
@@ -25,9 +35,6 @@ const $imgQuestion = $('#imgQuestion');
 const scoreText = document.querySelector('#score p');
 const emoji = document.getElementById('emoji');
 
-// * constants for randomly choose the questions from firebase database.
-const AMOUNT_QUESTIONS_QUIZ = 10;
-const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 // * INITIALING VARIABLE
 let score = 0;
@@ -41,8 +48,6 @@ let acceptingAnswers = false;
 // *   I declare it globaly as it has to be accessed for more the one functions.
 let startTime = new Date();  
 
-//* global variable to store the question from the Firebase database (it remains immutable).
-let dbQuestions = [];
 
 
 // !(1) to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.
@@ -58,48 +63,14 @@ $('#startBTN').on('click', function() {
 
 
 
-// * return an array with an amount(numberOfQuestion) of different random numbers from 0 to totalQuestions.
-function codeNumberQuestionArray(numberOfQuestions, totalQuestions){
-  let array = [];
-  while(array.length < numberOfQuestions){
-     let randomNumber = Math.floor(Math.random() * totalQuestions);
-     if(!array.includes(randomNumber)){array.push(randomNumber)}
-  }
-  return array;
-}
-
-
-
 // * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'.
-document.addEventListener("DOMContentLoaded", event => {
-
-  const app = firebase.app();
-
-  const db = firebase.firestore();
-
-  let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ, AMOUNT_QUESTIONS_COLLECTION);
-
-  array.forEach( element => {
-      db.collection("questions").where("CodeNumber", "==", element)
-      .get()
-      .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-              dbQuestions.push(doc.data());
-          });
-      })
-      .catch(function(error) {
-          console.log("Error getting documents: ", error);
-      });
-  });
-});
+document.addEventListener("DOMContentLoaded", retrievingQuestions());
 
 
 
 // ! STARTGAME FUNCTION
 // * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
 function startGame(){
-  questionCounter = 0;
-  score = 0;
   availableQuestions = [...dbQuestions];
   getNewQuestion();
 }
@@ -146,12 +117,13 @@ function getImageQuestion (currentQuestion) {
   .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
 }
 
+
 // * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
 // * if the time passes over 10000 ms the number of points will be set up to 100.
 function calculateScore(){
   const timeTakes = (new Date() - startTime);
   return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
-}
+} 
 
 //! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
   $choices.on("click", e => {
@@ -167,20 +139,21 @@ function calculateScore(){
         emoji.innerText =  '💩';
       }
       scoreText.innerText = `${score}`; 
+      // checkAnswerFunctionality(e);
        
       //* to hide questinDiv and show the checkAnswerDiv
-      $questionDiv.css('display', 'none'); $checkAnswerDiv.removeAttr('style');
-      
+      hideQuestionDiv_showCheckAnswerDiv();
+
       getNewQuestion();
 
       setTimeout(() => { 
           if(!lastQuestionFlag){
             //* to hide questinDiv and show the checkAnswerDiv
-            $checkAnswerDiv.css('display', 'none'); $questionDiv.removeAttr('style');
+            hideCheckAnswerDiv_showQuestionDiv();
             startTime = new Date();
           } else {
             //* to hide questinDiv and show the checkAnswerDiv
-            $checkAnswerDiv.css('display', 'none'); $resultsDiv.removeAttr('style');
+            hideAnswerDiv_showResultsDiv();
             setTimeout(() => { window.location.reload()}, 8000); //* reload the web application to start
           }         
           
@@ -197,3 +170,12 @@ setTimeout(() => {startGame()}, 500);
 
 
 
+// * exporting jquery element variables to be used by transitionsTabs
+export {$questionDiv, $checkAnswerDiv, $resultsDiv};
+
+// * exporting variables to be used by checkAnswerFunctionality
+// export {acceptingAnswers,
+//         currentQuestion, 
+//         score, 
+//         emoji,
+//         scoreText};
