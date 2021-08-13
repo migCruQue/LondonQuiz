@@ -13,7 +13,7 @@
 /* THIS ANIMATION SCALES THE EMOJI FROM SMALL TO NORMAL SIZE */
 @keyframes emojiAnimation {
   0% {
-    transform: scale(0.2);
+    transform: scale(0.1);
   }
 }
 /* THIS ANIMATION SCALES THE EMOJI FROM SMALL TO NORMAL SIZE */
@@ -201,7 +201,7 @@
 
 @media (orientation: landscape) and (min-width: 90em) {
   #emoji {
-    font-size: 40rem;
+    font-size: 30rem;
   }
 
   #score {
@@ -219,7 +219,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 160em) {
   #emoji {
-    font-size: 70rem;
+    font-size: 50rem;
   }
 
   #score {
