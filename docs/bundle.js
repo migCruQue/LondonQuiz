@@ -1,32 +1,455 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/js/index.js":
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("\n \n// ***************************************  DECLARING GLOBAL VARIABLES AND CONSTANTS  ***********************************************************\n\n//*  jQuery constants (HTML elements)\nconst $question = $('#question');                                              \nconst $choices = $('.answerOption');                                              \nconst $questionDiv = $('#questionDiv');                                        \nconst $resultsDiv = $('#resultsDiv');                                                 \nconst $checkAnswerDiv = $('#checkAnswerDiv'); \nconst $imgQuestion = $('#imgQuestion'); \n\n//* plain JS constants(HTML elements)\nconst scoreText = document.querySelector('#score p');\nconst emoji = document.getElementById('emoji');\n\n// * constants for randomly choose the questions from firebase database.\nconst AMOUNT_QUESTIONS_QUIZ = 10;\nconst AMOUNT_QUESTIONS_COLLECTION = 50;\n\n// * INITIALING VARIABLE\nlet score = 0;\nlet questionCounter = 0;\nlet availableQuestions = [];\nlet currentQuestion = {};\nlet lastQuestionFlag = false;\nlet acceptingAnswers = false;\n\n// * global variable to calculate the points based in the time the user takes to click the option button,\n// *   I declare it globaly as it has to be accessed for more the one functions.\nlet startTime = new Date();  \n\n//* global variable to store the question from the Firebase database (it remains immutable).\nlet dbQuestions = [];\n\n\n// !(1) to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.\n\n$('.container').not('#startDiv').css('display', 'none');\n\n // * jQuery Event handler to the Start button to start the game\n$('#startBTN').on('click', function() {         \n    $('#startDiv').css('display', 'none');\n    $('#questionDiv').removeAttr('style');\n  });\n\n\n\n\n// * return an array with an amount(numberOfQuestion) of different random numbers from 0 to totalQuestions.\nfunction codeNumberQuestionArray(numberOfQuestions, totalQuestions){\n  let array = [];\n  while(array.length < numberOfQuestions){\n     let randomNumber = Math.floor(Math.random() * totalQuestions);\n     if(!array.includes(randomNumber)){array.push(randomNumber)}\n  }\n  return array;\n}\n\n\n\n// * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'.\ndocument.addEventListener(\"DOMContentLoaded\", event => {\n\n  const app = firebase.app();\n\n  const db = firebase.firestore();\n\n  let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ, AMOUNT_QUESTIONS_COLLECTION);\n\n  array.forEach( element => {\n      db.collection(\"questions\").where(\"CodeNumber\", \"==\", element)\n      .get()\n      .then(function(querySnapshot) {\n          querySnapshot.forEach(function(doc) {\n              dbQuestions.push(doc.data());\n          });\n      })\n      .catch(function(error) {\n          console.log(\"Error getting documents: \", error);\n      });\n  });\n});\n\n\n\n// ! STARTGAME FUNCTION\n// * I've turned it from an arrow function to a default function as it didn't work when I added type=\"module\" to the index.js script in the embedded html  \nfunction startGame(){\n  questionCounter = 0;\n  score = 0;\n  availableQuestions = [...dbQuestions];\n  getNewQuestion();\n}\n\n// ! GETNEWQUESTION FUNCTION\n// * I've turned it from an arrow function to a default function as it didn't work when I added type=\"module\" to the index.js script in the embedded html  \nfunction getNewQuestion (){\n\n  if(availableQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){\t\n      lastQuestionFlag = true;\n      let level = calculateLevel(score);\n      buildResultDiv($resultsDiv, level);\n  } else {\n    questionCounter++;\n\n    const questionIndex = Math.floor(Math.random() * availableQuestions.length);\n    currentQuestion = availableQuestions[questionIndex];\n\n    // * jQuery method to set up the text inside dd ORDINAL element and h1 question. \n    $question.html(`<dd>${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</dd><h1>${currentQuestion.question}</h1>`);\n    \n    $choices.each( function () {                             //* jQuery method each goes throught each .answerOption ($choices) element\n      const number = this.dataset['number'];                 //* getting its data-number attr and with that gets the currentQuestion.\n      $(this).text(currentQuestion[\"option\" + number]);  \n    });\n\n\n    getImageQuestion(currentQuestion);\n\n    availableQuestions.splice(questionIndex, 1);    \n    acceptingAnswers = true;  \n  }\n\n}\n\n\n//* function helper to retrieve the image from the firebase database and set the background-image inline css property.\nfunction getImageQuestion (currentQuestion) {\n  let storage = firebase.storage();\n\n  let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);\n\n  gsReference.getDownloadURL()\n  .then(function(url) {$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})\n  .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});\n}\n\n// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.\n// * if the time passes over 10000 ms the number of points will be set up to 100.\nfunction calculateScore(){\n  const timeTakes = (new Date() - startTime);\n  return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;\n}\n\n//! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)\n  $choices.on(\"click\", e => {\n      if(!acceptingAnswers) return;\n      acceptingAnswers = false;\n      const selectedOption = e.target.innerText;\n      if(selectedOption == currentQuestion.correct){\n        console.log(calculateScore());\n        score += calculateScore();\n        $checkAnswerDiv.removeClass('wrong').addClass('correct');\n        emoji.innerText = '💂'; \n      } else {\n        $checkAnswerDiv.removeClass('correct').addClass('wrong');\n        emoji.innerText =  '💩';\n      }\n      scoreText.innerText = `${score}`; \n       \n      //* to hide questinDiv and show the checkAnswerDiv\n      $questionDiv.css('display', 'none'); $checkAnswerDiv.removeAttr('style');\n      \n      getNewQuestion();\n\n      setTimeout(() => { \n          if(!lastQuestionFlag){\n            //* to hide questinDiv and show the checkAnswerDiv\n            $checkAnswerDiv.css('display', 'none'); $questionDiv.removeAttr('style');\n            startTime = new Date();\n          } else {\n            //* to hide questinDiv and show the checkAnswerDiv\n            $checkAnswerDiv.css('display', 'none'); $resultsDiv.removeAttr('style');\n            setTimeout(() => { window.location.reload()}, 8000); //* reload the web application to start\n          }         \n          \n        } , 2000);\n\n});\n\n\n// * DISPLAY RESULTS DIV  ///////////////////////////////////////////////////////////////////////////////////////////////////////\n\nconst myResults = [\n\n  {queenPic: `img/queen_faces/queen0.png`,\n   queenSays: `I'm shocked about your lack of knowledge, you are rubish!!`,\n   picSrc: `img/awards pics/square/dunce.jpg`},\n\n  {queenPic: `img/queen_faces/queen1.png`,\n   queenSays: `Not bad, I'll name you Member of the Order of the British Empire!`,\n   picSrc: `img/awards pics/square/mbe-medal.png`},\n\n  {queenPic: `img/queen_faces/queen2.png`,\n  queenSays: `I'm impressed with you, I'll name you Officer of the Order of the British Empire!`,\n  picSrc: `img/awards pics/square/obe-medal.png`},\n\n  {queenPic: `img/queen_faces/queen3.png`,\n  queenSays: `you are brilliant, I'll name you Commander of the Order of the British Empire!`,\n  picSrc: `img/awards pics/square/cbe-medal.jpg`},\n];\n\n//* return a value depending on the totalPoint variable.\nfunction calculateLevel(score){   \nif (score >= 90000){return 3;}\n  else if (score >= 60000){return 2;}\n    else if (score >= 30000){return 1;}\n    return 0;\n} \n\nfunction buildResultDiv(div, level){    \n  div.find('.badge').find('h1').text(`${score}`);\n  div.find('.badge').find('img#award').attr('src', myResults[level].picSrc);\n\n  div.find('img#queen').attr('src', myResults[level].queenPic);\n  div.find('#queenSentence').text(`${myResults[level].queenSays}`);\n}\n\n\n// * build the result div\n\n\n// * Start the game.\nsetTimeout(() => {startGame()}, 500);\n\n\n\n\n\n\n//# sourceURL=webpack://london_quiz/./src/js/index.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "$startDiv": () => (/* binding */ $startDiv),
+/* harmony export */   "$questionDiv": () => (/* binding */ $questionDiv),
+/* harmony export */   "$checkAnswerDiv": () => (/* binding */ $checkAnswerDiv),
+/* harmony export */   "$resultsDiv": () => (/* binding */ $resultsDiv),
+/* harmony export */   "$imgQuestion": () => (/* binding */ $imgQuestion),
+/* harmony export */   "currentQuestion": () => (/* binding */ currentQuestion),
+/* harmony export */   "startTime": () => (/* binding */ startTime)
+/* harmony export */ });
+/* harmony import */ var _modules_divResultFunctionality__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/divResultFunctionality */ "./src/js/modules/divResultFunctionality.js");
+/* harmony import */ var _modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/retrievingData */ "./src/js/modules/retrievingData.js");
+/* harmony import */ var _modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/transitionsTabs */ "./src/js/modules/transitionsTabs.js");
+/* harmony import */ var _modules_checkAnswersFunctionality__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/checkAnswersFunctionality */ "./src/js/modules/checkAnswersFunctionality.js");
+
+
+
+// ***************************************  buildResultDiv builds the final div **********************************************
+
+
+// **  retrievingQuestion function fetch the firebase firestore questions databe, it retrieves a certain amount of questions **
+// **  AMOUNT_QUESTIONS_QUIZ and storates in the dbQuestions variable  ********************* **********************************
+
+
+// **  transition between tabs applying css property display: none and removing it respectively   *****************************
+
+
+// * this function is call at the Event handler to check whether and answer is correct and to apply some features **************
+// *  css to checkAnswerDiv and to calculate the score)       ******************************************************************
+
+
+ 
+// ***************************************  DECLARING GLOBAL VARIABLES AND CONSTANTS  ***********************************************************
+
+//*  jQuery constants (HTML elements)
+const $startDiv = $('#startDiv');
+const $question = $('#question');                                              
+const $choices = $('.answerOption');                                              
+const $questionDiv = $('#questionDiv');                                        
+const $resultsDiv = $('#resultsDiv');                                                 
+const $checkAnswerDiv = $('#checkAnswerDiv'); 
+const $imgQuestion = $('#imgQuestion'); 
+
+// * INITIALING VARIABLES
+
+let questionCounter = 0;
+let availableQuestions = [];
+let currentQuestion = {};
+let lastQuestionFlag = false;
+
+// * DECLARING VARIABLES IN LOCALSTORAGE
+localStorage.setItem("acceptingAnswers", false);
+localStorage.setItem("score", 0);
+
+// * global variable to calculate the points based in the time the user takes to click the option button,
+// *   I declare it globaly as it has to be accessed for more the one functions.
+let startTime = new Date();  
+
+
+
+// !(1) to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.
+
+$('.container').not('#startDiv').css('display', 'none');
+
+ // * jQuery Event handler to the Start button to start the game
+$('#startBTN').on('click', function(){
+  (0,_modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__.hideStartDiv_showQuestionDiv)();
+});
+
+
+
+
+// * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'.
+document.addEventListener("DOMContentLoaded", (0,_modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.retrievingQuestions)());
+
+
+
+// ! STARTGAME FUNCTION
+// * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
+function startGame(){
+  availableQuestions = [..._modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.dbQuestions];
+  getNewQuestion();
+}
+
+// ! GETNEWQUESTION FUNCTION 
+function getNewQuestion (){
+
+  if(availableQuestions.length === 0 || questionCounter >= _modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.AMOUNT_QUESTIONS_QUIZ){	
+      lastQuestionFlag = true;
+      (0,_modules_divResultFunctionality__WEBPACK_IMPORTED_MODULE_0__.buildResultDiv)($resultsDiv, localStorage.getItem("score"));
+  } else {
+    questionCounter++;
+
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
+
+    // * jQuery method to set up the text inside dd ORDINAL element and h1 question. 
+    $question.html(`<dd>${questionCounter}/${_modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.AMOUNT_QUESTIONS_QUIZ}</dd><h1>${currentQuestion.question}</h1>`);
+    
+    $choices.each( function () {                             //* jQuery method each goes throught each .answerOption ($choices) element
+      const number = this.dataset['number'];                 //* getting its data-number attr and with that gets the currentQuestion.
+      $(this).text(currentQuestion["option" + number]);  
+    });
+
+
+    (0,_modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.getImageQuestion)(currentQuestion);
+
+    availableQuestions.splice(questionIndex, 1);    
+    localStorage.setItem("acceptingAnswers", true); 
+  }
+
+}
+
+
+//! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
+  $choices.on("click", e => {
+
+      (0,_modules_checkAnswersFunctionality__WEBPACK_IMPORTED_MODULE_3__.checkAnswerFunctionality)(e);
+       
+      //* to hide questinDiv and show the checkAnswerDiv
+      (0,_modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__.hideQuestionDiv_showCheckAnswerDiv)();
+
+      getNewQuestion();
+
+      setTimeout(() => { 
+          if(!lastQuestionFlag){
+            //* to hide questinDiv and show the checkAnswerDiv
+            (0,_modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__.hideCheckAnswerDiv_showQuestionDiv)();
+            startTime = new Date();
+          } else {
+            //* to hide questinDiv and show the checkAnswerDiv
+            (0,_modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__.hideAnswerDiv_showResultsDiv)();
+            setTimeout(() => { window.location.reload()}, 8000); //* reload the web application to start
+          }         
+          
+        } , 2000);
+
+});
+
+
+
+
+// * Start the game.
+setTimeout(() => {startGame()}, 500);
+
+
+
+
+// * exporting jquery element variables to be used by transitionsTabs // and $imgQuestion by retrievingData.js 
+
+
+// * exporting variables to be used by checkAnswerFunctionality ***********************************************************
+
+
+
+/***/ }),
+
+/***/ "./src/js/modules/checkAnswersFunctionality.js":
+/*!*****************************************************!*\
+  !*** ./src/js/modules/checkAnswersFunctionality.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkAnswerFunctionality": () => (/* binding */ checkAnswerFunctionality)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+
+
+
+// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
+// * if the time passes over 10000 ms the number of points will be set up to 100.
+function calculateScore(){
+  const timeTakes = (new Date() - _index__WEBPACK_IMPORTED_MODULE_0__.startTime);
+  return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
+} 
+
+
+function checkAnswerFunctionality(event)  {
+    if(!(localStorage.getItem("acceptingAnswers"))) return;
+    localStorage.setItem("acceptingAnswers", false);
+    const selectedOption = event.target.innerText;
+    if(selectedOption == _index__WEBPACK_IMPORTED_MODULE_0__.currentQuestion.correct){
+        let newScore = Number(localStorage.getItem("score"));
+        newScore += calculateScore();
+        localStorage.setItem("score", newScore);
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.removeClass('wrong').addClass('correct');
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.find('#emoji').text ('💂');; 
+    } else {
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.removeClass('correct').addClass('wrong');
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.find('#emoji').text ('💩');
+    }
+    _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.find('#score').find('p').text(`${Number(localStorage.getItem("score"))}`) ; 
+}
+
+ 
+
+/***/ }),
+
+/***/ "./src/js/modules/divResultFunctionality.js":
+/*!**************************************************!*\
+  !*** ./src/js/modules/divResultFunctionality.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "myResults": () => (/* binding */ myResults),
+/* harmony export */   "calculateLevel": () => (/* binding */ calculateLevel),
+/* harmony export */   "buildResultDiv": () => (/* binding */ buildResultDiv)
+/* harmony export */ });
+
+//* object with the info needed to build result div
+const myResults = [
+
+    {queenPic: `img/queen_faces/queen0.png`,
+     queenSays: `I'm shocked about your lack of knowledge, you are rubish!!`,
+     picSrc: `img/awards pics/square/dunce.jpg`},
+  
+    {queenPic: `img/queen_faces/queen1.png`,
+     queenSays: `Not bad, I'll name you Member of the Order of the British Empire!`,
+     picSrc: `img/awards pics/square/mbe-medal.png`},
+  
+    {queenPic: `img/queen_faces/queen2.png`,
+    queenSays: `I'm impressed with you, I'll name you Officer of the Order of the British Empire!`,
+    picSrc: `img/awards pics/square/obe-medal.png`},
+  
+    {queenPic: `img/queen_faces/queen3.png`,
+    queenSays: `you are brilliant, I'll name you Commander of the Order of the British Empire!`,
+    picSrc: `img/awards pics/square/cbe-medal.jpg`},
+  ];
+
+//* return a value depending on the totalPoint variable.
+function calculateLevel(score){   
+  if (score >= 90000){return 3;}
+    else if (score >= 60000){return 2;}
+      else if (score >= 30000){return 1;}
+      return 0;
+} 
+
+function buildResultDiv(div, score){  
+  let level = calculateLevel(score);
+  
+  div.find('.badge').find('h1').text(`${score}`);
+  div.find('.badge').find('img#award').attr('src', myResults[level].picSrc);
+
+  div.find('img#queen').attr('src', myResults[level].queenPic);
+  div.find('#queenSentence').text(`${myResults[level].queenSays}`);
+}
+
+
+
+  
+
+/***/ }),
+
+/***/ "./src/js/modules/retrievingData.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/retrievingData.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "retrievingQuestions": () => (/* binding */ retrievingQuestions),
+/* harmony export */   "dbQuestions": () => (/* binding */ dbQuestions),
+/* harmony export */   "AMOUNT_QUESTIONS_QUIZ": () => (/* binding */ AMOUNT_QUESTIONS_QUIZ),
+/* harmony export */   "getImageQuestion": () => (/* binding */ getImageQuestion)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+
+
+
+
+// * constants for randomly choose the questions from firebase database.
+const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_COLLECTION = 50;
+
+//* global variable to store the question from the Firebase database (it remains immutable).
+let dbQuestions = [];
+
+
+// * return an array with an amount(numberOfQuestion) of different random numbers from 0 to totalQuestions.
+function codeNumberQuestionArray(numberOfQuestions, totalQuestions){
+    let array = [];
+    while(array.length < numberOfQuestions){
+       let randomNumber = Math.floor(Math.random() * totalQuestions);
+       if(!array.includes(randomNumber)){array.push(randomNumber)}
+    }
+    return array;
+  }
+
+
+
+function retrievingQuestions( ){
+ 
+  firebase.app();
+
+  const db = firebase.firestore();
+
+  let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ, AMOUNT_QUESTIONS_COLLECTION);
+
+  array.forEach( element => {
+      db.collection("questions").where("CodeNumber", "==", element)
+      .get()
+      .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+              dbQuestions.push(doc.data());
+          });
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+      });
+  });
+}
+
+//* function helper to retrieve the image from the firebase database and set the background-image inline css property.
+function getImageQuestion (currentQuestion) {
+    let storage = firebase.storage();
+  
+    let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
+  
+    gsReference.getDownloadURL()
+    .then(function(url) {_index__WEBPACK_IMPORTED_MODULE_0__.$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})
+    .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
+  }
+
+
+
+
+/***/ }),
+
+/***/ "./src/js/modules/transitionsTabs.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/transitionsTabs.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "hideStartDiv_showQuestionDiv": () => (/* binding */ hideStartDiv_showQuestionDiv),
+/* harmony export */   "hideQuestionDiv_showCheckAnswerDiv": () => (/* binding */ hideQuestionDiv_showCheckAnswerDiv),
+/* harmony export */   "hideCheckAnswerDiv_showQuestionDiv": () => (/* binding */ hideCheckAnswerDiv_showQuestionDiv),
+/* harmony export */   "hideAnswerDiv_showResultsDiv": () => (/* binding */ hideAnswerDiv_showResultsDiv)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+
+
+
+ //* to hide questinDiv and show the checkAnswerDiv
+ function hideStartDiv_showQuestionDiv () {
+    _index__WEBPACK_IMPORTED_MODULE_0__.$startDiv.css('display', 'none'); 
+    _index__WEBPACK_IMPORTED_MODULE_0__.$questionDiv.removeAttr('style');
+}
+//* to hide questinDiv and show the checkAnswerDiv
+function hideQuestionDiv_showCheckAnswerDiv () {
+    _index__WEBPACK_IMPORTED_MODULE_0__.$questionDiv.css('display', 'none'); 
+    _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.removeAttr('style');
+}
+
+//* to hide questinDiv and show the checkAnswerDiv
+function hideCheckAnswerDiv_showQuestionDiv () {
+    _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.css('display', 'none'); 
+    _index__WEBPACK_IMPORTED_MODULE_0__.$questionDiv.removeAttr('style');
+}
+
+
+//* to hide questinDiv and show the checkAnswerDiv
+function hideAnswerDiv_showResultsDiv () {
+    _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.css('display', 'none'); 
+    _index__WEBPACK_IMPORTED_MODULE_0__.$resultsDiv.removeAttr('style');
+}
+
+
+
+
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/js/index.js"]();
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/index.js");
 /******/ 	
 /******/ })()
 ;
+//# sourceMappingURL=bundle.js.map

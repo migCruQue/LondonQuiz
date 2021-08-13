@@ -788,17 +788,17 @@
 }
 
 #finalScore * {
-  font-family: "Press Start 2P", cursive;
+  font-family: "press_start_2pregular", cursive;
 }
 
 .badge {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -1196,7 +1196,7 @@
 }
 
 #score p {
-  font-family: "Press Start 2P", cursive;
+  font-family: "press_start_2pregular", cursive;
   font-size: 3rem;
   letter-spacing: 0.3rem;
   color: white;
