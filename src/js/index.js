@@ -3,27 +3,27 @@
 
 // ***************************************  buildResultDiv builds the final div **********************************************
 import {buildResultDiv } from "./modules/divResultFunctionality";
+
 // **  retrievingQuestion function fetch the firebase firestore questions databe, it retrieves a certain amount of questions **
 // **  AMOUNT_QUESTIONS_QUIZ and storates in the dbQuestions variable  ********************* **********************************
-import {retrievingQuestions, dbQuestions, AMOUNT_QUESTIONS_QUIZ} from "./modules/retrievingData";
+import {retrievingQuestions, dbQuestions, AMOUNT_QUESTIONS_QUIZ, getImageQuestion} from "./modules/retrievingData";
 
 // **  transition between tabs applying css property display: none and removing it respectively   *****************************
 import {
+  hideStartDiv_showQuestionDiv,
   hideQuestionDiv_showCheckAnswerDiv, 
   hideCheckAnswerDiv_showQuestionDiv, 
   hideAnswerDiv_showResultsDiv } from "./modules/transitionsTabs";
 
-  // import { checkAnswerFunctionality } from "./modules/checkAnswersFunctionality";
-
-
-
-
-
+// * this function is call at the Event handler to check whether and answer is correct and to apply some features **************
+// *  css to checkAnswerDiv and to calculate the score)       ******************************************************************
+import {checkAnswerFunctionality} from "./modules/checkAnswersFunctionality";
 
  
 // ***************************************  DECLARING GLOBAL VARIABLES AND CONSTANTS  ***********************************************************
 
 //*  jQuery constants (HTML elements)
+const $startDiv = $('#startDiv');
 const $question = $('#question');                                              
 const $choices = $('.answerOption');                                              
 const $questionDiv = $('#questionDiv');                                        
@@ -31,18 +31,16 @@ const $resultsDiv = $('#resultsDiv');
 const $checkAnswerDiv = $('#checkAnswerDiv'); 
 const $imgQuestion = $('#imgQuestion'); 
 
-//* plain JS constants(HTML elements)
-const scoreText = document.querySelector('#score p');
-const emoji = document.getElementById('emoji');
+// * INITIALING VARIABLES
 
-
-// * INITIALING VARIABLE
-let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 let currentQuestion = {};
 let lastQuestionFlag = false;
-let acceptingAnswers = false;
+
+// * DECLARING VARIABLES IN LOCALSTORAGE
+localStorage.setItem("acceptingAnswers", false);
+localStorage.setItem("score", 0);
 
 // * global variable to calculate the points based in the time the user takes to click the option button,
 // *   I declare it globaly as it has to be accessed for more the one functions.
@@ -55,10 +53,9 @@ let startTime = new Date();
 $('.container').not('#startDiv').css('display', 'none');
 
  // * jQuery Event handler to the Start button to start the game
-$('#startBTN').on('click', function() {         
-    $('#startDiv').css('display', 'none');
-    $('#questionDiv').removeAttr('style');
-  });
+$('#startBTN').on('click', function(){
+  hideStartDiv_showQuestionDiv();
+});
 
 
 
@@ -75,13 +72,12 @@ function startGame(){
   getNewQuestion();
 }
 
-// ! GETNEWQUESTION FUNCTION
-// * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
+// ! GETNEWQUESTION FUNCTION 
 function getNewQuestion (){
 
   if(availableQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){	
       lastQuestionFlag = true;
-      buildResultDiv($resultsDiv, score);
+      buildResultDiv($resultsDiv, localStorage.getItem("score"));
   } else {
     questionCounter++;
 
@@ -100,46 +96,16 @@ function getNewQuestion (){
     getImageQuestion(currentQuestion);
 
     availableQuestions.splice(questionIndex, 1);    
-    acceptingAnswers = true;  
+    localStorage.setItem("acceptingAnswers", true); 
   }
 
 }
 
 
-//* function helper to retrieve the image from the firebase database and set the background-image inline css property.
-function getImageQuestion (currentQuestion) {
-  let storage = firebase.storage();
-
-  let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
-
-  gsReference.getDownloadURL()
-  .then(function(url) {$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})
-  .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
-}
-
-
-// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
-// * if the time passes over 10000 ms the number of points will be set up to 100.
-function calculateScore(){
-  const timeTakes = (new Date() - startTime);
-  return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
-} 
-
 //! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
   $choices.on("click", e => {
-      if(!acceptingAnswers) return;
-      acceptingAnswers = false;
-      const selectedOption = e.target.innerText;
-      if(selectedOption == currentQuestion.correct){
-        score += calculateScore();
-        $checkAnswerDiv.removeClass('wrong').addClass('correct');
-        emoji.innerText = '💂'; 
-      } else {
-        $checkAnswerDiv.removeClass('correct').addClass('wrong');
-        emoji.innerText =  '💩';
-      }
-      scoreText.innerText = `${score}`; 
-      // checkAnswerFunctionality(e);
+
+      checkAnswerFunctionality(e);
        
       //* to hide questinDiv and show the checkAnswerDiv
       hideQuestionDiv_showCheckAnswerDiv();
@@ -170,12 +136,8 @@ setTimeout(() => {startGame()}, 500);
 
 
 
-// * exporting jquery element variables to be used by transitionsTabs
-export {$questionDiv, $checkAnswerDiv, $resultsDiv};
+// * exporting jquery element variables to be used by transitionsTabs // and $imgQuestion by retrievingData.js 
+export {$startDiv, $questionDiv, $checkAnswerDiv, $resultsDiv, $imgQuestion};
 
-// * exporting variables to be used by checkAnswerFunctionality
-// export {acceptingAnswers,
-//         currentQuestion, 
-//         score, 
-//         emoji,
-//         scoreText};
+// * exporting variables to be used by checkAnswerFunctionality ***********************************************************
+export {currentQuestion, startTime};

@@ -1,10 +1,7 @@
 
-import {acceptingAnswers,
-        currentQuestion, 
-        score, 
+import {currentQuestion, 
         $checkAnswerDiv,
         emoji,
-        scoreText,
         startTime} from "../index";
 
 // * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
@@ -16,19 +13,20 @@ function calculateScore(){
 
 
 function checkAnswerFunctionality(event)  {
-    if(!acceptingAnswers) return;
-    acceptingAnswers = false;
-    console.log(acceptingAnswers);
+    if(!(localStorage.getItem("acceptingAnswers"))) return;
+    localStorage.setItem("acceptingAnswers", false);
     const selectedOption = event.target.innerText;
     if(selectedOption == currentQuestion.correct){
-      score += calculateScore();
+        let newScore = Number(localStorage.getItem("score"));
+        newScore += calculateScore();
+        localStorage.setItem("score", newScore);
       $checkAnswerDiv.removeClass('wrong').addClass('correct');
-      emoji.innerText = '💂'; 
+      $checkAnswerDiv.find('#emoji').text ('💂');; 
     } else {
       $checkAnswerDiv.removeClass('correct').addClass('wrong');
-      emoji.innerText =  '💩';
+      $checkAnswerDiv.find('#emoji').text ('💩');
     }
-    scoreText.innerText = `${score}`; 
+    $checkAnswerDiv.find('#score').find('p').text(`${Number(localStorage.getItem("score"))}`) ; 
 }
 
 export {checkAnswerFunctionality} 

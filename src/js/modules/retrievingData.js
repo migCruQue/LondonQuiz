@@ -1,3 +1,7 @@
+
+import {$imgQuestion} from "../index";
+
+
 // * constants for randomly choose the questions from firebase database.
 const AMOUNT_QUESTIONS_QUIZ = 10;
 const AMOUNT_QUESTIONS_COLLECTION = 50;
@@ -40,5 +44,16 @@ function retrievingQuestions( ){
   });
 }
 
+//* function helper to retrieve the image from the firebase database and set the background-image inline css property.
+function getImageQuestion (currentQuestion) {
+    let storage = firebase.storage();
+  
+    let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
+  
+    gsReference.getDownloadURL()
+    .then(function(url) {$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})
+    .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
+  }
 
-export {retrievingQuestions, dbQuestions, AMOUNT_QUESTIONS_QUIZ};
+
+export {retrievingQuestions, dbQuestions, AMOUNT_QUESTIONS_QUIZ, getImageQuestion};

@@ -10,17 +10,23 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "$startDiv": () => (/* binding */ $startDiv),
 /* harmony export */   "$questionDiv": () => (/* binding */ $questionDiv),
 /* harmony export */   "$checkAnswerDiv": () => (/* binding */ $checkAnswerDiv),
-/* harmony export */   "$resultsDiv": () => (/* binding */ $resultsDiv)
+/* harmony export */   "$resultsDiv": () => (/* binding */ $resultsDiv),
+/* harmony export */   "$imgQuestion": () => (/* binding */ $imgQuestion),
+/* harmony export */   "currentQuestion": () => (/* binding */ currentQuestion),
+/* harmony export */   "startTime": () => (/* binding */ startTime)
 /* harmony export */ });
 /* harmony import */ var _modules_divResultFunctionality__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/divResultFunctionality */ "./src/js/modules/divResultFunctionality.js");
 /* harmony import */ var _modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/retrievingData */ "./src/js/modules/retrievingData.js");
 /* harmony import */ var _modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/transitionsTabs */ "./src/js/modules/transitionsTabs.js");
+/* harmony import */ var _modules_checkAnswersFunctionality__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/checkAnswersFunctionality */ "./src/js/modules/checkAnswersFunctionality.js");
 
 
 
 // ***************************************  buildResultDiv builds the final div **********************************************
+
 
 // **  retrievingQuestion function fetch the firebase firestore questions databe, it retrieves a certain amount of questions **
 // **  AMOUNT_QUESTIONS_QUIZ and storates in the dbQuestions variable  ********************* **********************************
@@ -29,17 +35,15 @@ __webpack_require__.r(__webpack_exports__);
 // **  transition between tabs applying css property display: none and removing it respectively   *****************************
 
 
-  // import { checkAnswerFunctionality } from "./modules/checkAnswersFunctionality";
-
-
-
-
+// * this function is call at the Event handler to check whether and answer is correct and to apply some features **************
+// *  css to checkAnswerDiv and to calculate the score)       ******************************************************************
 
 
  
 // ***************************************  DECLARING GLOBAL VARIABLES AND CONSTANTS  ***********************************************************
 
 //*  jQuery constants (HTML elements)
+const $startDiv = $('#startDiv');
 const $question = $('#question');                                              
 const $choices = $('.answerOption');                                              
 const $questionDiv = $('#questionDiv');                                        
@@ -47,18 +51,16 @@ const $resultsDiv = $('#resultsDiv');
 const $checkAnswerDiv = $('#checkAnswerDiv'); 
 const $imgQuestion = $('#imgQuestion'); 
 
-//* plain JS constants(HTML elements)
-const scoreText = document.querySelector('#score p');
-const emoji = document.getElementById('emoji');
+// * INITIALING VARIABLES
 
-
-// * INITIALING VARIABLE
-let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 let currentQuestion = {};
 let lastQuestionFlag = false;
-let acceptingAnswers = false;
+
+// * DECLARING VARIABLES IN LOCALSTORAGE
+localStorage.setItem("acceptingAnswers", false);
+localStorage.setItem("score", 0);
 
 // * global variable to calculate the points based in the time the user takes to click the option button,
 // *   I declare it globaly as it has to be accessed for more the one functions.
@@ -71,10 +73,9 @@ let startTime = new Date();
 $('.container').not('#startDiv').css('display', 'none');
 
  // * jQuery Event handler to the Start button to start the game
-$('#startBTN').on('click', function() {         
-    $('#startDiv').css('display', 'none');
-    $('#questionDiv').removeAttr('style');
-  });
+$('#startBTN').on('click', function(){
+  (0,_modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__.hideStartDiv_showQuestionDiv)();
+});
 
 
 
@@ -91,13 +92,12 @@ function startGame(){
   getNewQuestion();
 }
 
-// ! GETNEWQUESTION FUNCTION
-// * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
+// ! GETNEWQUESTION FUNCTION 
 function getNewQuestion (){
 
   if(availableQuestions.length === 0 || questionCounter >= _modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.AMOUNT_QUESTIONS_QUIZ){	
       lastQuestionFlag = true;
-      (0,_modules_divResultFunctionality__WEBPACK_IMPORTED_MODULE_0__.buildResultDiv)($resultsDiv, score);
+      (0,_modules_divResultFunctionality__WEBPACK_IMPORTED_MODULE_0__.buildResultDiv)($resultsDiv, localStorage.getItem("score"));
   } else {
     questionCounter++;
 
@@ -113,49 +113,19 @@ function getNewQuestion (){
     });
 
 
-    getImageQuestion(currentQuestion);
+    (0,_modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.getImageQuestion)(currentQuestion);
 
     availableQuestions.splice(questionIndex, 1);    
-    acceptingAnswers = true;  
+    localStorage.setItem("acceptingAnswers", true); 
   }
 
 }
 
 
-//* function helper to retrieve the image from the firebase database and set the background-image inline css property.
-function getImageQuestion (currentQuestion) {
-  let storage = firebase.storage();
-
-  let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
-
-  gsReference.getDownloadURL()
-  .then(function(url) {$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})
-  .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
-}
-
-
-// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
-// * if the time passes over 10000 ms the number of points will be set up to 100.
-function calculateScore(){
-  const timeTakes = (new Date() - startTime);
-  return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
-} 
-
 //! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
   $choices.on("click", e => {
-      if(!acceptingAnswers) return;
-      acceptingAnswers = false;
-      const selectedOption = e.target.innerText;
-      if(selectedOption == currentQuestion.correct){
-        score += calculateScore();
-        $checkAnswerDiv.removeClass('wrong').addClass('correct');
-        emoji.innerText = '💂'; 
-      } else {
-        $checkAnswerDiv.removeClass('correct').addClass('wrong');
-        emoji.innerText =  '💩';
-      }
-      scoreText.innerText = `${score}`; 
-      // checkAnswerFunctionality(e);
+
+      (0,_modules_checkAnswersFunctionality__WEBPACK_IMPORTED_MODULE_3__.checkAnswerFunctionality)(e);
        
       //* to hide questinDiv and show the checkAnswerDiv
       (0,_modules_transitionsTabs__WEBPACK_IMPORTED_MODULE_2__.hideQuestionDiv_showCheckAnswerDiv)();
@@ -186,16 +156,55 @@ setTimeout(() => {startGame()}, 500);
 
 
 
-// * exporting jquery element variables to be used by transitionsTabs
+// * exporting jquery element variables to be used by transitionsTabs // and $imgQuestion by retrievingData.js 
 
 
-// * exporting variables to be used by checkAnswerFunctionality
-// export {acceptingAnswers,
-//         currentQuestion, 
-//         score, 
-//         emoji,
-//         scoreText};
+// * exporting variables to be used by checkAnswerFunctionality ***********************************************************
 
+
+
+/***/ }),
+
+/***/ "./src/js/modules/checkAnswersFunctionality.js":
+/*!*****************************************************!*\
+  !*** ./src/js/modules/checkAnswersFunctionality.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkAnswerFunctionality": () => (/* binding */ checkAnswerFunctionality)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+
+
+
+// * CALCULATESCORE FUNCTION subtracs the time that user takes to answers the question to 10000 ms if the answer is correct.
+// * if the time passes over 10000 ms the number of points will be set up to 100.
+function calculateScore(){
+  const timeTakes = (new Date() - _index__WEBPACK_IMPORTED_MODULE_0__.startTime);
+  return  (timeTakes > 10000) ? 100 : 10000 - timeTakes;
+} 
+
+
+function checkAnswerFunctionality(event)  {
+    if(!(localStorage.getItem("acceptingAnswers"))) return;
+    localStorage.setItem("acceptingAnswers", false);
+    const selectedOption = event.target.innerText;
+    if(selectedOption == _index__WEBPACK_IMPORTED_MODULE_0__.currentQuestion.correct){
+        let newScore = Number(localStorage.getItem("score"));
+        newScore += calculateScore();
+        localStorage.setItem("score", newScore);
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.removeClass('wrong').addClass('correct');
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.find('#emoji').text ('💂');; 
+    } else {
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.removeClass('correct').addClass('wrong');
+      _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.find('#emoji').text ('💩');
+    }
+    _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.find('#score').find('p').text(`${Number(localStorage.getItem("score"))}`) ; 
+}
+
+ 
 
 /***/ }),
 
@@ -266,8 +275,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "retrievingQuestions": () => (/* binding */ retrievingQuestions),
 /* harmony export */   "dbQuestions": () => (/* binding */ dbQuestions),
-/* harmony export */   "AMOUNT_QUESTIONS_QUIZ": () => (/* binding */ AMOUNT_QUESTIONS_QUIZ)
+/* harmony export */   "AMOUNT_QUESTIONS_QUIZ": () => (/* binding */ AMOUNT_QUESTIONS_QUIZ),
+/* harmony export */   "getImageQuestion": () => (/* binding */ getImageQuestion)
 /* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+
+
+
+
 // * constants for randomly choose the questions from firebase database.
 const AMOUNT_QUESTIONS_QUIZ = 10;
 const AMOUNT_QUESTIONS_COLLECTION = 50;
@@ -310,6 +325,17 @@ function retrievingQuestions( ){
   });
 }
 
+//* function helper to retrieve the image from the firebase database and set the background-image inline css property.
+function getImageQuestion (currentQuestion) {
+    let storage = firebase.storage();
+  
+    let gsReference = storage.refFromURL(`gs://londonquiz-f8499.appspot.com/${currentQuestion['pic']}`);
+  
+    gsReference.getDownloadURL()
+    .then(function(url) {_index__WEBPACK_IMPORTED_MODULE_0__.$imgQuestion.attr('src', `${url}`).attr('alt', `${currentQuestion['pic']}`)})
+    .catch(function(error) {console.log(`an error happened when trying to access the image => ${error}`)});
+  }
+
 
 
 
@@ -323,6 +349,7 @@ function retrievingQuestions( ){
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "hideStartDiv_showQuestionDiv": () => (/* binding */ hideStartDiv_showQuestionDiv),
 /* harmony export */   "hideQuestionDiv_showCheckAnswerDiv": () => (/* binding */ hideQuestionDiv_showCheckAnswerDiv),
 /* harmony export */   "hideCheckAnswerDiv_showQuestionDiv": () => (/* binding */ hideCheckAnswerDiv_showQuestionDiv),
 /* harmony export */   "hideAnswerDiv_showResultsDiv": () => (/* binding */ hideAnswerDiv_showResultsDiv)
@@ -332,6 +359,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
  //* to hide questinDiv and show the checkAnswerDiv
+ function hideStartDiv_showQuestionDiv () {
+    _index__WEBPACK_IMPORTED_MODULE_0__.$startDiv.css('display', 'none'); 
+    _index__WEBPACK_IMPORTED_MODULE_0__.$questionDiv.removeAttr('style');
+}
+//* to hide questinDiv and show the checkAnswerDiv
 function hideQuestionDiv_showCheckAnswerDiv () {
     _index__WEBPACK_IMPORTED_MODULE_0__.$questionDiv.css('display', 'none'); 
     _index__WEBPACK_IMPORTED_MODULE_0__.$checkAnswerDiv.removeAttr('style');
