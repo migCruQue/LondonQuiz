@@ -1152,14 +1152,14 @@
 /* THIS ANIMATION SCALES THE EMOJI FROM SMALL TO NORMAL SIZE */
 @-webkit-keyframes emojiAnimation {
   0% {
-    -webkit-transform: scale(0.2);
-            transform: scale(0.2);
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
   }
 }
 @keyframes emojiAnimation {
   0% {
-    -webkit-transform: scale(0.2);
-            transform: scale(0.2);
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
   }
 }
 
@@ -1345,7 +1345,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>><<<<<<<<<<<<*/
 @media (orientation: landscape) and (min-width: 90em) {
   #emoji {
-    font-size: 40rem;
+    font-size: 30rem;
   }
   #score {
     width: 32rem;
@@ -1361,7 +1361,7 @@
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 @media (min-width: 160em) {
   #emoji {
-    font-size: 70rem;
+    font-size: 50rem;
   }
   #score {
     width: 60rem;

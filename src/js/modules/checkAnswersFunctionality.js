@@ -1,4 +1,7 @@
 
+// * this function is call at the Event handler to check whether and answer is correct and to apply some features **************
+// *  css to checkAnswerDiv and to calculate the score)       ******************************************************************
+
 import {currentQuestion, 
         $checkAnswerDiv,
         emoji,
