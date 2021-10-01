@@ -1,4 +1,6 @@
 
+// **  transition between tabs applying css property display: none and removing it respectively   *****************************
+
 import {$startDiv, $questionDiv, $checkAnswerDiv, $resultsDiv} from "../index";
 
  //* to hide questinDiv and show the checkAnswerDiv

@@ -1,22 +1,14 @@
 
-
-
-// ***************************************  buildResultDiv builds the final div **********************************************
 import {buildResultDiv } from "./modules/divResultFunctionality";
 
-// **  retrievingQuestion function fetch the firebase firestore questions databe, it retrieves a certain amount of questions **
-// **  AMOUNT_QUESTIONS_QUIZ and storates in the dbQuestions variable  ********************* **********************************
-import {retrievingQuestions, dbQuestions, AMOUNT_QUESTIONS_QUIZ, getImageQuestion} from "./modules/retrievingData";
+import {fetchAndStart, dbQuestions, AMOUNT_QUESTIONS_QUIZ, getImageQuestion} from "./modules/retrievingData";
 
-// **  transition between tabs applying css property display: none and removing it respectively   *****************************
 import {
   hideStartDiv_showQuestionDiv,
   hideQuestionDiv_showCheckAnswerDiv, 
   hideCheckAnswerDiv_showQuestionDiv, 
   hideAnswerDiv_showResultsDiv } from "./modules/transitionsTabs";
 
-// * this function is call at the Event handler to check whether and answer is correct and to apply some features **************
-// *  css to checkAnswerDiv and to calculate the score)       ******************************************************************
 import {checkAnswerFunctionality} from "./modules/checkAnswersFunctionality";
 
  
@@ -32,9 +24,7 @@ const $checkAnswerDiv = $('#checkAnswerDiv');
 const $imgQuestion = $('#imgQuestion'); 
 
 // * INITIALING VARIABLES
-
 let questionCounter = 0;
-let availableQuestions = [];
 let currentQuestion = {};
 let lastQuestionFlag = false;
 
@@ -46,10 +36,11 @@ localStorage.setItem("score", 0);
 // *   I declare it globaly as it has to be accessed for more the one functions.
 let startTime = new Date();  
 
+//  ! Event fires when HTML's been loaded, fetch the data and assign that data to the HTML elements questions, images  ********************
+document.addEventListener("DOMContentLoaded", fetchAndStart());
 
 
-// !(1) to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.
-
+// ! to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.
 $('.container').not('#startDiv').css('display', 'none');
 
  // * jQuery Event handler to the Start button to start the game
@@ -58,31 +49,17 @@ $('#startBTN').on('click', function(){
 });
 
 
-
-
-// * Retrieve n number of random questions from the total document questions in a Firebase collection called 'questions'.
-document.addEventListener("DOMContentLoaded", retrievingQuestions());
-
-
-
-// ! STARTGAME FUNCTION
-// * I've turned it from an arrow function to a default function as it didn't work when I added type="module" to the index.js script in the embedded html  
-function startGame(){
-  availableQuestions = [...dbQuestions];
-  getNewQuestion();
-}
-
 // ! GETNEWQUESTION FUNCTION 
 function getNewQuestion (){
-
-  if(availableQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){	
+  console.log(dbQuestions);
+  if(dbQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){	
       lastQuestionFlag = true;
       buildResultDiv($resultsDiv, localStorage.getItem("score"));
   } else {
     questionCounter++;
 
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    currentQuestion = availableQuestions[questionIndex];
+    const questionIndex = Math.floor(Math.random() * dbQuestions.length);
+    currentQuestion = dbQuestions[questionIndex];
 
     // * jQuery method to set up the text inside dd ORDINAL element and h1 question. 
     $question.html(`<dd>${questionCounter}/${AMOUNT_QUESTIONS_QUIZ}</dd><h1>${currentQuestion.question}</h1>`);
@@ -92,15 +69,13 @@ function getNewQuestion (){
       $(this).text(currentQuestion["option" + number]);  
     });
 
-
     getImageQuestion(currentQuestion);
 
-    availableQuestions.splice(questionIndex, 1);    
+    dbQuestions.splice(questionIndex, 1);    
     localStorage.setItem("acceptingAnswers", true); 
   }
 
 }
-
 
 //! EVENT LISTENER ATTACH TO CHOICE (ARRAY OF OPTIONS)
   $choices.on("click", e => {
@@ -129,15 +104,11 @@ function getNewQuestion (){
 
 
 
-
-// * Start the game.
-setTimeout(() => {startGame()}, 500);
-
-
-
-
 // * exporting jquery element variables to be used by transitionsTabs // and $imgQuestion by retrievingData.js 
-export {$startDiv, $questionDiv, $checkAnswerDiv, $resultsDiv, $imgQuestion};
+export {dbQuestions, $startDiv, $questionDiv, $checkAnswerDiv, $resultsDiv, $imgQuestion};
 
 // * exporting variables to be used by checkAnswerFunctionality ***********************************************************
-export {currentQuestion, startTime};
+export {currentQuestion, startTime, getNewQuestion};
+
+
+

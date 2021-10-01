@@ -1,4 +1,7 @@
 
+// ***************************************  buildResultDiv builds the final div **********************************************
+
+
 //* object with the info needed to build result div
 const myResults = [
 
