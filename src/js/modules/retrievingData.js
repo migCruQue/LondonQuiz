@@ -6,7 +6,8 @@ import {$imgQuestion, getNewQuestion} from "../index";
 
 
 // * constants for randomly choose the questions from firebase database.
-const AMOUNT_QUESTIONS_QUIZ = 20; // * fetching 12 elements instead of 10 for having 2 more as a fall back on.
+const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_QUIZ_FALLBACK = 20; // * fetching 20 elements instead of 10 for having 2 more as a fall back on.
 const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 //* global variable to store the question from the Firebase database (it remains immutable).
@@ -31,7 +32,7 @@ function fetchAndStart(){
 
     firebase.app(); const db = firebase.firestore(); // set up the db (database).
 
-    let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ, AMOUNT_QUESTIONS_COLLECTION);
+    let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ_FALLBACK, AMOUNT_QUESTIONS_COLLECTION);
 
     let promisesArray = [];
 

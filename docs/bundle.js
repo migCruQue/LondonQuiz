@@ -73,7 +73,6 @@ $('#startBTN').on('click', function(){
 
 // ! GETNEWQUESTION FUNCTION 
 function getNewQuestion (){
-  console.log(_modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.dbQuestions);
   if(_modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.dbQuestions.length === 0 || questionCounter >= _modules_retrievingData__WEBPACK_IMPORTED_MODULE_1__.AMOUNT_QUESTIONS_QUIZ){	
       lastQuestionFlag = true;
       (0,_modules_divResultFunctionality__WEBPACK_IMPORTED_MODULE_0__.buildResultDiv)($resultsDiv, localStorage.getItem("score"));
@@ -266,7 +265,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // * constants for randomly choose the questions from firebase database.
-const AMOUNT_QUESTIONS_QUIZ = 20; // * fetching 12 elements instead of 10 for having 2 more as a fall back on.
+const AMOUNT_QUESTIONS_QUIZ = 10;
+const AMOUNT_QUESTIONS_QUIZ_FALLBACK = 20; // * fetching 20 elements instead of 10 for having 2 more as a fall back on.
 const AMOUNT_QUESTIONS_COLLECTION = 50;
 
 //* global variable to store the question from the Firebase database (it remains immutable).
@@ -291,7 +291,7 @@ function fetchAndStart(){
 
     firebase.app(); const db = firebase.firestore(); // set up the db (database).
 
-    let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ, AMOUNT_QUESTIONS_COLLECTION);
+    let array  = codeNumberQuestionArray(AMOUNT_QUESTIONS_QUIZ_FALLBACK, AMOUNT_QUESTIONS_COLLECTION);
 
     let promisesArray = [];
 

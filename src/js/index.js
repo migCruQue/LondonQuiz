@@ -51,7 +51,6 @@ $('#startBTN').on('click', function(){
 
 // ! GETNEWQUESTION FUNCTION 
 function getNewQuestion (){
-  console.log(dbQuestions);
   if(dbQuestions.length === 0 || questionCounter >= AMOUNT_QUESTIONS_QUIZ){	
       lastQuestionFlag = true;
       buildResultDiv($resultsDiv, localStorage.getItem("score"));
