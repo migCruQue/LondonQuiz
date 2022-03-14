@@ -39,7 +39,6 @@ let startTime = new Date();
 //  ! Event fires when HTML's been loaded, fetch the data and assign that data to the HTML elements questions, images  ********************
 document.addEventListener("DOMContentLoaded", fetchAndStart());
 
-
 // ! to launch the game setting up inline style ==> display: none to all the container tabs except #startDiv.
 $('.container').not('#startDiv').css('display', 'none');
 
